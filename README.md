@@ -1,4 +1,4 @@
-# **TO DO LIST / RESULTS **
+# TO DO LIST / RESULTS
     To try to learn how to classify tweet responses into the following categories
     0. Explicit Denial
     1. Comment
@@ -69,16 +69,6 @@
             parent_label  ==>
     Loss: Cross Entropy Loss, flat weights
     
-### ModelB2
-    Same as model B1
-    TODO: Loss: weighted loss. 
-
-### ModelC1
-    Same as model B1
-    
-### ModelC2
-    Same as model B2
-    TODO
 
 ### **Training algo:**
     SGD
