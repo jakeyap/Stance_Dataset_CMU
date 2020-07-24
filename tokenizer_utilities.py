@@ -172,7 +172,7 @@ def remove_nans(dataframe):
 
     Returns
     -------
-    dataframe
+    dataframe : pandas dataframe object
         Pandas dataframe with filtered tweets.
     error_indices : list
         List of integers. Each int represents index of tweet with nans
@@ -185,13 +185,14 @@ def remove_nans(dataframe):
     for counter in range (len(dataframe)):
         # check parent and child tweets
         parent_tweet = dataframe.iloc[counter]['target_text']
-        child_tweet = dataframe.iloc[counter]['response_text']
+        #child_tweet = dataframe.iloc[counter]['response_text']
         isnan = False
         isempty = False
         try:
-            isnan = (math.isnan(parent_tweet)) or (math.isnan(child_tweet))
+            isnan = math.isnan(parent_tweet)
         except Exception:
-            isempty = (parent_tweet == '') or (child_tweet == '')
+            #isempty = (parent_tweet == '') or (child_tweet == '')
+            pass
         if isnan or isempty:
             error_indices.append(counter)
         counter = counter + 1
@@ -318,6 +319,7 @@ if __name__ =='__main__':
     
     train_set = encoded_df.iloc[0:train_index].copy()
     test_set = encoded_df.iloc[train_index:].copy()
+    
     ''' ========== count the labels for both sets ========== '''
     count3 = empty_label_dictionary()
     count4 = empty_label_dictionary()

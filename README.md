@@ -1,30 +1,23 @@
 # TO DO LIST / RESULTS
     To try to learn how to classify tweet responses into the following categories
     0. Explicit Denial
-    1. Comment
-    2. Explicit Support
-    3. Implicit Denial
-    4. Queries
-    5. Implicit Support
+    1. Implicit Denial
+    2. Implicit Support
+    3. Explicit Support
+    4. Comment
+    5. Queries
     
     Will try to use BERT to do the task    
-
-## **Task 0: Preprocessing**
+    
+## **Task 0: Preprocessing Data**
     [x] Visualize category labels density
     [x] Filter the NaNs in either parent tweet or child tweet
-    [ ] Tokenize tweet pairs
-    [ ] Convert labels into numbers
-    [ ] Split the dataset into training and test sets
-    [ ] Ensure test dataset label density is similar to main dataset's
-    [ ] Save the tokenized tweets into binaries    
-    [ ] Change the metric to macro F1 score
+    [x] Tokenize tweet pairs
+    [x] Convert labels into numbers
+    [x] Split the dataset into training and test sets
+    [x] Ensure test dataset label density is similar to main dataset's
+    [x] Save the tokenized tweets into binaries    
 
-## **Task 1: Try to classify using BERT**
-
-
-### Method A
-    After flattening, learn classification pairwise, with 100 different categories.
-    
 ### **Data:**
     Here's how the data looks like.
 
@@ -40,8 +33,18 @@
     After splitting into training and test sets, the densities still look OK.
     
 ![Train vs test sets](./data/test_train_density.png)
-    
+
+## **Task 1: Try to classify using BERT**
+    [ ] Change the F1 metric to macro F1 score
+    [ ] Build a simple BERT first
+    [ ] Improve old code for saving training steps
+    [ ] Save intermediate models
+
+## **Task 2: Try to classify using XLNet**
+
 ## IGNORE EVERYTHING BELOW FOR NOW
+
+    After flattening, learn classification pairwise, with 6 different categories.
 
 ### **Models:**
     
@@ -85,41 +88,7 @@
 ### **Results:**
 
 ### ModelA1
-    Emphirically, after 6-7 epochs, overfitting kicks in. 
-    
-![overfit](./results/MODELA/modelA1_overfitting.png)
-
-    Stop training at 6 epochs then. The ball park accuracy is 53%-56%.
-
-![loss](./results/MODELA/modelA1_losses_6epochs.png)
-
-![predicted labels](./results/MODELA/modelA1_predicted_labels_6_epochs.png)
-
-    For comparison, here's the real label density for the test set
-![testset labels](./results/testset_labels.png)
-    
-### ModelA2
-    Not meaningful. Didn't learn after 10 epochs
-    
-### ModelA3
-    Peak accuracy of 47% after 7 training epochs. 
-
-![ModelA3 loss](./results/MODELA/modelA3_losses.png)
-
-    
-### ModelB1
-    See ModelC1. Trained using true parent's label.
-    Accuracy is 78-80%. F1 score is 0.79-0.80.
-    
-### ModelB2
-    TODO
-    
-### ModelC1
-    The peak accuracy after 10 epochs is 80-82%. F1 score of 0.80-0.83.
-![ModelC1 loss](./results/MODELB/modelC1_losses_10epochs.png)
-
-### ModelC1
-    TODO
+    NOT DONE YET
     
 ### **Remarks:**
     How to deal with abbreviations? Some examples
@@ -136,22 +105,18 @@
         
     I tried to weigh the cost function (see ModelA2 and ModelA3 above for details). ModelA2 didnt learn at all. ModelA3 somewhat works OK, with a peak accuracy of 47% after 7 training epochs. The losses are shown above in results section.
     
-    
-# Task 2: Maintain tree structure 
-    Use PLAN model. Not sure how yet.
-
 
 # Concepts/tools used for this exercise
-    pytorch: 
-        how to build NNs
-        how to train and use NNs
-        huggingface transformers library
-    CUDA stuff: 
-        moving things to GPU only when needed
-        deleting references to objects no longer needed
-        release memory by calling cuda.emptying_cache()
-        if all else fails, backup models, data, then reboot python kernel
-    General stuff:
-        Practice proper file handling to prevent overwrite accidents
-        Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr
+    ~~pytorch: ~~
+        ~~how to build NNs~~
+        ~~how to train and use NNs~~
+        ~~huggingface transformers library~~
+    ~~CUDA stuff: ~~
+        ~~moving things to GPU only when needed~~
+        ~~deleting references to objects no longer needed~~
+        ~~release memory by calling cuda.emptying_cache()~~
+        ~~if all else fails, backup models, data, then reboot python kernel~~
+    ~~General stuff:~~
+        ~~Practice proper file handling to prevent overwrite accidents~~
+        ~~Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr~~
     
