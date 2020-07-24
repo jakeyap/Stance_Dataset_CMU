@@ -12,7 +12,6 @@
 ## **Task 0: Preprocessing**
     [x] Visualize category labels density
     [x] Filter the NaNs in either parent tweet or child tweet
-    [x] Draw a histogram of token lengths for posts to truncate appropriately
     [ ] Tokenize tweet pairs
     [ ] Convert labels into numbers
     [ ] Split the dataset into training and test sets
@@ -29,7 +28,7 @@
 ### **Data:**
     Here's how the data looks like.
 
-![Comment labels](./data/label_density.png)
+![Tweet labels](./data/label_density.png)
         
     There are 5221 tweet pairs in the raw data. 
     However, there are a lot of deleted tweets.
@@ -37,6 +36,10 @@
         ~90% training set (3844)
         ~10% test set (427)
     Always fix the test set as the last 427 samples
+
+    After splitting into training and test sets, the densities still look OK.
+    
+![Train vs test sets](./data/test_train_density.png)
     
 ## IGNORE EVERYTHING BELOW FOR NOW
 

@@ -10,6 +10,7 @@ from transformers import BertTokenizer
 import numpy as np
 import pandas as pd
 import math        
+import torch
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
@@ -65,7 +66,6 @@ def convert_label_num2string(number):
     all_labels = list(dictionary.keys())
     return all_labels[number]
 
-
 def print_json_file(json_filename, start=0, count=5, debug=False):
     """
     Pretty prints a few samples inside the json file
@@ -115,7 +115,8 @@ def print_json_tweet_pair(tweet_pair):
 
     Parameters
     ----------
-    comment : string
+    tweet_pair : string
+        json format
 
     Returns
     -------
@@ -125,13 +126,58 @@ def print_json_tweet_pair(tweet_pair):
     print(json.dumps(tweet_pair, indent=4))
 
 def pandas_find_post_label_str(index, dataframe):
+    """
+    Returns the label of a tweet, in string form
+    
+    Parameters
+    ----------
+    index : int
+        A row index.
+    dataframe : pandas dataframe
+
+    Returns
+    -------
+    label : string
+        label of tweet in string form
+
+    """
     return dataframe.at[index, 'label']
 
 def pandas_find_post_label_num(index, dataframe):
+    """
+    Returns the label of a tweet, in integer form
+    
+    Parameters
+    ----------
+    index : int
+        A row index.
+    dataframe : pandas dataframe
+
+    Returns
+    -------
+    label : int
+        label of tweet in integer form
+
+    """
     return dataframe.at[index, 'label_number']
 
 def remove_nans(dataframe):
-    
+    """
+    Removes the tweets with nans inside from dataframe
+
+    Parameters
+    ----------
+    dataframe : pandas dataframe
+        dataframe that contains all the tweets.
+
+    Returns
+    -------
+    dataframe
+        Pandas dataframe with filtered tweets.
+    error_indices : list
+        List of integers. Each int represents index of tweet with nans
+
+    """
     # store the index where there's something wrong with the tweets
     error_indices = []
     
@@ -153,6 +199,22 @@ def remove_nans(dataframe):
     return dataframe.drop(error_indices), error_indices
 
 def tokenize_and_encode_pandas(dataframe,stopindex=1e9):    
+    """
+    Tokenize and encode the text into vectors, then stick inside dataframe
+
+    Parameters
+    ----------
+    dataframe : pandas dataframe
+        Dataframe that contains all tweet data.
+    stopindex : int, optional
+        Number of tweets to stop at. The default is 1e9.
+
+    Returns
+    -------
+    dataframe : pandas dataframe
+        Original dataframe with additional information appended.
+
+    """
     encoded_tweets = []
     token_type_ids = []
     attention_mask = []
@@ -190,6 +252,7 @@ if __name__ =='__main__':
     FILENAME = 'stance_dataset.json'
     NUM_TO_IMPORT = 1e9
     TOKENIZE = True
+    TRAINING_RATIO = 0.90
     
     ''' ========== Import data ========== '''
     filename = DATADIR + FILENAME
@@ -216,6 +279,7 @@ if __name__ =='__main__':
     ''' ========== Plot the label densities ========== '''
     count1 = empty_label_dictionary()
     count2 = empty_label_dictionary()
+    label_list = count1.keys()
     
     # Count number of labels
     datalength1 = pd_dataframe.shape[0]
@@ -237,6 +301,7 @@ if __name__ =='__main__':
     width = 0.25
     plt.bar(x=xpts-width/2,height=count1.values(), width=width, label='raw')
     plt.bar(x=xpts+width/2,height=count2.values(), width=width, label='filtered')
+    plt.xticks(xpts, label_list)
     plt.ylabel('Counts')
     plt.xlabel('Labels')
     plt.title('CMU twitter dataset labels')
@@ -248,6 +313,45 @@ if __name__ =='__main__':
         encoded_df = tokenize_and_encode_pandas(dataframe=df_filtered)
     
     ''' ========== split into training and test sets ========== '''
-    ''' ========== plot the label densities for both ========== '''
-    ''' ========== save both datasets into binaries ========== '''
+    datalength = encoded_df.shape[0]
+    train_index = round (TRAINING_RATIO * datalength)
     
+    train_set = encoded_df.iloc[0:train_index].copy()
+    test_set = encoded_df.iloc[train_index:].copy()
+    ''' ========== count the labels for both sets ========== '''
+    count3 = empty_label_dictionary()
+    count4 = empty_label_dictionary()
+    
+    # Count number of labels
+    datalength3 = train_set.shape[0]
+    datalength4 = test_set.shape[0]
+    # Go through training data to count labels
+    for row in range(datalength3):
+        string_label = train_set.iloc[row]['label']
+        count3[string_label] = count3[string_label] + 1
+    
+    # Go through test data to count labels
+    for row in range(datalength4):
+        string_label = df_filtered.iloc[row]['label']
+        count4[string_label] = count4[string_label] + 1 
+    
+    # Normalize both histograms
+    train_label_max = sum(count3.values())
+    test_label_max = sum(count4.values())
+    for each_key in count3.keys():
+        count3[each_key] = count3[each_key] * 100 / train_label_max
+        count4[each_key] = count4[each_key] * 100 / test_label_max
+    
+    plt.figure(2)
+    plt.bar(x=xpts-width/2,height=count3.values(), width=width, label='train-3844')
+    plt.bar(x=xpts+width/2,height=count4.values(), width=width, label='test-427')
+    plt.xticks(xpts, label_list)
+    plt.ylabel('Counts')
+    plt.xlabel('Labels')
+    plt.title('CMU twitter dataset labels %')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.legend()
+    ''' ========== save both datasets into binaries ========== '''
+    torch.save(train_set, './data/train_set.bin')
+    torch.save(test_set, './data/test_set.bin')
