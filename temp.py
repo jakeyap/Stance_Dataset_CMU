@@ -56,3 +56,61 @@ plt.xlabel('Labels')
 plt.title('CMU twitter dataset labels')
 plt.grid(True)
 plt.tight_layout()
+
+''' ========== count the labels for both sets ========== '''
+import matplotlib.pyplot as plt
+import tokenizer_utilities
+count3 = tokenizer_utilities.empty_label_dictionary()
+count4 = tokenizer_utilities.empty_label_dictionary()
+count5 = tokenizer_utilities.empty_label_dictionary()
+train_set = torch.load('./data/train_set.bin')
+test_set  = torch.load('./data/test_set.bin')
+
+# Count number of labels
+datalength3 = train_set.shape[0]
+datalength4 = test_set.shape[0]
+# Go through training data to count labels
+for row in range(datalength3):
+    string_label = train_set.iloc[row]['label']
+    count3[string_label] = count3[string_label] + 1
+
+# Go through test data to count labels
+for row in range(datalength4):
+    string_label = test_set.iloc[row]['label']
+    count4[string_label] = count4[string_label] + 1 
+    count5[string_label] = count5[string_label] + 1 
+
+# Normalize both histograms
+train_label_max = sum(count3.values())
+test_label_max = sum(count4.values())
+for each_key in count3.keys():
+    count3[each_key] = count3[each_key] * 100 / train_label_max
+    count4[each_key] = count4[each_key] * 100 / test_label_max
+
+plt.figure(3)
+xpts = np.arange(len(count3))
+width = 0.25
+plot1 = plt.subplot(2,1,1)
+label_list = count3.keys()
+plt.bar(x=xpts-width/2,height=count3.values(), width=width, label='train-3844')
+plt.bar(x=xpts+width/2,height=count4.values(), width=width, label='test-427')
+plt.xticks(xpts, label_list)
+plt.ylabel('Percent')
+plt.xlabel('Labels')
+plt.title('CMU twitter dataset labels %')
+plt.grid(True)
+plt.tight_layout()
+plt.legend()
+
+plot2 = plt.subplot(2,1,2)
+plt.bar(x=xpts,height=count5.values(), width=width, label='train-3844')
+plt.xticks(xpts, label_list)
+plt.ylabel('Count')
+plt.xlabel('Labels')
+plt.title('Test set counts')
+plt.grid(True)
+plt.tight_layout()
+
+''' ========== save both datasets into binaries ========== '''
+
+

@@ -8,7 +8,6 @@ Created on Wed May 20 17:04:58 2020
 import logging
 import time
 
-import reddit_utilities as reddit
 from transformers import BertTokenizer
 import numpy as np
 import torch
@@ -71,33 +70,33 @@ def dataframe_2_dataloader(dataframe,
     else:
         new_df = dataframe
     
-    posts_index     = new_df.index[0:datalength].values
+    posts_index     = new_df.index.values
     posts_index     = posts_index.reshape(((-1,1)))
     encoded_tweets  = new_df['encoded_tweets'].values
     encoded_tweets  = np.array(encoded_tweets.tolist())
     token_type_ids  = new_df['token_type_ids'].values
     token_type_ids  = np.array(token_type_ids.tolist())
-    attention_masks = new_df['attention_masks'].values
-    attention_masks = np.array(attention_masks.tolist())
-    number_labels   = new_df['number_labels'].values
-    number_labels   = number_labels.reshape(((-1,1)))
-    times_labeled   = new_df['times_labeled'].values
+    attention_mask  = new_df['attention_mask'].values
+    attention_mask  = np.array(attention_mask.tolist())
+    times_labeled   = new_df['Times_Labeled'].values
     times_labeled   = times_labeled.reshape(((-1,1)))
+    number_labels   = new_df['number_labels'].values
+    number_labels   = number_labels.reshape((-1))
     
     # convert numpy arrays into torch tensors
     posts_index     = torch.from_numpy(posts_index)
     encoded_tweets  = torch.from_numpy(encoded_tweets)
     token_type_ids  = torch.from_numpy(token_type_ids)
-    attention_masks = torch.from_numpy(attention_masks)
+    attention_mask  = torch.from_numpy(attention_mask)
     number_labels   = torch.from_numpy(number_labels)
     times_labeled   = torch.from_numpy(times_labeled)
     
     dataset = TensorDataset(posts_index,
-                            encoded_comments,
+                            encoded_tweets,
                             token_type_ids,
-                            attention_masks,
-                            number_labels,
-                            parent_labels)
+                            attention_mask,
+                            times_labeled,
+                            number_labels)
     dataloader = DataLoader(dataset, 
                             batch_size=batch_size,
                             shuffle=randomize)

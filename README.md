@@ -35,31 +35,40 @@
 ![Train vs test sets](./data/test_train_density.png)
 
 ## **Task 1: Try to classify using BERT**
-    [ ] Change the F1 metric to macro F1 score
-    [ ] Build a simple BERT first
+    [x] Change the F1 metric to macro F1 score
+    [x] Build a simple BERT first
     [ ] Improve old code for saving training steps
     [ ] Save intermediate models
 
-## **Task 2: Try to classify using XLNet**
-
-## IGNORE EVERYTHING BELOW FOR NOW
-
-    After flattening, learn classification pairwise, with 6 different categories.
+## **Task 3: Try to improve classifier**
+    [ ] Stack layers after generic BERT
+    [ ] Use the bigger BERT model
+    [ ] Try ADAM instead of SGD
+    [ ] Include the "times labeled" field
+    [x] Weigh the cost function
 
 ### **Models:**
-    
+
+### ModelA0
+    BERT ==> Dropout1 10% ==> Linear1
+    Loss: Cross Entropy Loss, flat weights
+    SGD lr=0.001, momentum=0.5
     
 ### ModelA1
-    BERT ==> Dropout1 10% ==> Linear1 ==> RELU1
-         ==> Dropout2 10% ==> Linear2 ==> RELU2 ==> Linear3
-    Loss: Cross Entropy Loss, flat weights
+    BERT ==> Dropout1 10% ==> Linear1
+    Loss: Cross Entropy Loss, 
+        weights = sum_counts / (number of labels in each category),
+        then divide by average weight 
+    SGD lr=0.001, momentum=0.5
     
 ### ModelA2
-    BERT ==> Linear
-    Loss: Cross Entropy Loss, inverse weights to label occurence
-        add 1k to all counts
-        then divide the sum by each element
-        
+    BERT ==> Dropout1 10% ==> Linear1
+    Loss: Cross Entropy Loss, 
+        weights = sum_counts / (number of labels in each category),
+        then divide by average weight 
+    ADAM: lr=0.001, momentum=0.5
+
+## IGNORE EVERYTHING BELOW FOR NOW
 ### ModelA3
     BERT ==> Linear
     Loss: Cross Entropy Loss, inverse weights to label occurence
@@ -82,7 +91,7 @@
 ### **Hardware used:**
     GPU: RTX 2080 Super (8Gb RAM)
     CPU: Ryzen 3900 (12 cores 24 threads)
-    1 epoch takes ~40 min for modelA
+    1 epoch takes ~1.5 min for modelA
     Peak GPU RAM usage is ~7/8 Gb. Dont use maximum to give some buffer
 
 ### **Results:**
@@ -107,16 +116,16 @@
     
 
 # Concepts/tools used for this exercise
-    ~~pytorch: ~~
-        ~~how to build NNs~~
-        ~~how to train and use NNs~~
-        ~~huggingface transformers library~~
-    ~~CUDA stuff: ~~
-        ~~moving things to GPU only when needed~~
-        ~~deleting references to objects no longer needed~~
-        ~~release memory by calling cuda.emptying_cache()~~
-        ~~if all else fails, backup models, data, then reboot python kernel~~
-    ~~General stuff:~~
-        ~~Practice proper file handling to prevent overwrite accidents~~
-        ~~Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr~~
     
+~~pytorch: ~~
+    ~~how to build NNs~~
+    ~~how to train and use NNs~~
+    ~~huggingface transformers library~~
+~~CUDA stuff: ~~
+    ~~moving things to GPU only when needed~~
+    ~~deleting references to objects no longer needed~~
+    ~~release memory by calling cuda.emptying_cache()~~
+    ~~if all else fails, backup models, data, then reboot python kernel~~
+~~General stuff:~~
+    ~~Practice proper file handling to prevent overwrite accidents~~
+    ~~Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr~~
