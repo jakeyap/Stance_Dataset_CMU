@@ -53,7 +53,7 @@
     BERT ==> Dropout1 10% ==> Linear1
     Loss: Cross Entropy Loss, flat weights
     SGD lr=0.001, momentum=0.5
-    3000s for 30 epochs. Doesnt train very well
+    Training takes ~1h for 30 epochs
     
 ### ModelA1
     BERT ==> Dropout1 10% ==> Linear1
@@ -61,18 +61,18 @@
         weights = sum_counts / (number of labels in each category),
         then divide by mean weight 
     SGD lr=0.001, momentum=0.5
-    
+    Training takes ~1h for 30 epochs
     
 ### ModelA2
     BERT ==> Dropout1 10% ==> Linear1
     Loss: Cross Entropy Loss, 
         weights = sum_counts / (number of labels in each category),
         then divide by mean weight 
-    ADAM: lr=0.001, momentum=0.5
-
+    ADAM: lr=0.001, betas are defaults
+    Training takes ~3h for 80 epochs
 
 ### **Training algo:**
-    SGD
+    If SGD was used, here are the parameters
         Learning rate = 0.001
         Momentum = 0.5
         Minibatch size = 40
@@ -88,31 +88,36 @@
 ### **Results:**
 
 ### ModelA0
-    The model doesn't really train at all. The output layer seems to swing 
-    between results. It labels everything in 1 class or another. Perhaps this 
-    is caused when it looks at a subset of training data from only 1 class. 
-    Might be solved by either increasing momentum, increasing minibatch size, 
-    or carefully tweaking the cost function.
     
 ![ModelA0 Losses](./results/modelA0_sgd_30_epoch_loss.png)
 
 ![ModelA0 Accuracy](./results/modelA0_sgd_30_epoch_accuracy.png)
     
+    Remarks:
+        The model doesn't really train at all. The output layer seems to swing 
+        between results. It labels everything in 1 class or another. Perhaps this 
+        is caused when it looks at a subset of training data from only 1 class. 
+        Might be solved by either increasing momentum, increasing minibatch size, 
+        or carefully tweaking the cost function.
+        
 ### ModelA1
-    3000s for 30 epochs. Loss starts to go down only a tiny bit. 
-    Try to go further with this later. The F1 score is starting to creep up.
 
 ![ModelA1 Losses](./results/modelA1_sgd_30_epoch_loss.png)
 
 ![ModelA1 Accuracy](./results/modelA1_sgd_30_epoch_accuracy.png)
     
+    Remarks:
+        This works best so far. Loss starts to go down only a tiny bit. 
+        Try to push this further later. The F1 score is starting to creep up.
+    
 ### ModelA2
-    The model doesn't really train at all, similar to ModelA0. 
     
 ![ModelA2 Losses](./results/modelA2_adam_80_epoch_loss.png)
 
 ![ModelA2 Accuracy](./results/modelA2_adam_80_epoch_accuracy.png)
-
+    
+    Remarks:
+        The model doesn't really train at all, similar to ModelA0. 
 
     
 ### **Remarks:**
@@ -121,18 +126,10 @@
     - ROFL
     - LOL
     
+    Also, is removing URLs from tweets really important?
+    
+    Is using the feature [reply / quote] that important?
+    
 
 # Concepts/tools used for this exercise
     
-    pytorch:
-        ~~how to build NNs~~
-        ~~how to train and use NNs~~
-        ~~huggingface transformers library~~
-    CUDA stuff:
-        ~~moving things to GPU only when needed~~
-        ~~deleting references to objects no longer needed~~
-        ~~release memory by calling cuda.emptying_cache()~~
-        ~~if all else fails, backup models, data, then reboot python kernel~~
-    General stuff:
-        ~~Practice proper file handling to prevent overwrite accidents~~
-        ~~Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr~~
