@@ -94,22 +94,22 @@
     Might be solved by either increasing momentum, increasing minibatch size, 
     or carefully tweaking the cost function.
     
-![ModelA0 Losses](./results/modelA0_sgd_30_epoch_losses.png)    
+![ModelA0 Losses](./results/modelA0_sgd_30_epoch_loss.png)
 
 ![ModelA0 Accuracy](./results/modelA0_sgd_30_epoch_accuracy.png)
     
 ### ModelA1
     3000s for 30 epochs. Loss starts to go down only a tiny bit. 
-    Try to go further with this later
+    Try to go further with this later. The F1 score is starting to creep up.
 
-![ModelA1 Losses](./results/modelA1_sgd_30_epoch_losses.png)    
+![ModelA1 Losses](./results/modelA1_sgd_30_epoch_loss.png)
 
 ![ModelA1 Accuracy](./results/modelA1_sgd_30_epoch_accuracy.png)
     
 ### ModelA2
     The model doesn't really train at all, similar to ModelA0. 
     
-![ModelA2 Losses](./results/modelA2_adam_80_epoch_losses.png)    
+![ModelA2 Losses](./results/modelA2_adam_80_epoch_loss.png)
 
 ![ModelA2 Accuracy](./results/modelA2_adam_80_epoch_accuracy.png)
 
