@@ -67,10 +67,10 @@ class my_ModelA0(BertPreTrainedModel):
                             token_type_ids=token_type_ids,
                             position_ids=position_ids, 
                             head_mask=head_mask)
-
-        pooled_output = outputs[1]
+        
+        output = outputs[1]
+        pooled_output = self.dropout0(output)
         logits = self.classifier0(pooled_output)
-
         outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
 
         if labels is not None:

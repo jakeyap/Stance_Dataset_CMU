@@ -21,11 +21,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 time_start = time.time()
     
-FROM_SCRATCH = True # True if start loading model from scratch
-TRAIN = True # True if you want to train the network. False to just test
+FROM_SCRATCH = False # True if start loading model from scratch
+TRAIN = False # True if you want to train the network. False to just test
 
 '''======== FILE NAMES FOR LOGGING ========'''
-iteration = 1
+iteration = 2
 MODELNAME = 'modelA2'
 
 ITER1 = str(iteration)
@@ -57,7 +57,7 @@ BATCH_SIZE_TRAIN = 40
 BATCH_SIZE_TEST = 40
 LOG_INTERVAL = 10
 
-N_EPOCHS = 10
+N_EPOCHS = 80
 LEARNING_RATE = 0.001
 MOMENTUM = 0.5
 
@@ -273,7 +273,7 @@ def test(save=False):
         if len(tests_count) == 0:
             tests_count.append(len(train_loader.dataset))
         else:
-            tests_count.append(tests_count[-1] + len(train_loader.dataset))
+            tests_count.append(train_count[-1] + len(train_loader.dataset))
         torch.save([train_losses,
                     train_count,
                     tests_losses,

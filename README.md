@@ -58,14 +58,14 @@
     BERT ==> Dropout1 10% ==> Linear1
     Loss: Cross Entropy Loss, 
         weights = sum_counts / (number of labels in each category),
-        then divide by average weight 
+        then divide by mean weight 
     SGD lr=0.001, momentum=0.5
     
 ### ModelA2
     BERT ==> Dropout1 10% ==> Linear1
     Loss: Cross Entropy Loss, 
         weights = sum_counts / (number of labels in each category),
-        then divide by average weight 
+        then divide by mean weight 
     ADAM: lr=0.001, momentum=0.5
 
 ## IGNORE EVERYTHING BELOW FOR NOW
@@ -96,23 +96,29 @@
 
 ### **Results:**
 
+### ModelA0
+
 ### ModelA1
     NOT DONE YET
+    
+### ModelA2
+    The model doesn't really train at all. The output layer seems to swing 
+    between results. It labels everything in 1 class or another. Perhaps this 
+    is caused when it looks at a subset of training data from only 1 class. 
+    Might be solved by either increasing momentum, increasing minibatch size, 
+    or carefully tweaking the cost function.
+    
+![ModelA2 Losses](./results/modelA2_epoch_losses.png)    
+
+![ModelA2 Accuracy](./results/modelA2_epoch_accuracy.png)
+
+
     
 ### **Remarks:**
     How to deal with abbreviations? Some examples
     - NRA
     - ROFL
     - LOL
-    
-    Comment pairs, heavily skewed towards the (question,answer) label, so the other types seem to get drowned out.
-    In order to account for that, perhaps need to weigh the cost function, to decrease cost associated with (question,answer) label
-    The 3 categories <humor>, <negative reaction>, <other>, are very under represented. Perhaps their cost need to be weighted upwards
-    Perhaps increase the batch size and lower the tokenization length.
-    Further handicaps
-        -Looking at a comment pair with no context. How do you tell whether it is an announcement or elaboration?
-        
-    I tried to weigh the cost function (see ModelA2 and ModelA3 above for details). ModelA2 didnt learn at all. ModelA3 somewhat works OK, with a peak accuracy of 47% after 7 training epochs. The losses are shown above in results section.
     
 
 # Concepts/tools used for this exercise
