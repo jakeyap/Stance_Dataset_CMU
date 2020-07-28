@@ -38,12 +38,12 @@
     [x] Change the F1 metric to macro F1 score
     [x] Build a simple BERT first
     [ ] Improve old code for saving training steps
-    [ ] Save intermediate models
+    [x] Save intermediate models
 
 ## **Task 3: Try to improve classifier**
     [ ] Stack layers after generic BERT
     [ ] Use the bigger BERT model
-    [ ] Try ADAM instead of SGD
+    [x] Try ADAM instead of SGD
     [ ] Include the "times labeled" field
     [x] Weigh the cost function
 
@@ -53,6 +53,7 @@
     BERT ==> Dropout1 10% ==> Linear1
     Loss: Cross Entropy Loss, flat weights
     SGD lr=0.001, momentum=0.5
+    3000s for 30 epochs. Doesnt train very well
     
 ### ModelA1
     BERT ==> Dropout1 10% ==> Linear1
@@ -61,6 +62,7 @@
         then divide by mean weight 
     SGD lr=0.001, momentum=0.5
     
+    
 ### ModelA2
     BERT ==> Dropout1 10% ==> Linear1
     Loss: Cross Entropy Loss, 
@@ -68,25 +70,14 @@
         then divide by mean weight 
     ADAM: lr=0.001, momentum=0.5
 
-## IGNORE EVERYTHING BELOW FOR NOW
-### ModelA3
-    BERT ==> Linear
-    Loss: Cross Entropy Loss, inverse weights to label occurence
-        add 1k to all counts
-        then divide the sum by each element
-        then divide by the biggest number to normalize to 1 or lower
-    
-### ModelB1 
-    BERT ==> Dropout1 10% ==> Linear1 ==> RELU1 ==> Dropout2 10% ==> Linear2
-            parent_label  ==>
-    Loss: Cross Entropy Loss, flat weights
-    
 
 ### **Training algo:**
     SGD
         Learning rate = 0.001
         Momentum = 0.5
         Minibatch size = 40
+    ADAM
+        Learning rate = 0.001
 
 ### **Hardware used:**
     GPU: RTX 2080 Super (8Gb RAM)
@@ -97,20 +88,30 @@
 ### **Results:**
 
 ### ModelA0
-
-### ModelA1
-    NOT DONE YET
-    
-### ModelA2
     The model doesn't really train at all. The output layer seems to swing 
     between results. It labels everything in 1 class or another. Perhaps this 
     is caused when it looks at a subset of training data from only 1 class. 
     Might be solved by either increasing momentum, increasing minibatch size, 
     or carefully tweaking the cost function.
     
-![ModelA2 Losses](./results/modelA2_epoch_losses.png)    
+![ModelA0 Losses](./results/modelA0_sgd_30_epoch_losses.png)    
 
-![ModelA2 Accuracy](./results/modelA2_epoch_accuracy.png)
+![ModelA0 Accuracy](./results/modelA0_sgd_30_epoch_accuracy.png)
+    
+### ModelA1
+    3000s for 30 epochs. Loss starts to go down only a tiny bit. 
+    Try to go further with this later
+
+![ModelA1 Losses](./results/modelA1_sgd_30_epoch_losses.png)    
+
+![ModelA1 Accuracy](./results/modelA1_sgd_30_epoch_accuracy.png)
+    
+### ModelA2
+    The model doesn't really train at all, similar to ModelA0. 
+    
+![ModelA2 Losses](./results/modelA2_adam_80_epoch_losses.png)    
+
+![ModelA2 Accuracy](./results/modelA2_adam_80_epoch_accuracy.png)
 
 
     
@@ -123,15 +124,15 @@
 
 # Concepts/tools used for this exercise
     
-~~pytorch: ~~
-    ~~how to build NNs~~
-    ~~how to train and use NNs~~
-    ~~huggingface transformers library~~
-~~CUDA stuff: ~~
-    ~~moving things to GPU only when needed~~
-    ~~deleting references to objects no longer needed~~
-    ~~release memory by calling cuda.emptying_cache()~~
-    ~~if all else fails, backup models, data, then reboot python kernel~~
-~~General stuff:~~
-    ~~Practice proper file handling to prevent overwrite accidents~~
-    ~~Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr~~
+    pytorch:
+        ~~how to build NNs~~
+        ~~how to train and use NNs~~
+        ~~huggingface transformers library~~
+    CUDA stuff:
+        ~~moving things to GPU only when needed~~
+        ~~deleting references to objects no longer needed~~
+        ~~release memory by calling cuda.emptying_cache()~~
+        ~~if all else fails, backup models, data, then reboot python kernel~~
+    General stuff:
+        ~~Practice proper file handling to prevent overwrite accidents~~
+        ~~Saving and caching tokenizer outputs. Tokenizing the entire dataset is damn slow. ~3.5hr~~

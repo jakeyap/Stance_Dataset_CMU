@@ -21,12 +21,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 time_start = time.time()
     
-FROM_SCRATCH = False # True if start loading model from scratch
-TRAIN = False # True if you want to train the network. False to just test
+FROM_SCRATCH = True # True if start loading model from scratch
+TRAIN = True # True if you want to train the network. False to just test
 
 '''======== FILE NAMES FOR LOGGING ========'''
-iteration = 2
-MODELNAME = 'modelA2'
+iteration = 1
+MODELNAME = 'modelA1'
 
 ITER1 = str(iteration)
 DATADIR = './data/'
@@ -57,7 +57,7 @@ BATCH_SIZE_TRAIN = 40
 BATCH_SIZE_TEST = 40
 LOG_INTERVAL = 10
 
-N_EPOCHS = 80
+N_EPOCHS = 30
 LEARNING_RATE = 0.001
 MOMENTUM = 0.5
 
@@ -108,11 +108,11 @@ if FROM_SCRATCH:
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
-    '''
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    '''
     # Variables to store losses
     train_losses = []
     train_count = []
@@ -131,11 +131,11 @@ else:
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
-    '''
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    '''
     optim_state = torch.load(load_optstate_file)
     optimizer.load_state_dict(optim_state)
     # Variables to store losses
