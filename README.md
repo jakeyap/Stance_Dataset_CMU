@@ -37,15 +37,16 @@
 ## **Task 1: Try to classify using BERT**
     [x] Change the F1 metric to macro F1 score
     [x] Build a simple BERT first
-    [ ] Improve old code for saving training steps
+    [x] Improve old code for saving training steps
     [x] Save intermediate models
 
-## **Task 3: Try to improve classifier**
+## **Task 2: Try to improve classifier**
     [ ] Stack layers after generic BERT
     [ ] Use the bigger BERT model
     [x] Try ADAM instead of SGD
-    [ ] Include the "times labeled" field
     [x] Weigh the cost function
+    [ ] Implement URL and hashtag removal
+    [ ] Create modelB to incorporate reply/quote and times_labeled
 
 ### **Models:**
 
@@ -71,12 +72,27 @@
     ADAM: lr=0.001, betas are defaults
     Training takes ~3h for 80 epochs
 
+### ModelA3
+    BERT ==> Dropout1 10% ==> Linear1
+    Loss: Cross Entropy Loss, 
+        weights = sum_counts / (number of labels in each category),
+        then divide by mean weight 
+    SGD lr=0.001, momentum=0.9
+
+### ModelA4
+    Same as A0 but with half the encoded token length.
+    Squeeze in more examples per minibatch (n=100)
+    
+### ModelA5
+    Same as A1 but with half the encoded token length.
+    Squeeze in more examples per minibatch (n=100)
+
 ### **Training algo:**
     If SGD was used, here are the parameters
         Learning rate = 0.001
         Momentum = 0.5
         Minibatch size = 40
-    ADAM
+    If ADAM was used, everything is default except LR
         Learning rate = 0.001
 
 ### **Hardware used:**
@@ -102,13 +118,13 @@
         
 ### ModelA1
 
-![ModelA1 Losses](./results/modelA1_sgd_30_epoch_loss.png)
+![ModelA1 Losses](./results/modelA1_sgd_80_epoch_loss.png)
 
-![ModelA1 Accuracy](./results/modelA1_sgd_30_epoch_accuracy.png)
+![ModelA1 Accuracy](./results/modelA1_sgd_80_epoch_accuracy.png)
     
     Remarks:
-        This works best so far. Loss starts to go down only a tiny bit. 
-        Try to push this further later. The F1 score is starting to creep up.
+        This works best so far. Loss starts to go down only a tiny bit @ 30 epochs. 
+        Overfitting kicks in after 30 epochs.
     
 ### ModelA2
     
@@ -119,6 +135,32 @@
     Remarks:
         The model doesn't really train at all, similar to ModelA0. 
 
+### ModelA3
+
+![ModelA3 Losses](./results/modelA3_sgd_80_epoch_loss.png)
+
+![ModelA3 Accuracy](./results/modelA3_sgd_80_epoch_accuracy.png)
+    
+    Doesn't look like this model learnt anything.
+    
+### ModelA4
+
+![ModelA4 Losses](./results/modelA4_sgd_30_epoch_loss.png)
+
+![ModelA4 Accuracy](./results/modelA4_sgd_30_epoch_accuracy.png)
+
+    Doesn't look like it learnt anything.
+    
+### ModelA5
+
+![ModelA5 Losses](./results/modelA5_sgd_80_epoch_loss.png)
+
+![ModelA5 Accuracy](./results/modelA5_sgd_80_epoch_accuracy.png)
+
+    This one is interesting. The losses collapse at some point. 
+    Upon inspecting the results, I see that the model just learnt to predict 
+    the class with the weightage in the loss function. 
+    Looks like the loss needs to be better designed.
     
 ### **Remarks:**
     How to deal with abbreviations? Some examples
@@ -132,4 +174,6 @@
     
 
 # Concepts/tools used for this exercise
-    
+    The minibatch size is pushed to the max capacity of the GPU.
+    Turn off everything else to avoid crashing the process.
+    Chrome/spotifymicrosoft teams will grab GPU resources if they can

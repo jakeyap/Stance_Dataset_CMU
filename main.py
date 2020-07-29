@@ -21,20 +21,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 time_start = time.time()
     
-FROM_SCRATCH = True # True if start loading model from scratch
+FROM_SCRATCH = False # True if start loading model from scratch
 TRAIN = True # True if you want to train the network. False to just test
 
 '''======== FILE NAMES FOR LOGGING ========'''
-iteration = 1
-MODELNAME = 'modelA1'
+iteration = 2
+MODELNAME = 'modelA5'
 
 ITER1 = str(iteration)
 DATADIR = './data/'
 MODELDIR= './models/'
 RESULTDIR='./results/'
 # For storing the tokenized posts
-train_file = DATADIR + "train_set.bin"
-test_file = DATADIR + "test_set.bin"
+train_file = DATADIR + "train_set_short.bin"
+test_file = DATADIR + "test_set_short.bin"
 
 load_model_file = MODELDIR+MODELNAME+"_model_"+ITER1+".bin"
 load_config_file = MODELDIR+MODELNAME+"_config_"+ITER1+".bin"
@@ -53,11 +53,11 @@ save_losses_file = RESULTDIR+MODELNAME+"_losses_"+ITER2+"_"+timestamp+".bin"
 
 '''======== HYPERPARAMETERS START ========'''
 NUM_TO_PROCESS = 100000
-BATCH_SIZE_TRAIN = 40
-BATCH_SIZE_TEST = 40
+BATCH_SIZE_TRAIN = 100
+BATCH_SIZE_TEST = 100
 LOG_INTERVAL = 10
 
-N_EPOCHS = 30
+N_EPOCHS = 50
 LEARNING_RATE = 0.001
 MOMENTUM = 0.5
 
@@ -207,16 +207,7 @@ def train(epoch):
             
             # Store the states of model and optimizer into logfiles
             # In case training gets interrupted, you can load old states
-            
-            torch.save(model.state_dict(), save_model_file)
-            torch.save(optimizer.state_dict(), save_optstate_file)
-            torch.save([train_losses,
-                        train_count,
-                        tests_losses,
-                        tests_accuracy,
-                        tests_count,
-                        f1_scores], save_losses_file)
-            model.config.to_json_file(save_config_file)
+            save_files()
 
 def test(save=False):
     # This function evaluates the entire test set
@@ -274,13 +265,7 @@ def test(save=False):
             tests_count.append(len(train_loader.dataset))
         else:
             tests_count.append(train_count[-1] + len(train_loader.dataset))
-        torch.save([train_losses,
-                    train_count,
-                    tests_losses,
-                    tests_accuracy,
-                    tests_count,
-                    f1_scores], 
-                   save_losses_file)
+        save_files()
     return predicted_label_arr[1:], groundtruth_arr[1:]
 
 
@@ -320,8 +305,25 @@ def eval_single_example(number_to_check, show=True):
                 del encoded_sentence, 
                 return reallabels, prediction
 
+def save_files():
+    '''
+    For saving all the model parameters, optimizer parameters, losses
+    '''
+    torch.save([train_losses,
+                train_count,
+                tests_losses,
+                tests_accuracy,
+                tests_count,
+                f1_scores], 
+               save_losses_file)
+    torch.save(model.state_dict(), save_model_file)
+    torch.save(optimizer.state_dict(), save_optstate_file)
+    model.config.to_json_file(save_config_file)
+    return 
+    
+
 def plot_losses(offset=0):
-    fig1 = plt.figure(1)
+    fig1, ax1 = plt.subplots(1,1)
     try:
         losses = torch.load(save_losses_file)
     except Exception:
@@ -333,25 +335,29 @@ def plot_losses(offset=0):
     tests_count = losses[4]
     f1_scores = losses[5]
     
-    plt.scatter(train_count[offset:], 
+    ax1.scatter(train_count[offset:], 
                 train_losses[offset:], label='Train')
-    plt.scatter(tests_count, tests_losses, label='Test')
-    plt.ylabel('Loss')
-    plt.xlabel('Minibatches seen. Batchsize='+str(BATCH_SIZE_TEST))
-    plt.legend(loc='best')
-    plt.grid(True)
-    plt.tight_layout()
+    ax1.scatter(tests_count, tests_losses, label='Test')
+    ax1.set_ylabel('Loss')
+    ax1.set_xlabel('Training samples seen. Batchsize='+str(BATCH_SIZE_TEST))
+    ax1.legend(loc='best')
+    ax1.grid(True)
+    fig1.tight_layout()
     
-    fig2 = plt.figure(2)
-    plt.subplot(2,1,1)
-    plt.title('Accuracy')
-    plt.scatter(tests_count,tests_accuracy)
-    plt.grid(True)
-    plt.subplot(2,1,2)
-    plt.title('Macro F1 score')
-    plt.scatter(tests_count,f1_scores)
-    plt.grid(True)
-    plt.tight_layout()
+    #plot1 = plt.subplot(2,1,1)
+    fig2, (ax2, ax3) = plt.subplots(2,1)
+    #plt.title('Accuracy')
+    #plt.scatter(tests_count,tests_accuracy)
+    ax2.set_title('Accuracy')
+    ax2.scatter(tests_count,tests_accuracy)
+    ax2.grid(True)
+    #plot2 = plt.subplot(2,1,2)
+    ax3.set_title('Macro F1 score')
+    ax3.scatter(tests_count,f1_scores)
+    ax3.grid(True)
+    ax3.set_xlabel('Training samples seen. Batchsize='+str(BATCH_SIZE_TEST))
+    
+    fig2.tight_layout()
     return losses
 
 if __name__ =='__main__':

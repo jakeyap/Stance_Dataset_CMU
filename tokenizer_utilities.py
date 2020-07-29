@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 import math        
 import torch
+import re
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
@@ -199,7 +200,7 @@ def remove_nans(dataframe):
     
     return dataframe.drop(error_indices), error_indices
 
-def tokenize_and_encode_pandas(dataframe,stopindex=1e9):    
+def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):    
     """
     Tokenize and encode the text into vectors, then stick inside dataframe
 
@@ -226,7 +227,7 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9):
         tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
         encoded_dict = tokenizer.encode_plus(text=tokenized_tweet,
                                              text_pair=tokenized_parent,
-                                             max_length=128,
+                                             max_length=max_length,
                                              pad_to_max_length=True)
         encoded_tweets.append(encoded_dict['input_ids'])
         token_type_ids.append(encoded_dict['token_type_ids'])
@@ -248,13 +249,35 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9):
     dataframe.insert(width+3,'number_labels', labels)
     return dataframe
 
+#TODO
+def remove_hashtag(tweet_in):
+    # to remove any #XXXX in the tweet
+    tweet_out = ''
+    
+    return tweet_out
+
+#TODO
+def remove_urls(tweet_in):
+    # to remove links that start with HTTP/HTTPS in the tweet
+    tweet_out = ''
+    
+    return tweet_out
+
+#TODO
+def remove_mentions():
+    # to remove words that has @XXX inside
+    tweet_out = ''
+    
+    return tweet_out
+
 if __name__ =='__main__':
     DATADIR = './data/'
     FILENAME = 'stance_dataset.json'
+    REMARK = '_short'
     NUM_TO_IMPORT = 1e9
     TOKENIZE = True
     TRAINING_RATIO = 0.90
-    
+    MAXLENGTH = 64
     ''' ========== Import data ========== '''
     filename = DATADIR + FILENAME
     raw_list = []
@@ -311,7 +334,7 @@ if __name__ =='__main__':
     plt.legend()
     ''' ========== tokenize tweets, append to dataframe ========== '''
     if TOKENIZE:
-        encoded_df = tokenize_and_encode_pandas(dataframe=df_filtered)
+        encoded_df = tokenize_and_encode_pandas(dataframe=df_filtered, max_length=MAXLENGTH)
     
     ''' ========== split into training and test sets ========== '''
     datalength = encoded_df.shape[0]
@@ -355,5 +378,5 @@ if __name__ =='__main__':
     plt.tight_layout()
     plt.legend()
     ''' ========== save both datasets into binaries ========== '''
-    torch.save(train_set, './data/train_set.bin')
-    torch.save(test_set, './data/test_set.bin')
+    torch.save(train_set, './data/train_set'+REMARK+'.bin')
+    torch.save(test_set, './data/test_set'+REMARK+'.bin')
