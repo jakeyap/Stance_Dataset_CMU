@@ -21,12 +21,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 time_start = time.time()
     
-FROM_SCRATCH = False # True if start loading model from scratch
+FROM_SCRATCH = True # True if start loading model from scratch
 TRAIN = True # True if you want to train the network. False to just test
 
 '''======== FILE NAMES FOR LOGGING ========'''
-iteration = 2
-MODELNAME = 'modelA5'
+iteration = 1
+MODELNAME = 'modelA7'
 
 ITER1 = str(iteration)
 DATADIR = './data/'
@@ -57,9 +57,9 @@ BATCH_SIZE_TRAIN = 100
 BATCH_SIZE_TEST = 100
 LOG_INTERVAL = 10
 
-N_EPOCHS = 50
+N_EPOCHS = 30
 LEARNING_RATE = 0.001
-MOMENTUM = 0.5
+MOMENTUM = 0.9
 
 PRINT_PICTURE = False
 '''======== HYPERPARAMETERS END ========'''
@@ -105,9 +105,12 @@ if FROM_SCRATCH:
     config = BertConfig.from_pretrained('bert-base-uncased')
     config.num_labels = 6
     model = my_ModelA0(config)
+    # Resize model vocab
+    #model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
+    
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
@@ -131,6 +134,7 @@ else:
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
+    
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''

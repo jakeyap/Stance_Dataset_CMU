@@ -14,6 +14,7 @@ import torch
 import re
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+tokenizer.add_tokens(['[#HASHTAG]', '[@ACCOUNT]', '[URL]'])
 
 def empty_label_dictionary():
     """
@@ -162,6 +163,17 @@ def pandas_find_post_label_num(index, dataframe):
     """
     return dataframe.at[index, 'label_number']
 
+def count_empty(dataframe):
+    empty = 0
+    for counter in range (len(dataframe)):
+        # check parent and child tweets
+        parent_tweet = dataframe.iloc[counter]['clean_target_text']
+        child_tweet = dataframe.iloc[counter]['clean_response_text']
+        
+        if parent_tweet=='' or child_tweet=='':
+            empty = empty+1
+    return empty
+
 def remove_nans(dataframe):
     """
     Removes the tweets with nans inside from dataframe
@@ -196,10 +208,49 @@ def remove_nans(dataframe):
             pass
         if isnan or isempty:
             error_indices.append(counter)
-        counter = counter + 1
     
     return dataframe.drop(error_indices), error_indices
 
+def convert_interaction_type_string2num(interaction_type):
+    '''
+    Converts the interaction_type string labels into numbers
+
+    Parameters
+    ----------
+    interaction_type : string
+        Reply or Quote
+
+    Returns
+    -------
+    int
+        0 if reply, 1 if quote
+    '''
+    
+    if interaction_type=='Reply':
+        return 0
+    else:
+        return 1
+
+def convert_interaction_type_num2string(number):
+    '''
+    Converts the interaction_type numbers into string labels
+
+    Parameters
+    ----------
+    number : int
+        number label of interaction_type.
+
+    Returns
+    -------
+    str
+        'Reply' is 0, 'Quote' if 1.
+
+    '''
+    if number==0:
+        return 'Reply'
+    else:
+        return 'Quote'
+        
 def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):    
     """
     Tokenize and encode the text into vectors, then stick inside dataframe
@@ -221,10 +272,17 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
     token_type_ids = []
     attention_mask = []
     labels = []
+    interaction_types = []
+    
     counter = 0
     for i in range(len(dataframe)):
-        tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['target_text'])
-        tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
+        try:
+            tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['clean_target_text'])
+            tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['clean_response_text'])
+        except Exception:
+            tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['target_text'])
+            tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
+        
         encoded_dict = tokenizer.encode_plus(text=tokenized_tweet,
                                              text_pair=tokenized_parent,
                                              max_length=max_length,
@@ -235,7 +293,10 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
         
         label = dataframe.iloc[i]['label']
         labels.append(convert_label_string2num(label))
-                
+        
+        interaction_type = dataframe.iloc[i]['interaction_type']
+        interaction_types.append(convert_interaction_type_string2num(interaction_type))
+        
         if counter % 100 == 0:
             print('Tokenizing comment: %00000d' % counter)
         if counter > stopindex:
@@ -247,37 +308,122 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
     dataframe.insert(width+1,'token_type_ids', token_type_ids)
     dataframe.insert(width+2,'attention_mask', attention_mask)
     dataframe.insert(width+3,'number_labels', labels)
+    dataframe.insert(width+4,'interaction_type_num', interaction_types)
     return dataframe
 
-#TODO
 def remove_hashtag(tweet_in):
-    # to remove any #XXXX in the tweet
-    tweet_out = ''
-    
+    '''
+    Removes any #XXXX hashtags in tweets
+
+    Parameters
+    ----------
+    tweet_in : string
+        tweet
+
+    Returns
+    -------
+    tweet_out : string
+        cleaned tweet
+
+    '''
+    # \S means any nonwhite space character
+    # * means match the preceding character any number of times
+    re_object = re.compile('#\S*')
+    tweet_out = re_object.sub(repl='[#HASHTAG]', string=tweet_in)
     return tweet_out
 
-#TODO
 def remove_urls(tweet_in):
-    # to remove links that start with HTTP/HTTPS in the tweet
-    tweet_out = ''
-    
+    '''
+    Removes links that start with HTTP/HTTPS in the tweet
+
+    Parameters
+    ----------
+    tweet_in : string
+        tweet
+
+    Returns
+    -------
+    tweet_out : string
+        cleaned tweet.
+    '''
+    re_object = re.compile('http:\S*|https:\S*|www.\S*|\n')
+    tweet_out = re_object.sub(repl='[URL]', string=tweet_in)
     return tweet_out
 
-#TODO
-def remove_mentions():
-    # to remove words that has @XXX inside
-    tweet_out = ''
-    
+def remove_mentions(tweet_in):
+    '''
+    Removes @ signs and leave the name    
+
+    Parameters
+    ----------
+    tweet_in : string
+        tweet
+
+    Returns
+    -------
+    tweet_out : string
+        cleaned tweet
+
+    '''
+    re_object = re.compile('@\S*')
+    tweet_out = re_object.sub(repl='[@ACCOUNT]', string=tweet_in)
     return tweet_out
 
+def clean_dataset(dataframe):
+    # create a new column called clean_target_text and clean_response_text
+    # process the tweets and stick into the columns
+    # append number labels 
+    
+    clean_target_texts = []
+    clean_response_texts = []
+    
+    for i in range(len(dataframe)):
+        if i % 100 ==0:
+            print('Cleaning dataframe: %d' % i)
+        target_text = dataframe.iloc[i]['target_text']
+        response_text = dataframe.iloc[i]['response_text']
+        
+        target_text = remove_hashtag(target_text)
+        target_text = remove_urls(target_text)
+        target_text = remove_mentions(target_text)
+        
+        response_text = remove_hashtag(response_text)
+        response_text = remove_urls(response_text)
+        response_text = remove_mentions(response_text)
+        
+        clean_target_texts.append(target_text)
+        clean_response_texts.append(response_text)
+        
+    width = dataframe.shape[1]
+    dataframe.insert(width+0,'clean_target_text', clean_target_texts)
+    dataframe.insert(width+1,'clean_response_text', clean_response_texts)
+    return dataframe
+
+def explore_dataset(dataframe, index=None):
+    # prints target and response text for each line in cleaned dataset
+    if index is None:
+        #randomly generate a number using torch's RNG
+        high = len(dataframe) 
+        index = torch.randint(high,(1,1)).item()
+    print('Index ', index)
+    print('\nOriginal target')
+    print(dataframe.iloc[index]['target_text'])
+    print('\nClean target')
+    print(dataframe.iloc[index]['clean_target_text'])
+    print('\nOriginal response')
+    print(dataframe.iloc[index]['response_text'])
+    print('\nClean response')
+    print(dataframe.iloc[index]['clean_response_text'])
+    return
+    
 if __name__ =='__main__':
     DATADIR = './data/'
     FILENAME = 'stance_dataset.json'
-    REMARK = '_short'
+    REMARK = '_clean'
     NUM_TO_IMPORT = 1e9
     TOKENIZE = True
     TRAINING_RATIO = 0.90
-    MAXLENGTH = 64
+    MAXLENGTH = 128
     ''' ========== Import data ========== '''
     filename = DATADIR + FILENAME
     raw_list = []
@@ -293,13 +439,13 @@ if __name__ =='__main__':
             if (counter >= end):
                 break
             if counter % 100 == 0:
-                print('Flattening thread to pair: %0000d' % counter)
+                print('Importing json line: %0000d' % counter)
             counter = counter + 1
     
     ''' ========== Convert into pandas ========== '''
     pd_dataframe = pd.DataFrame(raw_list)
     df_filtered, errors = remove_nans(pd_dataframe)
-    
+    df_filtered = clean_dataset(df_filtered)
     ''' ========== Plot the label densities ========== '''
     count1 = empty_label_dictionary()
     count2 = empty_label_dictionary()

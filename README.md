@@ -45,7 +45,7 @@
     [ ] Use the bigger BERT model
     [x] Try ADAM instead of SGD
     [x] Weigh the cost function
-    [ ] Implement URL and hashtag removal
+    [x] Take care of URL, hashtag, mentions during tokenization
     [ ] Create modelB to incorporate reply/quote and times_labeled
 
 ### **Models:**
@@ -78,7 +78,7 @@
         weights = sum_counts / (number of labels in each category),
         then divide by mean weight 
     SGD lr=0.001, momentum=0.9
-
+------------------------------------------------------------------
 ### ModelA4
     Same as A0 but with half the encoded token length.
     Squeeze in more examples per minibatch (n=100)
@@ -86,6 +86,15 @@
 ### ModelA5
     Same as A1 but with half the encoded token length.
     Squeeze in more examples per minibatch (n=100)
+    
+### ModelA6
+    Same as A2 but with half the encoded token length.
+    Squeeze in more examples per minibatch (n=100)
+
+### ModelA7
+    Same as A3 but with half the encoded token length.
+    Squeeze in more examples per minibatch (n=100)
+------------------------------------------------------------------
 
 ### **Training algo:**
     If SGD was used, here are the parameters
@@ -127,32 +136,29 @@
         Overfitting kicks in after 30 epochs.
     
 ### ModelA2
-    
-![ModelA2 Losses](./results/modelA2_adam_80_epoch_loss.png)
-
-![ModelA2 Accuracy](./results/modelA2_adam_80_epoch_accuracy.png)
-    
-    Remarks:
-        The model doesn't really train at all, similar to ModelA0. 
+    Results not meaningful
 
 ### ModelA3
+    Results not meaningful
 
-![ModelA3 Losses](./results/modelA3_sgd_80_epoch_loss.png)
-
-![ModelA3 Accuracy](./results/modelA3_sgd_80_epoch_accuracy.png)
-    
-    Doesn't look like this model learnt anything.
-    
+------------------------------------------------------------------
 ### ModelA4
-
-![ModelA4 Losses](./results/modelA4_sgd_30_epoch_loss.png)
-
-![ModelA4 Accuracy](./results/modelA4_sgd_30_epoch_accuracy.png)
-
-    Doesn't look like it learnt anything.
+    Results not meaningful
     
 ### ModelA5
+![ModelA5 Losses](./results/modelA5_sgd_80_epoch_loss.png)
 
+![ModelA5 Accuracy](./results/modelA5_sgd_80_epoch_accuracy.png)
+    
+    The loss falls off a cliff at some point. It seems the model learnt to 
+    just predict all results from the rarest class to game the loss.
+    
+### ModelA6
+    Results not meaningful
+    
+### ModelA7    
+
+------------------------------------------------------------------
 ![ModelA5 Losses](./results/modelA5_sgd_80_epoch_loss.png)
 
 ![ModelA5 Accuracy](./results/modelA5_sgd_80_epoch_accuracy.png)
