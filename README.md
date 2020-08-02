@@ -95,6 +95,11 @@
     Same as A3 but with half the encoded token length.
     Squeeze in more examples per minibatch (n=100)
 ------------------------------------------------------------------
+### ModelA8
+    Same as A1 but dataset is cleaned of hashtags
+    
+### ModelA9
+    Same as A2 but dataset is cleaned of hashtags
 
 ### **Training algo:**
     If SGD was used, here are the parameters
@@ -157,8 +162,15 @@
     Results not meaningful
     
 ### ModelA7    
-
+    Results not meaningful
 ------------------------------------------------------------------
+### ModelA8
+
+### ModelA9
+
+
+
+
 ![ModelA5 Losses](./results/modelA5_sgd_80_epoch_loss.png)
 
 ![ModelA5 Accuracy](./results/modelA5_sgd_80_epoch_accuracy.png)

@@ -26,15 +26,15 @@ TRAIN = True # True if you want to train the network. False to just test
 
 '''======== FILE NAMES FOR LOGGING ========'''
 iteration = 1
-MODELNAME = 'modelA7'
+MODELNAME = 'modelA9'
 
 ITER1 = str(iteration)
 DATADIR = './data/'
 MODELDIR= './models/'
 RESULTDIR='./results/'
 # For storing the tokenized posts
-train_file = DATADIR + "train_set_short.bin"
-test_file = DATADIR + "test_set_short.bin"
+train_file = DATADIR + "train_set_clean.bin"
+test_file = DATADIR + "test_set_clean.bin"
 
 load_model_file = MODELDIR+MODELNAME+"_model_"+ITER1+".bin"
 load_config_file = MODELDIR+MODELNAME+"_config_"+ITER1+".bin"
@@ -53,13 +53,13 @@ save_losses_file = RESULTDIR+MODELNAME+"_losses_"+ITER2+"_"+timestamp+".bin"
 
 '''======== HYPERPARAMETERS START ========'''
 NUM_TO_PROCESS = 100000
-BATCH_SIZE_TRAIN = 100
-BATCH_SIZE_TEST = 100
+BATCH_SIZE_TRAIN = 40
+BATCH_SIZE_TEST = 40
 LOG_INTERVAL = 10
 
 N_EPOCHS = 80
 LEARNING_RATE = 0.001
-MOMENTUM = 0.9
+MOMENTUM = 0.5
 
 PRINT_PICTURE = False
 '''======== HYPERPARAMETERS END ========'''
@@ -73,7 +73,7 @@ gpu = torch.device('cuda')
 DEVICE = cpu
 
 # Load saved data
-print('Loading data')
+print('Loading data')   
 train_set_df = torch.load(train_file)
 tests_set_df = torch.load(test_file)
 
@@ -110,12 +110,12 @@ if FROM_SCRATCH:
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
-    
+    '''
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    '''
+    
     # Variables to store losses
     train_losses = []
     train_count = []
@@ -134,12 +134,12 @@ else:
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
-    
+    '''v
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    '''
+    
     optim_state = torch.load(load_optstate_file)
     optimizer.load_state_dict(optim_state)
     # Variables to store losses
@@ -265,10 +265,11 @@ def test(save=False):
         tests_losses.append(test_loss)
         f1_scores.append(score)
         tests_accuracy.append(accuracy)
-        if len(tests_count) == 0:
-            tests_count.append(len(train_loader.dataset))
-        else:
-            tests_count.append(train_count[-1] + len(train_loader.dataset))
+        tests_count.append(train_count[-1])
+        #if len(tests_count) == 0:
+        #    tests_count.append(len(train_loader.dataset))
+        #else:
+        #    tests_count.append(train_count[-1] + len(train_loader.dataset))
         save_files()
     return predicted_label_arr[1:], groundtruth_arr[1:]
 
