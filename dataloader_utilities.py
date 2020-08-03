@@ -83,7 +83,7 @@ def dataframe_2_dataloader(dataframe,
     number_labels   = new_df['number_labels'].values
     number_labels   = number_labels.reshape((-1))
     interaction     = new_df['interaction_type_num'].values
-    interaction     = interaction.reshape((-1))
+    interaction     = interaction.reshape((-1,1))
     
     # convert numpy arrays into torch tensors
     posts_index     = torch.from_numpy(posts_index)

@@ -103,6 +103,22 @@
 
 ### ModelA10
     Same as A3 but dataset is cleaned of hashtags
+------------------------------------------------------------------
+### ModelB01
+    BERT ==> Dropout1 10% ==> Linear1 ==> RELU1 ==> Dropout2 ==> Linear2
+             Interaction  ==> 
+    Loss: Cross Entropy Loss, flat weights
+    SGD lr=0.001, momentum=0.5
+    Training takes ~2.5h for 80 epochs
+    
+### ModelB01
+    BERT ==> Dropout1 10% ==> Linear1 ==> RELU1 ==> Dropout2 ==> Linear2
+             Interaction  ==> 
+    Loss: Cross Entropy Loss, 
+        weights = sum_counts / (number of labels in each category),
+        then divide by mean weight 
+    SGD lr=0.001, momentum=0.5
+    Training takes ~2.5h for 80 epochs
 
 ### **Training algo:**
     If SGD was used, here are the parameters
@@ -161,6 +177,11 @@
     The loss falls off a cliff at some point. It seems the model learnt to 
     just predict all results from the rarest class to game the loss.
     
+    This one is interesting. The losses collapse at some point. 
+    Upon inspecting the results, I see that the model just learnt to predict 
+    the class with the weightage in the loss function. 
+    Looks like the loss needs to be better designed.
+    
 ### ModelA6
     Results not meaningful
     
@@ -182,16 +203,10 @@
 
 ------------------------------------------------------------------
 ### ModelB00
+    Results not meaningful
 
-
-![ModelA5 Losses](./results/modelA5_sgd_80_epoch_loss.png)
-
-![ModelA5 Accuracy](./results/modelA5_sgd_80_epoch_accuracy.png)
-
-    This one is interesting. The losses collapse at some point. 
-    Upon inspecting the results, I see that the model just learnt to predict 
-    the class with the weightage in the loss function. 
-    Looks like the loss needs to be better designed.
+### ModelB01
+    
     
 ### **Remarks:**
     How to deal with abbreviations? Some examples

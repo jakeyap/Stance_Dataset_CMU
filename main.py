@@ -59,7 +59,7 @@ LOG_INTERVAL = 10
 
 N_EPOCHS = 80
 LEARNING_RATE = 0.001
-MOMENTUM = 0.9
+MOMENTUM = 0.5
 
 PRINT_PICTURE = False
 '''======== HYPERPARAMETERS END ========'''
@@ -154,9 +154,9 @@ else:
 
 # Define the loss function
 #loss_weights = 
-loss_function = torch.nn.CrossEntropyLoss(weight=loss_weights.float(),
-                                          reduction='sum')
-#loss_function = torch.nn.CrossEntropyLoss(reduction='sum')
+#loss_function = torch.nn.CrossEntropyLoss(weight=loss_weights.float(),
+#                                          reduction='sum')
+loss_function = torch.nn.CrossEntropyLoss(reduction='sum')
 '''
 {   
      index in original data,
@@ -197,7 +197,7 @@ def train(epoch):
         optimizer.step()
         
         #delete references to free up GPU space
-        del x, y, token_type_ids, attention_mask
+        del x, y, token_type_ids, attention_mask, interaction
         del outputs
         
         if batch_idx % LOG_INTERVAL == 0:
@@ -233,9 +233,12 @@ def test(save=False):
             y = minibatch[5].to('cuda')
             token_type_ids = minibatch[2].to('cuda')
             attention_mask = minibatch[3].to('cuda')
+            interaction = minibatch[6].float().to(gpu)
+            
             outputs = model(input_ids = x,
                             attention_mask=attention_mask, 
-                            token_type_ids=token_type_ids)
+                            token_type_ids=token_type_ids,
+                            interaction=interaction)
             #outputs is a length=1 tuple. Get index 0 to access real outputs
             outputs = outputs[0]
             test_loss += loss_function(outputs, y).item()
@@ -250,7 +253,7 @@ def test(save=False):
                                          y.to('cpu')),
                                         0)
             #delete references to free up GPU space
-            del x, y, token_type_ids, attention_mask
+            del x, y, token_type_ids, attention_mask, interaction
             del outputs, predicted_label
     test_loss /= len(test_loader.dataset)
         
