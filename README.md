@@ -101,6 +101,9 @@
 ### ModelA9
     Same as A2 but dataset is cleaned of hashtags
 
+### ModelA10
+    Same as A3 but dataset is cleaned of hashtags
+
 ### **Training algo:**
     If SGD was used, here are the parameters
         Learning rate = 0.001
@@ -165,10 +168,20 @@
     Results not meaningful
 ------------------------------------------------------------------
 ### ModelA8
+![ModelA8 Losses](./results/modelA8_sgd_80_epoch_loss.png)
 
+![ModelA8 Accuracy](./results/modelA8_sgd_80_epoch_accuracy.png)
+    Interesting results. There seems to be overfitting if you view the loss.
+    But the test accuracy and F1 scores are increasing. 
+    
 ### ModelA9
+    Results not meaningful
+    
+### ModelA10
+    Results not meaningful
 
-
+------------------------------------------------------------------
+### ModelB00
 
 
 ![ModelA5 Losses](./results/modelA5_sgd_80_epoch_loss.png)

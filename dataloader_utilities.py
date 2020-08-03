@@ -82,6 +82,8 @@ def dataframe_2_dataloader(dataframe,
     times_labeled   = times_labeled.reshape(((-1,1)))
     number_labels   = new_df['number_labels'].values
     number_labels   = number_labels.reshape((-1))
+    interaction     = new_df['interaction_type_num'].values
+    interaction     = interaction.reshape((-1))
     
     # convert numpy arrays into torch tensors
     posts_index     = torch.from_numpy(posts_index)
@@ -90,13 +92,15 @@ def dataframe_2_dataloader(dataframe,
     attention_mask  = torch.from_numpy(attention_mask)
     number_labels   = torch.from_numpy(number_labels)
     times_labeled   = torch.from_numpy(times_labeled)
+    interaction     = torch.from_numpy(interaction)
     
     dataset = TensorDataset(posts_index,
                             encoded_tweets,
                             token_type_ids,
                             attention_mask,
                             times_labeled,
-                            number_labels)
+                            number_labels,
+                            interaction)
     dataloader = DataLoader(dataset, 
                             batch_size=batch_size,
                             shuffle=randomize)

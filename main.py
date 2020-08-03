@@ -13,7 +13,7 @@ import dataloader_utilities as dataloader
 import time
 import torch
 import torch.optim as optim
-from classifier_models import my_ModelA0, my_ModelA1, my_ModelA2
+from classifier_models import my_ModelA0, my_ModelB0
 from transformers import BertConfig
 from sklearn.metrics import f1_score
 
@@ -26,7 +26,7 @@ TRAIN = True # True if you want to train the network. False to just test
 
 '''======== FILE NAMES FOR LOGGING ========'''
 iteration = 1
-MODELNAME = 'modelA9'
+MODELNAME = 'modelB00'
 
 ITER1 = str(iteration)
 DATADIR = './data/'
@@ -59,7 +59,7 @@ LOG_INTERVAL = 10
 
 N_EPOCHS = 80
 LEARNING_RATE = 0.001
-MOMENTUM = 0.5
+MOMENTUM = 0.9
 
 PRINT_PICTURE = False
 '''======== HYPERPARAMETERS END ========'''
@@ -104,18 +104,18 @@ loss_weights = torch.true_divide(loss_weights, loss_weights.mean())
 if FROM_SCRATCH:
     config = BertConfig.from_pretrained('bert-base-uncased')
     config.num_labels = 6
-    model = my_ModelA0(config)
+    model = my_ModelB0(config)
     # Resize model vocab
     #model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
-    '''
+    
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    
+    '''
     # Variables to store losses
     train_losses = []
     train_count = []
@@ -126,7 +126,7 @@ if FROM_SCRATCH:
     
 else:
     config = BertConfig.from_json_file(load_config_file)
-    model = my_ModelA0(config)
+    model = my_ModelB0(config)
     
     state_dict = torch.load(load_model_file)
     model.load_state_dict(state_dict)
@@ -134,12 +134,12 @@ else:
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD
-    '''v
+    
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
                           momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    
+    '''
     optim_state = torch.load(load_optstate_file)
     optimizer.load_state_dict(optim_state)
     # Variables to store losses
@@ -164,7 +164,8 @@ loss_function = torch.nn.CrossEntropyLoss(weight=loss_weights.float(),
      token_typed_ids,
      attention_masks,
      times_labeled
-     y (true label)
+     y (true label),
+     interaction
 }
 '''
 def train(epoch):
@@ -177,13 +178,15 @@ def train(epoch):
         y = minibatch[5].to(gpu)
         token_type_ids = minibatch[2].to(gpu)
         attention_mask = minibatch[3].to(gpu)
+        interaction = minibatch[6].float().to(gpu)
         
         # Reset gradients to prevent accumulation
         optimizer.zero_grad()
         # Forward prop throught BERT
         outputs = model(input_ids = x,
                         attention_mask=attention_mask, 
-                        token_type_ids=token_type_ids)
+                        token_type_ids=token_type_ids,
+                        interaction=interaction)
         
         #outputs is a length=1 tuple. Get index 0 to access real outputs
         # Calculate loss
