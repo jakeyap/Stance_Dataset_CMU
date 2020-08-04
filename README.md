@@ -209,14 +209,19 @@
     
     
 ### **Remarks:**
-    How to deal with abbreviations? Some examples
-    - NRA
-    - ROFL
-    - LOL
+
+How to deal with abbreviations? Some examples
+- NRA
+- ROFL
+- LOL
+For some models, the raw texts are used. 
+For others, there was precleaning. As an example, for this line of text
+
+Original:
+    .@ShuttleCDRKelly: "[The @NRA] is against background checks for gun sales - I mean, the most common sense thing that we can do to protect society they are so strongly against." https://t.co/DE0oENyL2S
     
-    Also, is removing URLs from tweets really important?
-    
-    Is using the feature [reply / quote] that important?
+Cleaned: 
+    .[@ACCOUNT] "[The [@ACCOUNT] is against background checks for gun sales - I mean, the most common sense thing that we can do to protect society they are so strongly against." [URL]
     
 
 # Concepts/tools used for this exercise
