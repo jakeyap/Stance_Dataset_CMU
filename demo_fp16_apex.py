@@ -1,7 +1,6 @@
 import os
 from datetime import datetime
 import argparse
-import numpy
 import torch.multiprocessing as mp
 import torchvision
 import torchvision.transforms as transforms
@@ -11,9 +10,18 @@ import torch.distributed as dist
 from apex.parallel import DistributedDataParallel as DDP
 from apex import amp
 
+''' 
+In this example, APEX is used to change floating point precision of calculations
+It is done by setting this parameter called OPT_LEVEL
+From the APEX docs, 
+O0 = FP32 throughout the whole code. Normal operation
+O1 = Mixed precision, FP16 / FP32. Recommended for use. (Softmax is still FP32)
+O2 = Mixed precision, FP16 / FP32. Similar to O1
+O3 = Fully FP32
+
+'''
 
 def main():
-    # Take in arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-n', '--nodes', default=1, type=int, metavar='N',
                         help='number of data loading workers (default: 4)')
@@ -25,16 +33,9 @@ def main():
                         help='number of total epochs to run')
     args = parser.parse_args()
     args.world_size = args.gpus * args.nodes
-    os.environ['MKL_THREADING_LAYER'] = 'GNU'
-    #os.environ['MASTER_ADDR'] = '10.57.23.164'
-    os.environ['MASTER_ADDR'] = '127.0.0.1'
+    os.environ['MASTER_ADDR'] = 'localhost'
     os.environ['MASTER_PORT'] = '8888'
-    #os.environ['MASTER_PORT'] = '8'
-    
-    # Spawns a function on multiple gpus
-    # Args are to be passed into function
-    # nproc is number of processes to run
-    mp.spawn(fn=train, nprocs=args.gpus, args=(args,))
+    mp.spawn(train, nprocs=args.gpus, args=(args,))
 
 
 class ConvNet(nn.Module):
@@ -59,10 +60,14 @@ class ConvNet(nn.Module):
         out = self.fc(out)
         return out
 
+
 def train(gpu, args):
-    # the gpu argument is 0, 1, 2... index of process
     rank = args.nr * args.gpus + gpu
-    dist.init_process_group(backend='nccl', init_method='env://', world_size=args.world_size, rank=rank)
+    dist.init_process_group(
+        backend='nccl',
+        init_method='env://',
+        world_size=args.world_size,
+        rank=rank)
     torch.manual_seed(0)
     model = ConvNet()
     torch.cuda.set_device(gpu)
@@ -72,32 +77,33 @@ def train(gpu, args):
     criterion = nn.CrossEntropyLoss().cuda(gpu)
     optimizer = torch.optim.SGD(model.parameters(), 1e-4)
     # Wrap the model
-    model = nn.parallel.DistributedDataParallel(model, device_ids=[gpu])
+    model, optimizer = amp.initialize(model, optimizer, opt_level='O2')
+    model = DDP(model)
     # Data loading code
     print('downloading dataset')
-    train_dataset = torchvision.datasets.MNIST(root='./data',
-                                               train=True,
-                                               transform=transforms.ToTensor(),
-                                               download=True)
+    train_dataset = torchvision.datasets.MNIST(
+        root='./data',
+        train=True,
+        transform=transforms.ToTensor(),
+        download=True
+    )
     print('finishing downloading')
-    # This DistributedSampler helps you split and shuffle datasets across GPUs.
-    # Be careful to always seed the torch RNG to the same number first
-    # In this code snippet, the seeding is done outside torch.manual_seed(0)
-    # In most cases, to be safe, seed when calling DistributedSampler
-    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset,
-                                                                    num_replicas=args.world_size,
-                                                                    rank=rank)
-    train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                               batch_size=batch_size,
-                                               shuffle=False,
-                                               num_workers=0,
-                                               pin_memory=True,
-                                               sampler=train_sampler)
+    train_sampler = torch.utils.data.distributed.DistributedSampler(
+        train_dataset,
+        num_replicas=args.world_size,
+        rank=rank)
+    train_loader = torch.utils.data.DataLoader(
+        dataset=train_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=0,
+        pin_memory=True,
+        sampler=train_sampler
+    )
 
     start = datetime.now()
     total_step = len(train_loader)
     for epoch in range(args.epochs):
-        print('GPU [{}] Running new epoch'.format(gpu))
         for i, (images, labels) in enumerate(train_loader):
             images = images.cuda(non_blocking=True)
             labels = labels.cuda(non_blocking=True)
@@ -107,12 +113,17 @@ def train(gpu, args):
 
             # Backward and optimize
             optimizer.zero_grad()
-            loss.backward()
+            with amp.scale_loss(loss, optimizer) as scaled_loss:
+                scaled_loss.backward()
             optimizer.step()
-            #if (i + 1) % 100 == 0 and gpu == 0:
-            if (i + 1) % 100 == 0:
-                print('GPU [{}] Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(gpu, epoch + 1, args.epochs, i + 1, total_step,
-                                                                         loss.item()))
+            if (i + 1) % 100 == 0 and gpu == 0:
+                print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(
+                    epoch + 1,
+                    args.epochs,
+                    i + 1,
+                    total_step,
+                    loss.item())
+                )
     if gpu == 0:
         print("Training complete in: " + str(datetime.now() - start))
 
