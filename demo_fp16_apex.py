@@ -31,6 +31,8 @@ def main():
                         help='ranking within the nodes')
     parser.add_argument('--epochs', default=2, type=int, metavar='N',
                         help='number of total epochs to run')
+    parser.add_argument('-o', '--optlevel', default=1, type=int,
+                        help='0')
     args = parser.parse_args()
     args.world_size = args.gpus * args.nodes
     os.environ['MASTER_ADDR'] = 'localhost'
@@ -76,8 +78,10 @@ def train(gpu, args):
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(gpu)
     optimizer = torch.optim.SGD(model.parameters(), 1e-4)
+    
+    opt_level = 'O'+str(args.optlevel)
     # Wrap the model
-    model, optimizer = amp.initialize(model, optimizer, opt_level='O2')
+    model, optimizer = amp.initialize(model, optimizer, opt_level=opt_level)
     model = DDP(model)
     # Data loading code
     print('downloading dataset')
