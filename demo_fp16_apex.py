@@ -15,9 +15,9 @@ In this example, APEX is used to change floating point precision of calculations
 It is done by setting this parameter called OPT_LEVEL
 From the APEX docs, 
 O0 = FP32 throughout the whole code. Normal operation
-O1 = Mixed precision, FP16 / FP32. Recommended for use. (Softmax is still FP32)
-O2 = Mixed precision, FP16 / FP32. Similar to O1
-O3 = Fully FP32
+O1 = Mixed precision, FP16/FP32. Recommended. (Softmax is FP32)
+O2 = Mixed precision, FP16/FP32. Similar to O1 + small differences
+O3 = Fully FP32. For validating code quickly
 
 '''
 
@@ -116,8 +116,9 @@ def train(gpu, args):
             with amp.scale_loss(loss, optimizer) as scaled_loss:
                 scaled_loss.backward()
             optimizer.step()
-            if (i + 1) % 100 == 0 and gpu == 0:
-                print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(
+            if (i + 1) % 100 == 0:
+                print('GPU: [{}] Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(
+                    gpu,
                     epoch + 1,
                     args.epochs,
                     i + 1,
