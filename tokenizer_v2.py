@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri May 15 12:16:05 2020
+Created on Sun Feb  7 14:19:41 2021
 Some utility functions to help with data processing
+Version 2. Doesnt remove hashtags and mentions. 
+Split by topics ["General Terms", "Iran_Deal", "Santa_Fe_Shooting", "Student Marches"]
+Split by response type ["Quote", "Reply"]
+Split by train/test sets (90-10)
 @author: jakeyap
 """
+
 import json
 from transformers import BertTokenizer
 import numpy as np
@@ -14,7 +19,7 @@ import torch
 import re
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-tokenizer.add_tokens(['[#HASHTAG]', '[@ACCOUNT]', '[URL]'])
+tokenizer.add_tokens(['[URL]'])
 
 def empty_label_dictionary():
     """
@@ -283,10 +288,27 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
             tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['target_text'])
             tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
         
+        
+        encoded_dict = tokenizer.__call__(text=tokenized_parent,
+                                          text_pair=tokenized_tweet,
+                                          padding='max_length',
+                                          truncation=True,
+                                          is_split_into_words=True,
+                                          max_length=max_length,
+                                          return_tensors='pt')
+        
+        '''
+        encoded_dict = tokenizer.__call__(text=tokenized_parent,
+                                          text_pair=tokenized_tweet,
+                                          is_split_into_words=True,
+                                          return_tensors='pt')
+        '''
+        '''
         encoded_dict = tokenizer.encode_plus(text=tokenized_tweet,
                                              text_pair=tokenized_parent,
                                              max_length=max_length,
                                              pad_to_max_length=True)
+        '''
         encoded_tweets.append(encoded_dict['input_ids'])
         token_type_ids.append(encoded_dict['token_type_ids'])
         attention_mask.append(encoded_dict['attention_mask'])
@@ -311,26 +333,6 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
     dataframe.insert(width+4,'interaction_type_num', interaction_types)
     return dataframe
 
-def remove_hashtag(tweet_in):
-    '''
-    Removes any hashtags in tweets
-
-    Parameters
-    ----------
-    tweet_in : string
-        tweet
-
-    Returns
-    -------
-    tweet_out : string
-        cleaned tweet
-
-    '''
-    # \S means any nonwhite space character
-    # * means match the preceding character any number of times
-    re_object = re.compile('#\S*')
-    tweet_out = re_object.sub(repl='[#HASHTAG]', string=tweet_in)
-    return tweet_out
 
 def remove_urls(tweet_in):
     '''
@@ -346,28 +348,25 @@ def remove_urls(tweet_in):
     tweet_out : string
         cleaned tweet.
     '''
-    re_object = re.compile('http:\S*|https:\S*|www.\S*|\n')
+    re_object = re.compile('http:\S*|https:\S*|www.\S*')
     tweet_out = re_object.sub(repl='[URL]', string=tweet_in)
     return tweet_out
 
-def remove_mentions(tweet_in):
+def remove_spaces(string_in):
     '''
-    Removes @ signs and leave the name    
-
+    Removes newlines and tabs
     Parameters
     ----------
     tweet_in : string
         tweet
-
     Returns
     -------
     tweet_out : string
-        cleaned tweet
-
+        cleaned tweet.
     '''
-    re_object = re.compile('@\S*')
-    tweet_out = re_object.sub(repl='[@ACCOUNT]', string=tweet_in)
-    return tweet_out
+    re_object = re.compile('\s')
+    string_out = re_object.sub(repl=' ', string=string_in)
+    return string_out
 
 def clean_dataset(dataframe):
     # create a new column called clean_target_text and clean_response_text
@@ -381,15 +380,14 @@ def clean_dataset(dataframe):
         if i % 100 ==0:
             print('Cleaning dataframe: %d' % i)
         target_text = dataframe.iloc[i]['target_text']
+        
         response_text = dataframe.iloc[i]['response_text']
         
-        #target_text = remove_hashtag(target_text)
-        target_text = remove_urls(target_text)
-        #target_text = remove_mentions(target_text)
         
-        #response_text = remove_hashtag(response_text)
+        target_text = remove_urls(target_text)
+        target_text = remove_spaces(target_text)
         response_text = remove_urls(response_text)
-        #response_text = remove_mentions(response_text)
+        response_text = remove_spaces(response_text)
         
         clean_target_texts.append(target_text)
         clean_response_texts.append(response_text)
@@ -403,8 +401,8 @@ def explore_dataset(dataframe, index=None):
     # prints target and response text for each line in cleaned dataset
     if index is None:
         #randomly generate a number using torch's RNG
-        high = len(dataframe) 
-        index = torch.randint(high,(1,1)).item()
+        mav_value = len(dataframe) 
+        index = torch.randint(mav_value,(1,1)).item()
     print('Index ', index)
     print('\nOriginal target')
     print(dataframe.iloc[index]['target_text'])
@@ -419,11 +417,11 @@ def explore_dataset(dataframe, index=None):
 if __name__ =='__main__':
     DATADIR = './data/'
     FILENAME = 'stance_dataset.json'
-    REMARK = '_new'
+    REMARK = 'new'
     NUM_TO_IMPORT = 1e9
     TOKENIZE = True
     TRAINING_RATIO = 0.90
-    MAXLENGTH = 128
+    MAXLENGTH = 512
     ''' ========== Import data ========== '''
     filename = DATADIR + FILENAME
     raw_list = []
@@ -446,7 +444,10 @@ if __name__ =='__main__':
     pd_dataframe = pd.DataFrame(raw_list)
     df_filtered, errors = remove_nans(pd_dataframe)
     df_filtered = clean_dataset(df_filtered)
+    
+    # split by quote or reply
     ''' ========== Plot the label densities ========== '''
+    '''
     count1 = empty_label_dictionary()
     count2 = empty_label_dictionary()
     label_list = count1.keys()
@@ -478,18 +479,25 @@ if __name__ =='__main__':
     plt.grid(True)
     plt.tight_layout()
     plt.legend()
+    '''
     ''' ========== tokenize tweets, append to dataframe ========== '''
     if TOKENIZE:
         encoded_df = tokenize_and_encode_pandas(dataframe=df_filtered, max_length=MAXLENGTH)
     
+    
+    #Split by topics ["General Terms", "Iran_Deal", "Santa_Fe_Shooting", "Student Marches"]
+    #Split by response type ["Quote", "Reply"]
     ''' ========== split into training and test sets ========== '''
     datalength = encoded_df.shape[0]
     train_index = round (TRAINING_RATIO * datalength)
     
+    ''' ========== Shuffle and split dataframe rows ========== '''
+    encoded_df = encoded_df.sample(frac=1)
     train_set = encoded_df.iloc[0:train_index].copy()
     test_set = encoded_df.iloc[train_index:].copy()
     
     ''' ========== count the labels for both sets ========== '''
+    '''
     count3 = empty_label_dictionary()
     count4 = empty_label_dictionary()
     
@@ -512,7 +520,7 @@ if __name__ =='__main__':
     for each_key in count3.keys():
         count3[each_key] = count3[each_key] * 100 / train_label_max
         count4[each_key] = count4[each_key] * 100 / test_label_max
-    
+        
     plt.figure(2)
     plt.bar(x=xpts-width/2,height=count3.values(), width=width, label='train-3844')
     plt.bar(x=xpts+width/2,height=count4.values(), width=width, label='test-427')
@@ -523,6 +531,7 @@ if __name__ =='__main__':
     plt.grid(True)
     plt.tight_layout()
     plt.legend()
+    '''
     ''' ========== save both datasets into binaries ========== '''
-    torch.save(train_set, './data/train_set'+REMARK+'.bin')
-    torch.save(test_set, './data/test_set'+REMARK+'.bin')
+    torch.save(train_set, './data/train_set_'+str(MAXLENGTH)+'_'+REMARK+'.bin')
+    torch.save(test_set, './data/test_set_'+str(MAXLENGTH)+'_'+REMARK+'.bin')
