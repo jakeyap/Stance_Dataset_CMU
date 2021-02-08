@@ -5,11 +5,10 @@ Created on Sun Feb  7 15:50:00 2021
 @author: jakeyap
 """
 
-import tokenizer_utilities
 import dataloader_utilities as dataloader
 import tokenizer_v2
 
-from classifier_models import my_ModelA0, my_ModelB0
+from classifier_models import my_ModelA0, my_ModelB0, SelfAdjDiceLoss
 from transformers import BertConfig
 
 # default imports
@@ -66,10 +65,11 @@ def main():
     LOG_INTERVAL =  args.log_interval
     ''' ===================================================='''
     ''' ---------- Parse addtional arguments here ----------'''
-    
+    LOSS_FN =       args.loss_fn
+    W_SAMPLE =      args.w_sample
     ''' ===================================================='''
     
-    model_savefile = './saved_models/'+EXP_NAME+'_'+MODEL_NAME+'.bin'   # to save/load model from
+    model_savefile = './log_files/saved_models/'+EXP_NAME+'_'+MODEL_NAME+'.bin'   # to save/load model from
     plotfile = './log_files/'+EXP_NAME+'_'+MODEL_NAME+'.png'            # to plot losses
     if DO_TRAIN:
         logfile_name = './log_files/'+EXP_NAME+'_'+MODEL_NAME+'.log'    # for recording training progress
@@ -91,21 +91,30 @@ def main():
     logger.info('epochs: %d ' % EPOCHS)
     logger.info('learning_rate: %1.6f' % LEARNING_RATE)
     logger.info('optimizer: ' + OPTIM)
-    logger.info('debug: ' + DEBUG)
+    logger.info('debug: ' + str(DEBUG))
     
     logger.info('------------------ Getting model -------------------')
-    model = get_model(MODEL_NAME)
+    model = get_model(logger,MODEL_NAME)
+    model.cuda()
     #model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
     
     logger.info('--------------- Getting dataframes -----------------')
     test_df = torch.load(TEST_DATA)
     full_train_df = torch.load(TRAIN_DATA)
     
+    if DEBUG:
+        test_df = test_df[0:20]
+        full_train_df = test_df
+        
+    
     if DO_TRAIN:
         logger.info('------- Setting loss function and optimizer --------')
         # weights = torch.tensor([1.0, 1.0, 1.0, 1.0, 20.0, 1.0, 10.0, 10.0, 1.0, 1.0, 1.0]).to(gpu)
         # loss_fn = torch.nn.CrossEntropyLoss(weight=weights, reduction='mean')
-        loss_fn = torch.nn.CrossEntropyLoss(reduction='mean')
+        if LOSS_FN == 'dice':
+            loss_fn = SelfAdjDiceLoss(reduction='mean')
+        else:
+            loss_fn = torch.nn.CrossEntropyLoss(reduction='mean')
         optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
         
         train_df_len = len(full_train_df)   # figure out training data length
@@ -123,9 +132,9 @@ def main():
     
         logger.info('------------ Converting to dataloaders -------------')
         
-        train_dl = dataloader.dataframe_2_dataloader(train_df, TRNG_MB_SIZE, randomize=True)
-        test_dl = dataloader.dataframe_2_dataloader(test_df, TEST_MB_SIZE, randomize=False)
-        dev_dl = dataloader.dataframe_2_dataloader(dev_df, TEST_MB_SIZE, randomize=False)
+        train_dl = dataloader.df_2_dl_v2(train_df, TRNG_MB_SIZE, randomize=True, weighted_sample=W_SAMPLE, logger=logger)
+        test_dl = dataloader.df_2_dl_v2(test_df, TEST_MB_SIZE, randomize=False)
+        dev_dl = dataloader.df_2_dl_v2(dev_df, TEST_MB_SIZE, randomize=False)
     
         logger.info('---------------- Starting training -----------------')
         train(model=model, train_dl=train_dl, dev_dl=dev_dl, 
@@ -133,29 +142,27 @@ def main():
               loss_fn=loss_fn, optimizer=optimizer, 
               plotfile=plotfile, modelfile=model_savefile)
         
-        # reload best model after training
-        
-    else:
-        saved_params = torch.load(model_savefile)
-        model.load(saved_params)
     # regardless of do_train or not, reload best models
     saved_params = torch.load(model_savefile)
-    model.load(saved_params)
+    model.load_state_dict(saved_params)
     results = test(model=model, 
                    dataloader=test_dl,
                    logger=logger,
+                   log_interval=LOG_INTERVAL,
                    print_string='test')
     y_pred = results[0]
     y_true = results[1]
-    logits = results[2]
+    #logits = results[2]
     
     
     f1_metrics = f1_help(y_true, y_pred,    # calculate f1 scores
                              average=None,      # dont set to calculate for all
                              labels=[0,1,2,3])  # number of classes
     precisions, recalls, f1scores, supports = f1_metrics
+    accuracy = calculate_acc(y_pred, y_true)
+    msg = f1_metrics_msg(precisions, recalls, f1scores, supports, accuracy)
     
-    f1_score = sum(f1scores) / len(f1scores)
+    logger.info(msg)
     time2 = time.time()
     print_time(time1, time2, logger)
     
@@ -167,22 +174,21 @@ def get_model(logger=None, modelname=''):
 
     Returns
     -------
-    None.
+    model object.
     
     '''
-    #TODO
     if modelname=='my_modelA0':
         config = BertConfig.from_pretrained('bert-base-uncased')
         config.num_labels = 4
         model = my_ModelA0(config)
     else:
-        msg = 'model not found, exiting'
+        msg = 'model not found, exiting ' + modelname
         if logger is None:
             print(msg)
         else:
             logger.info(msg)
         raise Exception
-        
+    model.resize_token_embeddings(len(tokenizer_v2.tokenizer))
     return model
 
 def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimizer, plotfile, modelfile):
@@ -201,15 +207,21 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
         for batch_id, minibatch in enumerate(train_dl):
             if batch_id % log_interval == 0:
                 logger.info(('\tEPOCH: %3d\tMiniBatch: %4d' % (epoch, batch_id)))
+
+            #x0 = minibatch[0].to(gpu)   # index in orig data
+            x1 = minibatch[1].to(gpu)   # encoded tokens
+            x2 = minibatch[2].to(gpu)   # token_type_ids 
+            x3 = minibatch[3].to(gpu)   # attention_mask 
+            #x4 = minibatch[4].to(gpu)   # times_labeled
             
-            x0 = minibatch[1].to(gpu)   # encoded tokens
-            x1 = minibatch[2].to(gpu)   # token_type_ids 
-            x2 = minibatch[3].to(gpu)   # attention_mask 
+            #y = minibatch[5].to(gpu)    # true label 6 class
+            y = minibatch[6].to(gpu)    # true label 4 class
             
-            y = minibatch[5].to(gpu)
-            logits = model(input_ids=x0,    # shape=(n,C) where n=batch size
-                           attention_mask=x2, 
-                           token_type_ids=x1)   
+            outputs = model(input_ids=x1,    # shape=(n,C) where n=batch size
+                            attention_mask=x3, 
+                            token_type_ids=x2)
+            
+            logits = outputs[0]
             loss = loss_fn(logits, y)   # calculate the loss
             loss.backward()             # backward prop
             optimizer.step()            # step the gradients once
@@ -225,6 +237,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
         results = test(model=model, 
                        dataloader=dev_dl,
                        logger=logger,
+                       log_interval=log_interval,
                        print_string='dev')
         
         y_pred = results[0]
@@ -239,6 +252,9 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
                              average=None,      # dont set to calculate for all
                              labels=[0,1,2,3])  # number of classes
         precisions, recalls, f1scores, supports = f1_metrics
+        accuracy = calculate_acc(y_pred, y_true)
+        msg = f1_metrics_msg(precisions, recalls, f1scores, supports, accuracy)
+        logger.info(msg)
         
         f1_score = sum(f1scores) / len(f1scores)
         f1_scores.append(f1_score)
@@ -248,19 +264,20 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
             torch.save(model.state_dict(), 
                        modelfile)   # save model
         
-        state = torch.load(modelfile)   # reload best model
-        model.load_state_dict(state)
-        fig, axes = plt.subplots(2,1)
-        ax0 = axes[0] 
-        ax0.scatter(loss_horz, losses)
-        ax0.scatter(dev_loss_horz, dev_losses)
-        ax0.set_title('Training loss vs minibatch')
-        ax0.grid(True)
-        ax1 = axes[1]
-        ax1.scatter(f1_horz, f1_scores)
-        ax1.set_title('F1 score vs epochs')
-        ax1.grid(True)
-        fig.savefig(plotfile)
+    state = torch.load(modelfile)   # reload best model
+    model.load_state_dict(state)
+    fig, axes = plt.subplots(2,1)
+    ax0 = axes[0] 
+    ax0.scatter(loss_horz, losses)
+    ax0.scatter(dev_loss_horz, dev_losses)
+    ax0.set_ylabel('Training losses')
+    ax0.set_ylabel('Training loss')
+    ax0.grid(True)
+    ax1 = axes[1]
+    ax1.scatter(f1_horz, f1_scores)
+    ax1.set_ylabel('F1 score')
+    ax1.grid(True)
+    fig.savefig(plotfile)
     return
 
 def test(model, dataloader, logger, log_interval, print_string='test'):
@@ -301,20 +318,23 @@ def test(model, dataloader, logger, log_interval, print_string='test'):
             if batch_id % log_interval == 0:
                 logger.info(('\tTesting '+print_string+' Minibatch: %4d' % batch_id))
             
-            x0 = minibatch[1].to(gpu)   # encoded tokens
-            x1 = minibatch[2].to(gpu)   # token_type_ids 
-            x2 = minibatch[3].to(gpu)   # attention_mask 
+            #x0 = minibatch[0].to(gpu)   # index in orig data
+            x1 = minibatch[1].to(gpu)   # encoded tokens
+            x2 = minibatch[2].to(gpu)   # token_type_ids 
+            x3 = minibatch[3].to(gpu)   # attention_mask 
+            #x4 = minibatch[4].to(gpu)   # times_labeled
+            #y = minibatch[5].to(gpu)    # true label 6 class
+            y = minibatch[6].to(gpu)    # true label 4 class
             
-            y = minibatch[5].to(gpu)
-            logits = model(input_ids=x0,    # shape=(n,C) where n=batch size
-                           attention_mask=x2, 
-                           token_type_ids=x1)   
-            
+            outputs = model(input_ids=x1,    # shape=(n,C) where n=batch size
+                            attention_mask=x3, 
+                            token_type_ids=x2)   
+            logits = outputs[0]
             if y_true is None:                      # for handling 1st minibatch
                 y_true = y.clone().to(cpu)          # shape=(n)
                 index = logits.argmax(1)            # for finding index of max value
                 y_pred = index.clone().to(cpu)
-                all_logits = logits.clone()
+                all_logits = logits.clone().to(cpu)
             else:                                   # for all other minibatches
                 y_true = torch.cat((y_true,         # shape=(n,)
                                     y.clone().to(cpu)),
@@ -324,7 +344,7 @@ def test(model, dataloader, logger, log_interval, print_string='test'):
                                     index.clone().to(cpu)),
                                    0)
                 all_logits = torch.cat((all_logits, 
-                                        logits.clone()),
+                                        logits.clone().to(cpu)),
                                        0)
     return [y_pred, y_true, all_logits] # both have shape of (n,)
 
@@ -346,24 +366,7 @@ def test_single_example(model, dataloader, logger, log_interval, index=-1, show=
         for batch_id, minibatch in enumerate(dataloader):
             if batch_to_check == batch_id:
                 print('Found batch number %d. Running test' % batch_id)
-                '''
-                # get the input features and labels. edit as needed
-                x0 = minibatch[0]
-                x1 = minibatch[1]
-                x2 = minibatch[2]
-                x3 = minibatch[3]
-                x4 = minibatch[4]
-                y = minibatch[5]
                 
-                x0 = x0.to(gpu)
-                x1 = x1.to(gpu)
-                x2 = x2.to(gpu)
-                x3 = x3.to(gpu)
-                x4 = x4.to(gpu)
-                #y = y.to(gpu)
-                
-                logits = model(x0, x1, x2, x3, x4)   # shape=(n,C) where n=batch size
-                '''
                 x0 = minibatch[1].to(gpu)   # encoded tokens
                 x1 = minibatch[2].to(gpu)   # token_type_ids 
                 x2 = minibatch[3].to(gpu)   # attention_mask 
@@ -385,10 +388,23 @@ def test_single_example(model, dataloader, logger, log_interval, index=-1, show=
                     print('Predicted Label: \t', prediction)
                 return [y_pred, y, index]
     
-def calculate_metrics():
-    
-    return
+def f1_metrics_msg(precisions, recalls, f1scores, supports, accuracy):
+    macro_f1_score = sum(f1scores) / len(f1scores)
+    weighted_f1_score = np.sum(f1scores * supports) / supports.sum()
+    string = '\nLabels \tPrec. \tRecall\tF1    \tSupp  \n'
+    string +='Denial \t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[0], recalls[0], f1scores[0], supports[0])
+    string +='Support\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[1], recalls[1], f1scores[1], supports[1])
+    string +='Comment\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[2], recalls[2], f1scores[2], supports[2])
+    string +='Queries\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[3], recalls[3], f1scores[3], supports[3])
+    string +='MacroF1\t%1.4f\n' % macro_f1_score
+    string +='F1w_avg\t%1.4f\n' % weighted_f1_score
+    string +='Acc    \t%2.1f\n' % (accuracy * 100)
+    return string
 
+def calculate_acc(y_pred, y_true):
+    correct = y_pred == y_true
+    length = len(y_pred)
+    return correct.sum().item() / length
 
 def print_time(old_time, new_time, logger=None):
     '''
@@ -431,17 +447,17 @@ def get_args():
     parser.add_argument("--batch_train",    default=1, type=int, help="minibatch size for training")
     parser.add_argument("--batch_test",     default=1, type=int, help="minibatch size for testing")
     parser.add_argument("--epochs",         default=1, type=int, help="num of training epochs")
-    parser.add_argument("--learning_rate",  default=1, type=int, help="learning rate")
+    parser.add_argument("--learning_rate",  default=1, type=float,help="learning rate")
     parser.add_argument("--optimizer",      default="adam",      help="adam or rmsprop")
     
     parser.add_argument("--do_train",       action="store_true", help="Whether to run training")
     parser.add_argument("--do_test",        action="store_true", help="Whether to run tests")
     
-    parser.add_argument("--model_name",     default="",          help="model name")
+    parser.add_argument("--model_name",     default="my_modelA0",help="model name")
     parser.add_argument("--exp_name",       default="expXX",     help="Log filename prefix")
     
-    parser.add_argument("--train_data",     default='./data/train_set_256_new.pkl')
-    parser.add_argument("--test_data",      default='./data/test_set_256_new.pkl')
+    parser.add_argument("--train_data",     default='./data/train_set_256_new.bin')
+    parser.add_argument("--test_data",      default='./data/test_set_256_new.bin')
     
     parser.add_argument("--k_folds",        default=4, type=int, help='number of segments to fold training data')
     parser.add_argument("--folds2run",      default=1, type=int, help='number of times to do validation folding')
@@ -450,7 +466,8 @@ def get_args():
     parser.add_argument("--log_interval",   default=1, type=int, help="num of batches before printing")
     ''' ===================================================='''
     ''' ========== Add additional arguments here ==========='''
-    
+    parser.add_argument('--loss_fn',        default='ce_loss',  help='loss function. ce_loss (default) or dice_loss')
+    parser.add_argument('--w_sample',       action='store_true',help='non flat sampling of training examples')
     ''' ===================================================='''
     return parser.parse_args()
 

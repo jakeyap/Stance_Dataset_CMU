@@ -106,7 +106,7 @@ if FROM_SCRATCH:
     config.num_labels = 6
     model = my_ModelB0(config)
     # Resize model vocab
-    #model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
+    model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
     # Move model into GPU
     model.to(gpu)
     # Define the optimizer. Use SGD

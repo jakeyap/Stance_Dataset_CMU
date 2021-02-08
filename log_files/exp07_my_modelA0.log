@@ -1,0 +1,428 @@
+02/08/2021 08:42:17 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+02/08/2021 08:42:17 - INFO - __main__ -   ======== my_modelA0 =========
+02/08/2021 08:42:17 - INFO - __main__ -   ===== Hyperparameters ======
+02/08/2021 08:42:17 - INFO - __main__ -   batch_train: 40
+02/08/2021 08:42:17 - INFO - __main__ -   batch_test:  40
+02/08/2021 08:42:17 - INFO - __main__ -   epochs: 20 
+02/08/2021 08:42:17 - INFO - __main__ -   learning_rate: 0.000040
+02/08/2021 08:42:17 - INFO - __main__ -   optimizer: adam
+02/08/2021 08:42:17 - INFO - __main__ -   debug: False
+02/08/2021 08:42:17 - INFO - __main__ -   ------------------ Getting model -------------------
+02/08/2021 08:42:23 - INFO - __main__ -   --------------- Getting dataframes -----------------
+02/08/2021 08:42:23 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+02/08/2021 08:42:23 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+02/08/2021 08:42:23 - INFO - __main__ -   ---------------- Starting training -----------------
+02/08/2021 08:42:23 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    0
+02/08/2021 08:42:29 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   10
+02/08/2021 08:42:35 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   20
+02/08/2021 08:42:41 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   30
+02/08/2021 08:42:48 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   40
+02/08/2021 08:42:54 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   50
+02/08/2021 08:43:00 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   60
+02/08/2021 08:43:02 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:43:04 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:43:06 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:43:07 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.0000	0.0000	0.0000	317
+Support	0.0000	0.0000	0.0000	276
+Comment	0.2693	1.0000	0.4244	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1061
+F1w_avg	0.1143
+Acc    	26.9
+
+02/08/2021 08:43:07 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    0
+02/08/2021 08:43:14 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   10
+02/08/2021 08:43:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   20
+02/08/2021 08:43:26 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   30
+02/08/2021 08:43:32 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   40
+02/08/2021 08:43:38 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   50
+02/08/2021 08:43:44 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   60
+02/08/2021 08:43:47 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:43:49 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:43:51 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:43:51 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.0000	0.0000	0.0000	317
+Support	0.3232	1.0000	0.4885	276
+Comment	0.0000	0.0000	0.0000	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1221
+F1w_avg	0.1579
+Acc    	32.3
+
+02/08/2021 08:43:53 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    0
+02/08/2021 08:43:59 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   10
+02/08/2021 08:44:05 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   20
+02/08/2021 08:44:11 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   30
+02/08/2021 08:44:17 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   40
+02/08/2021 08:44:23 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   50
+02/08/2021 08:44:29 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   60
+02/08/2021 08:44:32 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:44:34 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:44:36 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:44:37 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.0000	0.0000	0.0000	317
+Support	0.0000	0.0000	0.0000	276
+Comment	0.2693	1.0000	0.4244	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1061
+F1w_avg	0.1143
+Acc    	26.9
+
+02/08/2021 08:44:37 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    0
+02/08/2021 08:44:43 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   10
+02/08/2021 08:44:49 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   20
+02/08/2021 08:44:55 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   30
+02/08/2021 08:45:01 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   40
+02/08/2021 08:45:08 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   50
+02/08/2021 08:45:14 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   60
+02/08/2021 08:45:16 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:45:18 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:45:20 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:45:21 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3441	0.4353	0.3844	317
+Support	0.3620	0.5942	0.4499	276
+Comment	0.0000	0.0000	0.0000	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2086
+F1w_avg	0.2881
+Acc    	35.4
+
+02/08/2021 08:45:22 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    0
+02/08/2021 08:45:28 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   10
+02/08/2021 08:45:35 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   20
+02/08/2021 08:45:41 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   30
+02/08/2021 08:45:47 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   40
+02/08/2021 08:45:53 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   50
+02/08/2021 08:45:59 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   60
+02/08/2021 08:46:02 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:46:04 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:46:06 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:46:06 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.0000	0.0000	0.0000	317
+Support	0.3791	0.6703	0.4843	276
+Comment	0.3415	0.5435	0.4195	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2259
+F1w_avg	0.2695
+Acc    	36.3
+
+02/08/2021 08:46:08 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    0
+02/08/2021 08:46:14 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   10
+02/08/2021 08:46:20 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   20
+02/08/2021 08:46:26 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   30
+02/08/2021 08:46:32 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   40
+02/08/2021 08:46:39 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   50
+02/08/2021 08:46:45 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   60
+02/08/2021 08:46:47 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:46:49 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:46:52 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:46:52 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2647	0.0284	0.0513	317
+Support	0.0000	0.0000	0.0000	276
+Comment	0.2756	0.9826	0.4305	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1204
+F1w_avg	0.1350
+Acc    	27.5
+
+02/08/2021 08:46:52 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    0
+02/08/2021 08:46:58 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   10
+02/08/2021 08:47:05 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   20
+02/08/2021 08:47:11 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   30
+02/08/2021 08:47:17 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   40
+02/08/2021 08:47:23 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   50
+02/08/2021 08:47:29 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   60
+02/08/2021 08:47:32 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:47:34 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:47:36 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:47:36 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3723	0.6530	0.4742	317
+Support	0.0000	0.0000	0.0000	276
+Comment	0.3658	0.4739	0.4129	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2218
+F1w_avg	0.2872
+Acc    	37.0
+
+02/08/2021 08:47:37 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    0
+02/08/2021 08:47:43 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   10
+02/08/2021 08:47:49 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   20
+02/08/2021 08:47:55 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   30
+02/08/2021 08:48:02 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   40
+02/08/2021 08:48:08 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   50
+02/08/2021 08:48:14 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   60
+02/08/2021 08:48:16 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:48:19 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:48:21 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:48:21 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3709	0.8107	0.5089	317
+Support	0.5625	0.0652	0.1169	276
+Comment	0.4419	0.2478	0.3175	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2358
+F1w_avg	0.3122
+Acc    	38.9
+
+02/08/2021 08:48:23 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    0
+02/08/2021 08:48:29 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   10
+02/08/2021 08:48:35 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   20
+02/08/2021 08:48:41 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   30
+02/08/2021 08:48:47 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   40
+02/08/2021 08:48:54 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   50
+02/08/2021 08:49:00 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   60
+02/08/2021 08:49:02 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:49:04 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:49:07 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:49:07 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7391	0.0536	0.1000	317
+Support	0.3309	0.9964	0.4968	276
+Comment	0.0000	0.0000	0.0000	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1492
+F1w_avg	0.1977
+Acc    	34.2
+
+02/08/2021 08:49:07 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    0
+02/08/2021 08:49:13 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   10
+02/08/2021 08:49:20 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   20
+02/08/2021 08:49:26 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   30
+02/08/2021 08:49:32 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   40
+02/08/2021 08:49:38 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   50
+02/08/2021 08:49:44 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   60
+02/08/2021 08:49:47 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:49:49 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:49:51 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:49:51 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.0000	0.0000	0.0000	317
+Support	0.3232	1.0000	0.4885	276
+Comment	0.0000	0.0000	0.0000	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1221
+F1w_avg	0.1579
+Acc    	32.3
+
+02/08/2021 08:49:52 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    0
+02/08/2021 08:49:58 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   10
+02/08/2021 08:50:04 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   20
+02/08/2021 08:50:10 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   30
+02/08/2021 08:50:16 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   40
+02/08/2021 08:50:23 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   50
+02/08/2021 08:50:29 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   60
+02/08/2021 08:50:31 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:50:34 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:50:36 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:50:36 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3953	0.7508	0.5180	317
+Support	0.4947	0.3406	0.4034	276
+Comment	0.5000	0.1348	0.2123	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2834
+F1w_avg	0.3798
+Acc    	42.5
+
+02/08/2021 08:50:38 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    0
+02/08/2021 08:50:44 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   10
+02/08/2021 08:50:50 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   20
+02/08/2021 08:50:56 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   30
+02/08/2021 08:51:02 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   40
+02/08/2021 08:51:08 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   50
+02/08/2021 08:51:15 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   60
+02/08/2021 08:51:17 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:51:19 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:51:21 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:51:22 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3716	0.5110	0.4303	317
+Support	0.0000	0.0000	0.0000	276
+Comment	0.3445	0.6261	0.4444	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2187
+F1w_avg	0.2794
+Acc    	35.8
+
+02/08/2021 08:51:22 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    0
+02/08/2021 08:51:28 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   10
+02/08/2021 08:51:34 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   20
+02/08/2021 08:51:41 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   30
+02/08/2021 08:51:47 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   40
+02/08/2021 08:51:53 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   50
+02/08/2021 08:51:59 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   60
+02/08/2021 08:52:02 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:52:04 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:52:06 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:52:06 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3406	0.2965	0.3170	317
+Support	0.5769	0.1087	0.1829	276
+Comment	0.3118	0.7130	0.4339	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2335
+F1w_avg	0.2936
+Acc    	33.7
+
+02/08/2021 08:52:06 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    0
+02/08/2021 08:52:13 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   10
+02/08/2021 08:52:19 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   20
+02/08/2021 08:52:25 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   30
+02/08/2021 08:52:31 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   40
+02/08/2021 08:52:37 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   50
+02/08/2021 08:52:44 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   60
+02/08/2021 08:52:46 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:52:48 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:52:50 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:52:51 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3955	0.6088	0.4795	317
+Support	0.4344	0.5761	0.4953	276
+Comment	0.0000	0.0000	0.0000	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2437
+F1w_avg	0.3381
+Acc    	41.2
+
+02/08/2021 08:52:51 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    0
+02/08/2021 08:52:57 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   10
+02/08/2021 08:53:03 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   20
+02/08/2021 08:53:10 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   30
+02/08/2021 08:53:16 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   40
+02/08/2021 08:53:22 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   50
+02/08/2021 08:53:28 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   60
+02/08/2021 08:53:31 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:53:33 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:53:35 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:53:35 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5333	0.0252	0.0482	317
+Support	0.3290	1.0000	0.4951	276
+Comment	0.0000	0.0000	0.0000	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.1358
+F1w_avg	0.1779
+Acc    	33.3
+
+02/08/2021 08:53:35 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    0
+02/08/2021 08:53:42 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   10
+02/08/2021 08:53:48 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   20
+02/08/2021 08:53:54 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   30
+02/08/2021 08:54:00 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   40
+02/08/2021 08:54:06 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   50
+02/08/2021 08:54:13 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   60
+02/08/2021 08:54:15 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:54:17 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:54:19 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:54:20 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4176	0.2397	0.3046	317
+Support	0.4115	0.5978	0.4874	276
+Comment	0.3690	0.4348	0.3992	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2978
+F1w_avg	0.3781
+Acc    	39.9
+
+02/08/2021 08:54:21 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    0
+02/08/2021 08:54:28 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   10
+02/08/2021 08:54:34 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   20
+02/08/2021 08:54:40 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   30
+02/08/2021 08:54:46 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   40
+02/08/2021 08:54:52 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   50
+02/08/2021 08:54:58 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   60
+02/08/2021 08:55:01 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:55:03 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:55:05 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:55:06 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4128	0.3659	0.3880	317
+Support	0.4194	0.6594	0.5127	276
+Comment	0.3741	0.2261	0.2818	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2956
+F1w_avg	0.3856
+Acc    	41.0
+
+02/08/2021 08:55:06 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    0
+02/08/2021 08:55:12 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   10
+02/08/2021 08:55:18 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   20
+02/08/2021 08:55:24 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   30
+02/08/2021 08:55:30 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   40
+02/08/2021 08:55:37 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   50
+02/08/2021 08:55:43 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   60
+02/08/2021 08:55:45 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:55:47 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:55:49 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:55:50 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4828	0.1767	0.2587	317
+Support	0.3827	0.8514	0.5281	276
+Comment	0.3952	0.2130	0.2768	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2659
+F1w_avg	0.3412
+Acc    	39.8
+
+02/08/2021 08:55:50 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    0
+02/08/2021 08:55:56 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   10
+02/08/2021 08:56:02 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   20
+02/08/2021 08:56:09 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   30
+02/08/2021 08:56:15 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   40
+02/08/2021 08:56:21 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   50
+02/08/2021 08:56:27 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   60
+02/08/2021 08:56:30 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:56:32 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:56:34 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:56:34 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3543	0.1956	0.2520	317
+Support	0.4094	0.7609	0.5323	276
+Comment	0.3916	0.2826	0.3283	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2782
+F1w_avg	0.3540
+Acc    	39.5
+
+02/08/2021 08:56:35 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    0
+02/08/2021 08:56:41 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   10
+02/08/2021 08:56:47 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   20
+02/08/2021 08:56:53 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   30
+02/08/2021 08:56:59 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   40
+02/08/2021 08:57:05 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   50
+02/08/2021 08:57:12 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   60
+02/08/2021 08:57:14 - INFO - __main__ -   	Testing dev Minibatch:    0
+02/08/2021 08:57:16 - INFO - __main__ -   	Testing dev Minibatch:   10
+02/08/2021 08:57:18 - INFO - __main__ -   	Testing dev Minibatch:   20
+02/08/2021 08:57:19 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3285	0.3565	0.3419	317
+Support	0.5238	0.0399	0.0741	276
+Comment	0.2986	0.6348	0.4061	230
+Queries	0.0000	0.0000	0.0000	31
+MacroF1	0.2055
+F1w_avg	0.2602
+Acc    	31.6
+
+02/08/2021 08:57:19 - INFO - __main__ -   	Testing test Minibatch:    0
+02/08/2021 08:57:21 - INFO - __main__ -   	Testing test Minibatch:   10
+02/08/2021 08:57:23 - INFO - __main__ -   	Testing test Minibatch:   20
+02/08/2021 08:57:24 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4235	0.2308	0.2988	312
+Support	0.4140	0.6512	0.5062	281
+Comment	0.3884	0.4017	0.3950	234
+Queries	0.0000	0.0000	0.0000	27
+MacroF1	0.3000
+F1w_avg	0.3839
+Acc    	40.9
+
+02/08/2021 08:57:24 - INFO - __main__ -   Time taken: 0h 15m  6s
