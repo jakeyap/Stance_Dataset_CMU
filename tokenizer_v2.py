@@ -4,11 +4,13 @@
 Created on Sun Feb  7 14:19:41 2021
 Some utility functions to help with data processing
 Version 2. Doesnt remove hashtags and mentions. 
-Split by topics ["General Terms", "Iran_Deal", "Santa_Fe_Shooting", "Student Marches"]
+Split by topics ["General_Terms", "Iran_Deal", "Santa_Fe_Shooting", "Student_Marches"]
 Split by response type ["Quote", "Reply"]
 Split by train/test sets (90-10)
 @author: jakeyap
 """
+
+# TODO: try tokenizing with the topic at the back
 
 import json
 from transformers import BertTokenizer
@@ -21,7 +23,7 @@ import re
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 tokenizer.add_tokens(['[URL]'])
 
-def empty_label_dictionary():
+def empty_label_dictionary(num_types=6):
     """
     Creates a dictionary of labels:counts
 
@@ -31,15 +33,23 @@ def empty_label_dictionary():
         Dictionary containing the counts of the labels.
 
     """
-    categories = {'Explicit_Denial':0,
-                  'Implicit_Denial':0,
-                  'Implicit_Support':0,
-                  'Explicit_Support':0,
-                  'Comment':0,
-                  'Queries':0}
+    if num_types==6:
+        categories = {'Explicit_Denial':0,
+                      'Implicit_Denial':0,
+                      'Implicit_Support':0,
+                      'Explicit_Support':0,
+                      'Comment':0,
+                      'Queries':0}
+    elif num_types==4:
+        categories = {'Denial':0,
+                      'Support':0,
+                      'Comment':0,
+                      'Queries':0}    
+    else:
+        raise Exception
     return categories
 
-def convert_label_string2num(label):
+def convert_label_string2num(label, num_types):
     """
     Converts text label into a number
     
@@ -47,16 +57,21 @@ def convert_label_string2num(label):
     ----------
     label : string
         Text label.
-
+    num_types : int
+        4 or 6 categories
+        
     Returns
     -------
     Integer label
     """
-    dictionary = empty_label_dictionary()
+    dictionary = empty_label_dictionary(num_types)
     all_labels = list(dictionary.keys())
+    if num_types==4:
+        label = label.replace('Implicit_', '')
+        label = label.replace('Explicit_', '')
     return all_labels.index(label)
     
-def convert_label_num2string(number):
+def convert_label_num2string(number, num_types):
     """
     Converts a numerical label back into a string
 
@@ -64,12 +79,14 @@ def convert_label_num2string(number):
     ----------
     number : int
         Integer label.
-
+    num_types : int
+        4 or 6 categories
+        
     Returns
     -------
     Text Label
     """
-    dictionary = empty_label_dictionary()
+    dictionary = empty_label_dictionary(num_types)
     all_labels = list(dictionary.keys())
     return all_labels[number]
 
@@ -276,19 +293,38 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
     encoded_tweets = []
     token_type_ids = []
     attention_mask = []
-    labels = []
+    labels_6_types = []
+    labels_4_types = []
     interaction_types = []
     
     counter = 0
     for i in range(len(dataframe)):
         try:
-            tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['clean_target_text'])
-            tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['clean_response_text'])
+            #tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['clean_target_text'])
+            #tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['clean_response_text'])
+            text_parent= dataframe.iloc[i]['clean_target_text']
+            text_tweet = dataframe.iloc[i]['clean_response_text']
         except Exception:
-            tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['target_text'])
-            tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
+            #tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['target_text'])
+            #tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
+            text_parent= dataframe.iloc[i]['target_text']
+            text_tweet = dataframe.iloc[i]['response_text']
         
+        interaction = dataframe.iloc[i]['interaction_type']     # reply or quote
+        topic = dataframe.iloc[i]['event']                      # get event
+        topic = topic.replace('_', ' ')                         # replace underscore with space
+        sep_token = ' [SEP] ' 
+        text1 = interaction + sep_token + topic + sep_token + text_parent
+        text2 = text_tweet
+        encoded_dict = tokenizer.__call__(text=text1,
+                                          text_pair=text2,
+                                          padding='max_length',
+                                          truncation=True,
+                                          is_split_into_words=False,
+                                          max_length=max_length,
+                                          return_tensors='pt')
         
+        '''
         encoded_dict = tokenizer.__call__(text=tokenized_parent,
                                           text_pair=tokenized_tweet,
                                           padding='max_length',
@@ -297,11 +333,6 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
                                           max_length=max_length,
                                           return_tensors='pt')
         
-        '''
-        encoded_dict = tokenizer.__call__(text=tokenized_parent,
-                                          text_pair=tokenized_tweet,
-                                          is_split_into_words=True,
-                                          return_tensors='pt')
         '''
         '''
         encoded_dict = tokenizer.encode_plus(text=tokenized_tweet,
@@ -314,7 +345,8 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
         attention_mask.append(encoded_dict['attention_mask'])
         
         label = dataframe.iloc[i]['label']
-        labels.append(convert_label_string2num(label))
+        labels_6_types.append(convert_label_string2num(label, num_types=6))
+        labels_4_types.append(convert_label_string2num(label, num_types=4))
         
         interaction_type = dataframe.iloc[i]['interaction_type']
         interaction_types.append(convert_interaction_type_string2num(interaction_type))
@@ -329,8 +361,9 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
     dataframe.insert(width+0,'encoded_tweets', encoded_tweets)
     dataframe.insert(width+1,'token_type_ids', token_type_ids)
     dataframe.insert(width+2,'attention_mask', attention_mask)
-    dataframe.insert(width+3,'number_labels', labels)
-    dataframe.insert(width+4,'interaction_type_num', interaction_types)
+    dataframe.insert(width+3,'number_labels_6_types', labels_6_types)
+    dataframe.insert(width+4,'number_labels_4_types', labels_4_types)
+    dataframe.insert(width+5,'interaction_type_num', interaction_types)
     return dataframe
 
 
@@ -420,8 +453,8 @@ if __name__ =='__main__':
     REMARK = 'new'
     NUM_TO_IMPORT = 1e9
     TOKENIZE = True
-    TRAINING_RATIO = 0.90
-    MAXLENGTH = 512
+    TRAINING_RATIO = 0.8
+    MAXLENGTH = 256
     ''' ========== Import data ========== '''
     filename = DATADIR + FILENAME
     raw_list = []

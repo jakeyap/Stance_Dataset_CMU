@@ -135,8 +135,8 @@ else:
     model.to(gpu)
     # Define the optimizer. Use SGD
     
-    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
-                          momentum=MOMENTUM)
+    #optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE,
+    #                      momentum=MOMENTUM)
     '''
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
     '''

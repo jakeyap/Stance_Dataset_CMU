@@ -6,8 +6,9 @@ Created on Fri May 15 16:58:11 2020
 @author: jakeyap
 """
 import torch
+import torch.nn as nn
 from transformers import BertModel, BertForSequenceClassification
-from transformers.modeling_bert import BertPreTrainedModel
+from transformers.modeling_bert import BertPreTrainedModel, BertPooler
 from torch.nn import MSELoss, CrossEntropyLoss, Dropout
 
 categories = {'Explicit_Denial':0,
@@ -17,6 +18,7 @@ categories = {'Explicit_Denial':0,
               'Comment':0,
               'Queries':0}
 
+    
 
 class my_ModelA0(BertPreTrainedModel):
     r"""
