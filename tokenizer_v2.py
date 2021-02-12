@@ -10,8 +10,6 @@ Split by train/test sets (90-10)
 @author: jakeyap
 """
 
-# TODO: try tokenizing with the topic at the back
-
 import json
 from transformers import BertTokenizer
 import numpy as np

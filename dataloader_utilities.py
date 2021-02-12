@@ -235,7 +235,7 @@ def df_2_dl_v2(dataframe,
             class_weights = 1.0 / torch.tensor(class_counts, dtype=torch.float) # inverse to get class weight
             sample_weights = class_weights[number_labels_4] # for each sample, adjust its sample weight
             sampler = WeightedRandomSampler(weights=sample_weights,
-                                            num_samples=batch_size,
+                                            num_samples=len(sample_weights),
                                             replacement=True)
         else:
             sampler = RandomSampler(dataset)

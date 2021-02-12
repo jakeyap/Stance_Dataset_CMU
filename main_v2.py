@@ -466,7 +466,7 @@ def get_args():
     parser.add_argument("--log_interval",   default=1, type=int, help="num of batches before printing")
     ''' ===================================================='''
     ''' ========== Add additional arguments here ==========='''
-    parser.add_argument('--loss_fn',        default='ce_loss',  help='loss function. ce_loss (default) or dice_loss')
+    parser.add_argument('--loss_fn',        default='ce_loss',  help='loss function. ce_loss (default) or dice')
     parser.add_argument('--w_sample',       action='store_true',help='non flat sampling of training examples')
     ''' ===================================================='''
     return parser.parse_args()
