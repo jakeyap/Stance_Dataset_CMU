@@ -176,20 +176,6 @@ def df_2_dl_v2(dataframe,
     posts_index     = new_df.index.values
     posts_index     = posts_index.reshape(((-1,1)))
     #print(new_df['encoded_tweets'])
-    '''
-    encoded_tweets  = new_df['encoded_tweets'].values
-    encoded_tweets  = np.array(encoded_tweets.tolist())
-    token_type_ids  = new_df['token_type_ids'].values
-    token_type_ids  = np.array(token_type_ids.tolist())
-    attention_mask  = new_df['attention_mask'].values
-    attention_mask  = np.array(attention_mask.tolist())
-    times_labeled   = new_df['Times_Labeled'].values
-    times_labeled   = times_labeled.reshape(((-1,1)))
-    number_labels_6 = new_df['number_labels_6_types'].values
-    number_labels_6 = number_labels_6.reshape((-1))
-    number_labels_4 = new_df['number_labels_4_types'].values
-    number_labels_4 = number_labels_4.reshape((-1))
-    '''
     
     encoded_tweets  = new_df['encoded_tweets'].values.tolist()
     encoded_tweets  = torch.stack(encoded_tweets, dim=0).squeeze(1)

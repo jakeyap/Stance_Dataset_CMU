@@ -161,7 +161,65 @@ class my_ModelB0(BertPreTrainedModel):
             outputs = (loss,) + outputs
 
         return outputs  # (loss), logits, (hidden_states), (attentions)
+
+class my_ModelE0(BertPreTrainedModel):
+    """
+    This model has 2 classifiers. 
+    classifier0 is for a pretraining task to learn twitter-speak. Check whether words have been swapped
+    classifier1 is for the actual task training of learning stance
     
+    Examples::
+        
+        tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        model = BertForSequenceClassification.from_pretrained('bert-base-uncased')
+        input_ids = torch.tensor(tokenizer.encode("Hello, my dog is cute")).unsqueeze(0)  # Batch size 1
+        labels = torch.tensor([1]).unsqueeze(0)  # Batch size 1
+        outputs = model(input_ids, labels=labels)
+        loss, logits = outputs[:2]
+        
+    """
+    def __init__(self, config):
+        super(my_ModelE0, self).__init__(config)
+        self.num_labels = config.num_labels
+
+        self.bert = BertModel(config)
+        self.dropout0 = torch.nn.Dropout(config.hidden_dropout_prob)
+        self.classifier0 = torch.nn.Linear(config.hidden_size, 1) # for swapped words
+        self.classifier1 = torch.nn.Linear(config.hidden_size, 4) # for stance
+        
+        self.init_weights()
+
+    def forward(self, input_ids, attention_mask=None, token_type_ids=None,
+                position_ids=None, head_mask=None, labels=None, task='stance'):
+
+        outputs = self.bert(input_ids,
+                            attention_mask=attention_mask,
+                            token_type_ids=token_type_ids,
+                            position_ids=position_ids, 
+                            head_mask=head_mask)
+        
+        #TODO: check whether this is complete later
+        output = outputs[1] # get only the last layer outputs
+        pooled_output = self.dropout0(output)
+        if task=='stance':
+            logits = self.classifier1(pooled_output)
+            outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
+        elif task=='pretrain':
+            logits = self.classifier0(pooled_output)
+            outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
+
+        if labels is not None:
+            if self.num_labels == 1:
+                #  We are doing regression
+                loss_fct = MSELoss()
+                loss = loss_fct(logits.view(-1), labels.view(-1))
+            else:
+                loss_fct = CrossEntropyLoss()
+                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
+            outputs = (loss,) + outputs
+
+        return outputs  # (loss), logits, (hidden_states), (attentions)
+
 class SelfAdjDiceLoss(torch.nn.Module):
     """
     Creates a criterion that optimizes a multi-class Self-adjusting Dice Loss

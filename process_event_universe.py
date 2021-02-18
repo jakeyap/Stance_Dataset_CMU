@@ -17,6 +17,8 @@ import tweepy
 import os
 from main_v2 import print_time
 
+import argparse
+
 def count_comments(dataframe):
     '''
     Counts number of pairs in dataset universe
@@ -144,7 +146,7 @@ def get_twitter_api():
     
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, timeout=120, retry_count=2, )
     return api
 
 def get_tweets_bulk(api, tweet_ids_list):
@@ -166,16 +168,16 @@ def get_tweets_bulk(api, tweet_ids_list):
     
     counter = 0
     for id_bucket in list_of_lists:
-        bucket = api.statuses_lookup(id_bucket) # pass in 100 ids
+        bucket = api.statuses_lookup(id_bucket, tweet_mode='extended') # pass in 100 ids
         bucket_size = len(bucket)           # result might be shorter cauz of deleted tweets
         for i in range (bucket_size):       # within each bucket
             tweet = bucket[i]                   # find each tweet
             tweet_id = tweet.id                 # find each tweet ID
-            tweet_text = tweet.text             # find each tweet text
+            tweet_text = tweet.full_text        # find each tweet text
             tweet_dict[tweet_id] = tweet_text   # add to dictionary
         counter += 1
         if counter % 10 == 0:
-            print('Num of buckets done : %d' % counter)
+            print('Num of buckets done : %d' % counter, flush=True)
             time2 = time.time()
             print_time(time1, time2)
     
@@ -192,7 +194,7 @@ def get_dataset_tweets(api, dataframe, length=-1):
 
 def get_tweets_single(api, tweet_id):
     ''' Get a single tweet from its numerical tweet ID'''
-    return api.get_status(tweet_id)
+    return api.get_status(tweet_id, tweet_mode='extended')
 
 def save_tweet_dict(tweet_dict,
                     directory = '~/Projects/Data/SRQ_Stance_Twitter/',
@@ -202,7 +204,7 @@ def save_tweet_dict(tweet_dict,
     with open(fname, 'w') as file:
         file.write(json.dumps(tweet_dict, indent=0))
 
-def open_event_universe_header():
+def open_event_universe_header(segment=-1):
     ''' 
     opens event_universe dataset json file 
     the file contains all tweet IDs returns them in a pandas dataframe 
@@ -215,28 +217,44 @@ def open_event_universe_header():
     filename = DATADIR + FILENAME
     raw_list = []
     counter=0
+    
     with open(filename) as jsonfile:
         lines = jsonfile.readlines()
-        for line in lines:
+        if segment==-1:
+            head_idx = 0
+            tail_idx = len(lines)
+        else:
+            head_idx = segment * 200000
+            tail_idx = (segment+1) * 200000
+        for line in lines[ head_idx : tail_idx ]:
             thread_json = json.loads(line)
             raw_list.append(thread_json)
-            if counter % 1000 == 0:
-                print('Importing tweet pairs : %0000d' % counter)
+            if counter % 10000 == 0:
+                print('Importing tweet pairs : %0000d' % counter, flush=True)
             counter = counter + 1
-    print('Data length: %d' % len(raw_list))
+    print('Data length: %d' % len(raw_list), flush=True)
     time2 = time.time()
     print_time(time1,time2)
     raw_df = pd.DataFrame(raw_list)
     return raw_df
 
 
-
+# TODO: get all the tweet data. attempting runs 1-19 now, should take 10hours plus to get
+# TODO: need to merge them later
 if __name__ == '__main__':
-    df = open_event_universe_header()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--segment', default=0, type=int, help='which segment of 200k tweets data to grab. range is [0-37] inclusive')
+    args = parser.parse_args()
+    segment = args.segment
+    fname = 'event_universe_dump_'+str(segment)+'.json'
+    df = open_event_universe_header(segment)
+    print('Getting API', flush=True)
     api = get_twitter_api()
+    print('Getting list of tweet IDs', flush=True)
     tweet_sets = get_unique_tweet_ids(df)
     all_tweet_ids = list(tweet_sets[2])
+    print('Getting tweet text', flush=True)
     
     tweet_dict = get_tweets_bulk(api, all_tweet_ids)
-    save_tweet_dict(tweet_dict)
-    # this takes approx 2 hours to complete
+    save_tweet_dict(tweet_dict, fname=fname)
+    # this takes approx 60min to complete worst case

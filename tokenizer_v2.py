@@ -458,7 +458,7 @@ if __name__ =='__main__':
     raw_list = []
     with open(filename) as jsonfile:
         start = 0
-        lines = jsonfile.readlines()       
+        lines = jsonfile.readlines()
         counter = 0                 # Variable to count the loop
         end = start + NUM_TO_IMPORT # End index
         for line in lines:
