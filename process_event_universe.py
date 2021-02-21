@@ -168,18 +168,21 @@ def get_tweets_bulk(api, tweet_ids_list):
     
     counter = 0
     for id_bucket in list_of_lists:
-        bucket = api.statuses_lookup(id_bucket, tweet_mode='extended') # pass in 100 ids
-        bucket_size = len(bucket)           # result might be shorter cauz of deleted tweets
-        for i in range (bucket_size):       # within each bucket
-            tweet = bucket[i]                   # find each tweet
-            tweet_id = tweet.id                 # find each tweet ID
-            tweet_text = tweet.full_text        # find each tweet text
-            tweet_dict[tweet_id] = tweet_text   # add to dictionary
-        counter += 1
-        if counter % 10 == 0:
-            print('Num of buckets done : %d' % counter, flush=True)
-            time2 = time.time()
-            print_time(time1, time2)
+        try:
+            bucket = api.statuses_lookup(id_bucket, tweet_mode='extended') # pass in 100 ids
+            bucket_size = len(bucket)           # result might be shorter cauz of deleted tweets
+            for i in range (bucket_size):       # within each bucket
+                tweet = bucket[i]                   # find each tweet
+                tweet_id = tweet.id                 # find each tweet ID
+                tweet_text = tweet.full_text        # find each tweet text
+                tweet_dict[tweet_id] = tweet_text   # add to dictionary
+            counter += 1
+            if counter % 10 == 0:
+                print('Num of buckets done : %d' % counter, flush=True)
+                time2 = time.time()
+                print_time(time1, time2)
+        except Exception as e:
+            print(e)
     
     time3 = time.time()
     print_time(time1, time3)

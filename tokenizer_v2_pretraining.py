@@ -20,6 +20,8 @@ import torch
 import re
 import tokenizer_v2 as tokenizer_helper
 import process_event_universe as tweet_helper
+import time
+from main_v2 import print_time
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 tokenizer.add_tokens(['[URL]'])
@@ -33,13 +35,14 @@ def get_tweet_id2text_dictionary(directory='./../Data/SRQ_Stance_Twitter/',
         tweet_dict = json.loads(lines)
     return tweet_dict
 
-def get_pretraining_dataset():
+def get_pretraining_dataset(index=-1):
     ''' 
     Gets the pretraining dataset, then fill in text data
     If text data is not present, drop the row
+    If index is -1, get all the data. Else, get group of 200k posts
     '''
     # get the dataframe of headers first
-    df = tweet_helper.open_event_universe_header(0)
+    df = tweet_helper.open_event_universe_header(index)
     
     # get the dictionary that matches tweetIDs to text
     tweet_dict = get_tweet_id2text_dictionary()
@@ -207,6 +210,7 @@ def tokenize_and_encode_pretrain_df(dataframe,stopindex=1e9,max_length=128):
     return dataframe
     
 if __name__ =='__main__':
+    time1 = time.time()
     TOKENIZE = True
     MAXLENGTH = 256
     REMARK = 'test'
@@ -222,4 +226,5 @@ if __name__ =='__main__':
         encoded_df = tokenize_and_encode_pretrain_df(dataframe=df_filtered, max_length=MAXLENGTH)
         torch.save(encoded_df, './../Data/SRQ_Stance_Twitter/event_universe_encoded_full_'+str(MAXLENGTH)+'_'+REMARK+'.bin')
     
-    
+    time2 = time.time()
+    print_time(time1, time2)

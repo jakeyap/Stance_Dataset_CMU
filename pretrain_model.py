@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Feb 18 13:05:21 2021
-
+This file is supposed to take some tweets from the tweet universe to pretrain twitter style recognition
+The task is to check whether sentences have text inside that has been flipped
+example text : "i am feeling happy"
+swapped text : "i feeling am happy"
+about 50% in the dataset have been artifically flipped.
 @author: jakeyap
 """
 
@@ -23,6 +27,8 @@ import matplotlib.pyplot as plt
 
 from sklearn.metrics import precision_recall_fscore_support as f1_help
 from sklearn.metrics import confusion_matrix
+
+from main_v2 import print_time, calculate_acc
 
 '''
 {   
@@ -393,46 +399,13 @@ def f1_metrics_msg(precisions, recalls, f1scores, supports, accuracy):
     macro_f1_score = sum(f1scores) / len(f1scores)
     weighted_f1_score = np.sum(f1scores * supports) / supports.sum()
     string = '\nLabels \tPrec. \tRecall\tF1    \tSupp  \n'
-    string +='Denial \t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[0], recalls[0], f1scores[0], supports[0])
-    string +='Support\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[1], recalls[1], f1scores[1], supports[1])
-    string +='Comment\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[2], recalls[2], f1scores[2], supports[2])
-    string +='Queries\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[3], recalls[3], f1scores[3], supports[3])
+    string +='Flipped\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[0], recalls[0], f1scores[0], supports[0])
+    string +='No flip\t%1.4f\t%1.4f\t%1.4f\t%d\n' % (precisions[1], recalls[1], f1scores[1], supports[1])
     string +='MacroF1\t%1.4f\n' % macro_f1_score
     string +='F1w_avg\t%1.4f\n' % weighted_f1_score
     string +='Acc    \t%2.1f\n' % (accuracy * 100)
     return string
 
-def calculate_acc(y_pred, y_true):
-    correct = y_pred == y_true
-    length = len(y_pred)
-    return correct.sum().item() / length
-
-def print_time(old_time, new_time, logger=None):
-    '''
-    Prints time in hh mm ss format
-
-    Parameters
-    ----------
-    old_time : time in seconds
-        DESCRIPTION.
-    new_time : time in seconds
-        DESCRIPTION.
-    logger : logger object, optional
-        Logger object to print to. If None, print to default console
-
-    Returns
-    -------
-    None.
-    '''
-    hours = (new_time-old_time) // 3600
-    remain = (new_time-old_time) % 3600
-    minutes = remain // 60
-    seconds = remain % 60
-    string = 'Time taken: %dh %dm %2ds' % (hours, minutes, seconds)
-    if logger is None:
-        print(string, flush=True)
-    else:
-        logger.info(string)
 
 def get_args():
     '''
