@@ -19,7 +19,7 @@ import torch
 import re
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-tokenizer.add_tokens(['[URL]'])
+tokenizer.add_tokens(['[url]'])
 
 def empty_label_dictionary(num_types=6):
     """
@@ -380,7 +380,7 @@ def remove_urls(tweet_in):
         cleaned tweet.
     '''
     re_object = re.compile('http:\S*|https:\S*|www.\S*')
-    tweet_out = re_object.sub(repl='[URL]', string=tweet_in)
+    tweet_out = re_object.sub(repl='[url]', string=tweet_in)
     return tweet_out
 
 def remove_spaces(string_in):
@@ -408,8 +408,8 @@ def clean_dataset(dataframe):
     clean_response_texts = []
     
     for i in range(len(dataframe)):
-        if i % 100 ==0:
-            print('Cleaning dataframe: %d' % i)
+        if i % 1000 ==0:
+            print('Cleaning dataframe: %d' % i, flush=True)
         target_text = dataframe.iloc[i]['target_text']
         
         response_text = dataframe.iloc[i]['response_text']

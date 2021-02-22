@@ -184,41 +184,34 @@ class my_ModelE0(BertPreTrainedModel):
 
         self.bert = BertModel(config)
         self.dropout0 = torch.nn.Dropout(config.hidden_dropout_prob)
-        self.classifier0 = torch.nn.Linear(config.hidden_size, 1) # for swapped words
+        self.classifier0 = torch.nn.Linear(config.hidden_size, 2) # for swapped words
         self.classifier1 = torch.nn.Linear(config.hidden_size, 4) # for stance
         
         self.init_weights()
 
     def forward(self, input_ids, attention_mask=None, token_type_ids=None,
-                position_ids=None, head_mask=None, labels=None, task='stance'):
+                position_ids=None, task='stance'):
 
         outputs = self.bert(input_ids,
                             attention_mask=attention_mask,
                             token_type_ids=token_type_ids,
-                            position_ids=position_ids, 
-                            head_mask=head_mask)
+                            position_ids=position_ids)
         
         #TODO: check whether this is complete later
         output = outputs[1] # get only the last layer outputs
         pooled_output = self.dropout0(output)
         if task=='stance':
             logits = self.classifier1(pooled_output)
+            # shape of outputs[0] is (n,4)
             outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
         elif task=='pretrain':
             logits = self.classifier0(pooled_output)
+            # shape of outputs[0] is (n,1)
             outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
+        else:
+            raise Exception('task not found : ' + task)
 
-        if labels is not None:
-            if self.num_labels == 1:
-                #  We are doing regression
-                loss_fct = MSELoss()
-                loss = loss_fct(logits.view(-1), labels.view(-1))
-            else:
-                loss_fct = CrossEntropyLoss()
-                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
-            outputs = (loss,) + outputs
-
-        return outputs  # (loss), logits, (hidden_states), (attentions)
+        return outputs  # logits, (hidden_states), (attentions)
 
 class SelfAdjDiceLoss(torch.nn.Module):
     """

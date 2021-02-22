@@ -233,6 +233,128 @@ def df_2_dl_v2(dataframe,
                             num_workers=4)
     return dataloader
 
+
+def df_2_dl_pretrain(dataframe, 
+                     batch_size=64,
+                     randomize=False,
+                     weighted_sample=False,
+                     DEBUG=False,
+                     logger=None):
+    """
+    FOR PRETRAINING ONLY!!!
+    Converts a dataframe into a DataLoader object, and return DataLoader
+    This is a new version to account for 4-class-labels and 6-class-labels in data
+    
+    Parameters
+    ----------
+    dataframe : pandas dataframe
+        dataframe that contains all the raw tweets & encoded information.
+    batch_size : int, optional
+        Minibatch size to spit out. The default is 64.
+    randomize : boolean, optional
+        Decides whether to shuffle samples when creating minibatches. 
+        The default is False.
+    weighted_sample : boolean optional
+        Decides whether to use weights for sampling. Default is False
+    DEBUG : boolean, optional
+        Flag to pring debugging messages. The default is False.
+
+    Returns
+    -------
+    DataLoader object.
+    
+    Each dataframe has the following columns 
+    {
+        response_id
+        target_id
+        interaction_type
+        event
+        target_text
+        response_text
+        encoded_tweets
+        token_type_ids
+        attention_mask
+        swapped
+    }
+    
+    Each dataloader is packed into the following tuple
+    {   
+         index in original data,
+         x (encoded tweet), 
+         token_typed_ids,
+         attention_masks,
+         times_labeled
+         y (true label 6 class)
+         y (true label 4 class)
+    }
+    """
+    '''
+    if randomize:
+        # Do shuffle here
+        new_df = dataframe.sample(frac=1)
+    else:
+        new_df = dataframe
+    '''
+    new_df = dataframe
+    posts_index     = new_df.index.values
+    posts_index     = posts_index.reshape(((-1,1)))
+    #print(new_df['encoded_tweets'])
+    
+    encoded_tweets  = new_df['encoded_tweets'].values.tolist()
+    encoded_tweets  = torch.stack(encoded_tweets, dim=0).squeeze(1)
+    token_type_ids  = new_df['token_type_ids'].values.tolist()
+    token_type_ids  = torch.stack(token_type_ids, dim=0).squeeze(1)
+    attention_mask  = new_df['attention_mask'].values.tolist()
+    attention_mask  = torch.stack(attention_mask, dim=0).squeeze(1)
+    swapped         = new_df['swapped'].values
+    swapped         = swapped.reshape((-1))
+    
+    event           = new_df['event'].values
+    event           = event.reshape((-1))
+    #orig_length     = dataframe['orig_length'].values.reshape((-1,1))
+    
+    # convert numpy arrays into torch tensors
+    posts_index     = torch.from_numpy(posts_index)
+    #encoded_tweets  = torch.from_numpy(encoded_tweets)
+    #token_type_ids  = torch.from_numpy(token_type_ids)
+    #attention_mask  = torch.from_numpy(attention_mask)
+    swapped         = torch.from_numpy(swapped)
+    
+    dataset = TensorDataset(posts_index,
+                            encoded_tweets,
+                            token_type_ids,
+                            attention_mask,
+                            swapped)
+    if randomize:
+        # Do shuffle here
+        if weighted_sample:
+            topic_counts = [0,0,0,0]
+            topic_labels = ['General_Terms','Iran_Deal','Santa_Fe_Shooting','Student_Marches']
+            for i in range(len(topic_counts)):              # count the num of each class in dataset
+                count = sum(event==topic_labels[i]) + 1     # min counts of 1 for stability during debug
+                topic_counts[i] = count
+                if logger is None:
+                    print(topic_labels[i] + ': ' + str(topic_counts[i]))
+                else:
+                    logger.info(topic_labels[i] + ': ' + str(topic_counts[i]))
+            topic_weights = 1.0 / torch.tensor(topic_counts, dtype=torch.float) # inverse to get class weight
+            topic_index = (event==topic_labels[0]) * 0
+            for i in [1,2,3]:
+                topic_index += (event==topic_labels[i]) * i
+            sample_weights = topic_weights[topic_index] # for each sample, adjust its sample weight
+            sampler = WeightedRandomSampler(weights=sample_weights,
+                                            num_samples=len(sample_weights),
+                                            replacement=True)
+        else:
+            sampler = RandomSampler(dataset)
+    else:
+        sampler = SequentialSampler(dataset)    
+    dataloader = DataLoader(dataset, 
+                            batch_size=batch_size,
+                            sampler=sampler,
+                            num_workers=4)
+    return dataloader
+
     
 if __name__ =='__main__':
     time_start = time.time()
