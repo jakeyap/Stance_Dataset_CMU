@@ -104,7 +104,7 @@ def main():
     model = get_model(logger,MODEL_NAME)
     model.cuda()
     #model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
-    print('Running on %d GPUs' % torch.cuda.device_count())
+    logger.info('Running on %d GPUs' % torch.cuda.device_count())
     #if n_gpu > 1:
     model = torch.nn.DataParallel(model)
     

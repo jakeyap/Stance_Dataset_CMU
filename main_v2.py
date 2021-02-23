@@ -8,7 +8,7 @@ Created on Sun Feb  7 15:50:00 2021
 import dataloader_utilities as dataloader
 import tokenizer_v2
 
-from classifier_models import my_ModelA0, my_ModelB0, SelfAdjDiceLoss
+from classifier_models import my_ModelA0, my_ModelE0, SelfAdjDiceLoss
 from transformers import BertConfig
 
 # default imports
@@ -67,6 +67,7 @@ def main():
     ''' ---------- Parse addtional arguments here ----------'''
     LOSS_FN =       args.loss_fn
     W_SAMPLE =      args.w_sample
+    PRETRAIN =      args.pretrain_model
     ''' ===================================================='''
     
     model_savefile = './log_files/saved_models/'+EXP_NAME+'_'+MODEL_NAME+'.bin'   # to save/load model from
@@ -96,8 +97,12 @@ def main():
     logger.info('------------------ Getting model -------------------')
     model = get_model(logger,MODEL_NAME)
     model.cuda()
-    #model.resize_token_embeddings(len(tokenizer_utilities.tokenizer))
-    
+    model = torch.nn.DataParallel(model)
+    if PRETRAIN != '':  # reload pretrained model 
+        logger.info('loading pretrained model file ' + PRETRAIN)
+        saved_params = torch.load(PRETRAIN)
+        model.load_state_dict(saved_params)
+        
     logger.info('--------------- Getting dataframes -----------------')
     test_df = torch.load(TEST_DATA)
     full_train_df = torch.load(TRAIN_DATA)
@@ -181,6 +186,10 @@ def get_model(logger=None, modelname=''):
         config = BertConfig.from_pretrained('bert-base-uncased')
         config.num_labels = 4
         model = my_ModelA0(config)
+    elif modelname=='my_modelE0':
+        config = BertConfig.from_pretrained('bert-base-uncased')
+        config.num_labels = 4
+        model = my_ModelE0(config)
     else:
         msg = 'model not found, exiting ' + modelname
         if logger is None:
@@ -468,6 +477,7 @@ def get_args():
     ''' ========== Add additional arguments here ==========='''
     parser.add_argument('--loss_fn',        default='ce_loss',  help='loss function. ce_loss (default) or dice')
     parser.add_argument('--w_sample',       action='store_true',help='non flat sampling of training examples')
+    parser.add_argument('--pretrain_model', default='',         help='model file that was pretrained on big twitter dataset')
     ''' ===================================================='''
     return parser.parse_args()
 
