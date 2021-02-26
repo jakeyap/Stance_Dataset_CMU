@@ -8,7 +8,7 @@ Created on Sun Feb  7 15:50:00 2021
 import dataloader_utilities as dataloader
 import tokenizer_v2
 
-from classifier_models import my_ModelA0, my_ModelE0, SelfAdjDiceLoss
+from classifier_models import my_ModelA0, my_ModelE0, my_Bertweet, SelfAdjDiceLoss
 from transformers import BertConfig
 
 # default imports
@@ -68,6 +68,8 @@ def main():
     LOSS_FN =       args.loss_fn
     W_SAMPLE =      args.w_sample
     PRETRAIN =      args.pretrain_model
+    EPOCHS2GIVEUP = args.epochs2giveup
+    DROPOUT =       args.dropout
     ''' ===================================================='''
     
     model_savefile = './log_files/saved_models/'+EXP_NAME+'_'+MODEL_NAME+'.bin'   # to save/load model from
@@ -87,15 +89,11 @@ def main():
     logger.info('----------------- Hyperparameters ------------------')
     logger.info('======== '+MODEL_NAME+' =========')
     logger.info('===== Hyperparameters ======')
-    logger.info('batch_train: %d' % TRNG_MB_SIZE)
-    logger.info('batch_test:  %d' % TEST_MB_SIZE)
-    logger.info('epochs: %d ' % EPOCHS)
-    logger.info('learning_rate: %1.6f' % LEARNING_RATE)
-    logger.info('optimizer: ' + OPTIM)
-    logger.info('debug: ' + str(DEBUG))
+    for eachline in vars(args).items():
+        logger.info(eachline)
     
     logger.info('------------------ Getting model -------------------')
-    model = get_model(logger,MODEL_NAME)
+    model = get_model(logger,MODEL_NAME, DROPOUT)
     model.cuda()
     model = torch.nn.DataParallel(model)
     if PRETRAIN != '':  # reload pretrained model 
@@ -145,7 +143,8 @@ def main():
         train(model=model, train_dl=train_dl, dev_dl=dev_dl, 
               logger=logger, log_interval=LOG_INTERVAL, epochs=EPOCHS,
               loss_fn=loss_fn, optimizer=optimizer, 
-              plotfile=plotfile, modelfile=model_savefile)
+              plotfile=plotfile, modelfile=model_savefile,
+              epochs_giveup=EPOCHS2GIVEUP)
         
     # regardless of do_train or not, reload best models
     saved_params = torch.load(model_savefile)
@@ -173,7 +172,7 @@ def main():
     
     return
 
-def get_model(logger=None, modelname=''):
+def get_model(logger=None, modelname='', dropout=0.1):
     '''
     Finds a model and returns it. 
 
@@ -186,10 +185,18 @@ def get_model(logger=None, modelname=''):
         config = BertConfig.from_pretrained('bert-base-uncased')
         config.num_labels = 4
         model = my_ModelA0(config)
+        model.resize_token_embeddings(len(tokenizer_v2.tokenizer))
+        
     elif modelname=='my_modelE0':
         config = BertConfig.from_pretrained('bert-base-uncased')
         config.num_labels = 4
         model = my_ModelE0(config)
+        model.resize_token_embeddings(len(tokenizer_v2.tokenizer))
+        
+    elif modelname=='my_Bertweet':
+        config = BertConfig.from_pretrained('bert-base-uncased')
+        config.num_labels = 4
+        model = my_Bertweet(config, dropout)
     else:
         msg = 'model not found, exiting ' + modelname
         if logger is None:
@@ -197,10 +204,29 @@ def get_model(logger=None, modelname=''):
         else:
             logger.info(msg)
         raise Exception
-    model.resize_token_embeddings(len(tokenizer_v2.tokenizer))
+    
     return model
 
-def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimizer, plotfile, modelfile):
+def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimizer, plotfile, modelfile, epochs_giveup=10):
+    '''
+    all the params needed are straightforward. except for plotfile, modelfile, ep
+    model :         pytorch neural network model
+    train_dl :      training dataloader
+    dev_dl :        dev set dataloader
+    logger :        python logger
+    log_interval :  how many epochs before printing progress
+    epochs :        max number of epochs to run
+    loss_fn :       loss function
+    optimizer :     duh
+    plotfile :      filename to save plot to
+    modelfile :     filename to save model params to
+    epochs_giveup : if this number of epochs pass w/o any improvements to f1 score, give up. 
+    
+    Returns
+    -------
+    None.
+
+    '''
     losses = []
     loss_horz = []
     dev_losses=[]
@@ -208,6 +234,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
     f1_scores = []
     f1_horz = []
     best_f1 = -1
+    epochs_since_best = 0
     
     gpu = torch.device("cuda")
     
@@ -225,7 +252,6 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
             
             #y = minibatch[5].to(gpu)    # true label 6 class
             y = minibatch[6].to(gpu)    # true label 4 class
-            
             outputs = model(input_ids=x1,    # shape=(n,C) where n=batch size
                             attention_mask=x3, 
                             token_type_ids=x2)
@@ -268,10 +294,17 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
         f1_score = sum(f1scores) / len(f1scores)
         f1_scores.append(f1_score)
         f1_horz.append(epoch)
+        epochs_since_best += 1
+        
         if f1_score > best_f1:      # if best f1 score is reached
             best_f1 = f1_score      # store best score
+            epochs_since_best = 0   # reset the epochs counter
             torch.save(model.state_dict(), 
                        modelfile)   # save model
+        
+        if epochs_since_best >= epochs_giveup:
+            logger.info('No improvements in F1 for %d epochs' % epochs_since_best)
+            break                   # stop training if no improvements for too long
         
     state = torch.load(modelfile)   # reload best model
     model.load_state_dict(state)
@@ -455,7 +488,7 @@ def get_args():
     # Generic stuff first
     parser.add_argument("--batch_train",    default=1, type=int, help="minibatch size for training")
     parser.add_argument("--batch_test",     default=1, type=int, help="minibatch size for testing")
-    parser.add_argument("--epochs",         default=1, type=int, help="num of training epochs")
+    parser.add_argument("--epochs",         default=1, type=int, help="maximum num of training epochs")
     parser.add_argument("--learning_rate",  default=1, type=float,help="learning rate")
     parser.add_argument("--optimizer",      default="adam",      help="adam or rmsprop")
     
@@ -475,9 +508,11 @@ def get_args():
     parser.add_argument("--log_interval",   default=1, type=int, help="num of batches before printing")
     ''' ===================================================='''
     ''' ========== Add additional arguments here ==========='''
-    parser.add_argument('--loss_fn',        default='ce_loss',  help='loss function. ce_loss (default) or dice')
-    parser.add_argument('--w_sample',       action='store_true',help='non flat sampling of training examples')
-    parser.add_argument('--pretrain_model', default='',         help='model file that was pretrained on big twitter dataset')
+    parser.add_argument('--loss_fn',        default='ce_loss',   help='loss function. ce_loss (default) or dice')
+    parser.add_argument('--w_sample',       action='store_true', help='non flat sampling of training examples')
+    parser.add_argument('--pretrain_model', default='',          help='model file that was pretrained on big twitter dataset')
+    parser.add_argument('--epochs2giveup',  default=5, type=int, help='training is stopped if no improvements are seen after this number of epochs')
+    parser.add_argument('--dropout',        default=0.1,type=float, help='dropout probability of last layer')
     ''' ===================================================='''
     return parser.parse_args()
 

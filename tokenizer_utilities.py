@@ -16,6 +16,7 @@ import re
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 tokenizer.add_tokens(['[#HASHTAG]', '[@ACCOUNT]', '[URL]'])
 
+
 def empty_label_dictionary():
     """
     Creates a dictionary of labels:counts

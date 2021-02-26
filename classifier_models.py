@@ -9,6 +9,7 @@ import torch
 import torch.nn as nn
 from transformers import BertModel, BertForSequenceClassification
 from transformers.modeling_bert import BertPreTrainedModel, BertPooler
+from transformers import AutoModel
 from torch.nn import MSELoss, CrossEntropyLoss, Dropout
 
 categories = {'Explicit_Denial':0,
@@ -197,7 +198,6 @@ class my_ModelE0(BertPreTrainedModel):
                             token_type_ids=token_type_ids,
                             position_ids=position_ids)
         
-        #TODO: check whether this is complete later
         output = outputs[1] # get only the last layer outputs
         pooled_output = self.dropout0(output)
         if task=='stance':
@@ -212,6 +212,34 @@ class my_ModelE0(BertPreTrainedModel):
             raise Exception('task not found : ' + task)
 
         return outputs  # logits, (hidden_states), (attentions)
+
+class my_Bertweet(nn.Module):
+    def __init__(self, num_labels, dropout):
+        super(my_Bertweet, self).__init__()
+        self.num_labels = num_labels
+
+        self.bertweet = AutoModel.from_pretrained("vinai/bertweet-base")
+        config = self.bertweet.config
+        self.dropout0 = torch.nn.Dropout(dropout)
+        self.classifier0 = torch.nn.Linear(config.hidden_size, 4) # for stance
+        
+    def forward(self, input_ids, attention_mask=None, token_type_ids=None,
+                position_ids=None):
+        
+        outputs = self.bertweet(input_ids,
+                                attention_mask=attention_mask,
+                                token_type_ids=token_type_ids,
+                                position_ids=position_ids)
+        
+        output = outputs[1] # get only the last layer outputs
+        pooled_output = self.dropout0(output)
+        
+        logits = self.classifier0(pooled_output)
+        # shape of outputs[0] is (n,4)
+        outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
+
+        return outputs  # logits, (hidden_states), (attentions)
+
 
 class SelfAdjDiceLoss(torch.nn.Module):
     """
