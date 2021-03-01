@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_fscore_support as f1_help
 from sklearn.metrics import confusion_matrix
 
+torch.manual_seed(0)
 '''
 {   
      index in original data,
@@ -134,9 +135,7 @@ def main():
         # TODO: implement kfolding?
     
         logger.info('------------ Converting to dataloaders -------------')
-        
         train_dl = dataloader.df_2_dl_v2(train_df, TRNG_MB_SIZE, randomize=True, weighted_sample=W_SAMPLE, logger=logger)
-        test_dl = dataloader.df_2_dl_v2(test_df, TEST_MB_SIZE, randomize=False)
         dev_dl = dataloader.df_2_dl_v2(dev_df, TEST_MB_SIZE, randomize=False)
     
         logger.info('---------------- Starting training -----------------')
@@ -145,10 +144,12 @@ def main():
               loss_fn=loss_fn, optimizer=optimizer, 
               plotfile=plotfile, modelfile=model_savefile,
               epochs_giveup=EPOCHS2GIVEUP)
+    
+        # reload best models
+        saved_params = torch.load(model_savefile)
+        model.load_state_dict(saved_params)
         
-    # regardless of do_train or not, reload best models
-    saved_params = torch.load(model_savefile)
-    model.load_state_dict(saved_params)
+    test_dl = dataloader.df_2_dl_v2(test_df, TEST_MB_SIZE, randomize=False)
     results = test(model=model, 
                    dataloader=test_dl,
                    logger=logger,

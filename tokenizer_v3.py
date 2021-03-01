@@ -22,6 +22,8 @@ import re
 
 from tokenizer_v2 import empty_label_dictionary, convert_label_string2num, convert_label_num2string, remove_nans
 
+torch.manual_seed(0) # for fixing RNG seed
+
 tokenizer = AutoTokenizer.from_pretrained("vinai/bertweet-base",
                                           normalization=True)
 
@@ -93,7 +95,8 @@ def convert_interaction_type_num2string(number):
     else:
         return 'Quote'
         
-def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):    
+def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128, 
+                               bertweet=False, incl_meta=True):    
     """
     Tokenize and encode the text into vectors, then stick inside dataframe
 
@@ -103,7 +106,11 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
         Dataframe that contains all tweet data.
     stopindex : int, optional
         Number of tweets to stop at. The default is 1e9.
-
+    bertweet : bool, optional
+        Whether to encode for bertweet. If for bertweet, the [SEP] token is different
+    incl_meta : bool, optional
+        Whether to include meta information about topic and interaction type in front
+        
     Returns
     -------
     dataframe : pandas dataframe
@@ -130,10 +137,17 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128):
             text_parent= dataframe.iloc[i]['target_text']
             text_tweet = dataframe.iloc[i]['response_text']
         
-        interaction = dataframe.iloc[i]['interaction_type']     # reply or quote
-        topic = dataframe.iloc[i]['event']                      # get event
-        topic = topic.replace('_', ' ')                         # replace underscore with space
-        sep_token = ' [SEP] ' 
+        if incl_meta:
+            interaction = dataframe.iloc[i]['interaction_type']     # reply or quote
+            topic = dataframe.iloc[i]['event']                      # get event
+            topic = topic.replace('_', ' ')                         # replace underscore with space
+        else:
+            interaction = ''
+            topic = ''
+        if bertweet:
+            sep_token = ' </s> '  # tokenizer for bertweet is a bit different
+        else:
+            sep_token = ' [SEP] ' # tokenizer for regular bert uses [SEP] tokens
         text1 = interaction + sep_token + topic + sep_token + text_parent
         text2 = text_tweet
         encoded_dict = tokenizer.__call__(text=text1,
@@ -203,6 +217,8 @@ if __name__ =='__main__':
     MAXLENGTH = 128
     
     
+    """
+    ############# This is for the SRQ CMU  dataset ############
     DATADIR = './data/'
     FILENAME = 'stance_dataset.json'
     REMARK = 'bertweet'
@@ -231,6 +247,8 @@ if __name__ =='__main__':
     torch.save(test_set, './data/test_set_'+str(MAXLENGTH)+'_'+REMARK+'.bin')
     """
     
+    """
+    ############ This is for the Semeval17 dataset ############
     DATADIR = os.path.expanduser('~/Projects/Data/SemEval17/smu_processed/')
     FILENAME1 = 'semeval17_dev_flattened.json'
     FILENAME2 = 'semeval17_test_flattened.json'
@@ -257,3 +275,56 @@ if __name__ =='__main__':
     torch.save(train_set, './data/train_set_'+str(MAXLENGTH)+'_'+REMARK+'.bin')
     torch.save(test_set, './data/test_set_'+str(MAXLENGTH)+'_'+REMARK+'.bin')
     """
+    
+    ###### This is to merge SRQ CMU + Semeval17 datasets ######
+    DATADIR0 = './data/'
+    FILENAME0 = 'stance_dataset.json'
+    #REMARK = '_no_meta'
+    REMARK = ''
+    
+    DATADIR1 = os.path.expanduser('~/Projects/Data/SemEval17/smu_processed/')
+    FILENAME1 = 'semeval17_dev_flattened.json'
+    FILENAME2 = 'semeval17_test_flattened.json'
+    FILENAME3 = 'semeval17_train_flattened.json'
+    
+    ''' ========== Import data into pandas========== '''    
+    ''' ========== Convert into pandas ========== '''
+    pd_dataframe0 = json_2_df(folder=DATADIR0, fname=FILENAME0)     # SRQ
+    filtered_df0, _= remove_nans(pd_dataframe0)
+    pd_dataframe1 = json_2_df(folder=DATADIR1, fname=FILENAME1)     # semeval dev set
+    filtered_df1,_= remove_nans(pd_dataframe1)
+    pd_dataframe2 = json_2_df(folder=DATADIR1, fname=FILENAME2)     # semeval test set
+    filtered_df2,_= remove_nans(pd_dataframe2)
+    pd_dataframe3 = json_2_df(folder=DATADIR1, fname=FILENAME3)     # semeval train set
+    filtered_df3,_= remove_nans(pd_dataframe3)
+    ''' ========== tokenize tweets, append to dataframe ========== '''
+    if TOKENIZE:
+        incl_meta = REMARK != 'no_meta'
+        encoded_df0 = tokenize_and_encode_pandas(dataframe=filtered_df0, max_length=MAXLENGTH, bertweet=True, incl_meta=incl_meta)
+        encoded_df1 = tokenize_and_encode_pandas(dataframe=filtered_df1, max_length=MAXLENGTH, bertweet=True, incl_meta=incl_meta)
+        encoded_df2 = tokenize_and_encode_pandas(dataframe=filtered_df2, max_length=MAXLENGTH, bertweet=True, incl_meta=incl_meta)
+        encoded_df3 = tokenize_and_encode_pandas(dataframe=filtered_df3, max_length=MAXLENGTH, bertweet=True, incl_meta=incl_meta)
+    
+    #Split by topics ["General Terms", "Iran_Deal", "Santa_Fe_Shooting", "Student Marches"]
+    #Split by response type ["Quote", "Reply"]
+    ''' ========== split SRQ into training and test sets ========== '''
+    datalength0 = encoded_df0.shape[0]
+    train_index = round (TRAINING_RATIO * datalength0)
+    
+    ''' ========== Shuffle and split SRQ dataframe rows ========== '''
+    encoded_df0 = encoded_df0.sample(frac=1)
+    train_set = encoded_df0.iloc[0:train_index].copy()
+    test_set_srq = encoded_df0.iloc[train_index:].copy()
+    
+    ''' ====== Join SRQ and Semeval17 training sets, shuffle ====== '''
+    train_set = pd.concat([encoded_df1, encoded_df3, train_set])
+    train_set = train_set.sample(frac=1)
+    ''' ========== Keep SRQ and Semeval17 tests separate ========== '''
+    test_set_semeval  = encoded_df2
+    test_set_merged = pd.concat([test_set_srq, test_set_semeval])
+    
+    ''' ========== save both datasets into binaries ========== '''
+    torch.save(train_set, './data/merge_all_train_set_128_bertweet'+REMARK+'.bin')
+    torch.save(test_set_srq, './data/merge_srq_test_set_128_bertweet'+REMARK+'.bin')
+    torch.save(test_set_semeval, './data/merge_semeval_test_set_128_bertweet'+REMARK+'.bin')
+    torch.save(test_set_merged, './data/merge_all_test_set_128_bertweet'+REMARK+'.bin')

@@ -1,11 +1,67 @@
 #!/usr/bin/env bash
 #@author: jakeyap on 20210208 1100am
+# ===================== the semevel dataset =====================
+# ======= merged datasets. train together, test separately ======
 
+# exp58
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=exp58 --epochs2giveup=20 \
+    --train_data=./data/merge_all_train_set_128_bertweet_no_meta.bin --test_data=./data/merge_all_test_set_128_bertweet_no_meta.bin \
+    --k_folds=4 --folds2run=1 \
+    --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+
+# exp58 semeval test
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=exp58 --epochs2giveup=20 \
+    --train_data=./data/merge_all_train_set_128_bertweet_no_meta.bin --test_data=./data/merge_semeval_test_set_128_bertweet_no_meta.bin \
+    --k_folds=4 --folds2run=1 \
+    --pretrain_model=./log_files/saved_models/exp58_my_Bertweet.bin \
+    --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+
+# exp58 srq test
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=exp58 --epochs2giveup=20 \
+    --train_data=./data/merge_all_train_set_128_bertweet_no_meta.bin --test_data=./data/merge_srq_test_set_128_bertweet_no_meta.bin \
+    --k_folds=4 --folds2run=1 \
+    --pretrain_model=./log_files/saved_models/exp58_my_Bertweet.bin \
+    --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+
+: '
+# exp57
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=exp57 --epochs2giveup=20 \
+    --train_data=./data/merge_all_train_set_128_bertweet.bin --test_data=./data/merge_all_test_set_128_bertweet.bin \
+    --k_folds=4 --folds2run=1 \
+    --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+
+# exp57 semeval test
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=exp57 --epochs2giveup=20 \
+    --train_data=./data/merge_all_train_set_128_bertweet.bin --test_data=./data/merge_semeval_test_set_128_bertweet.bin \
+    --k_folds=4 --folds2run=1 \
+    --pretrain_model=./log_files/saved_models/exp57_my_Bertweet.bin \
+    --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+
+# exp57 srq test
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=exp57 --epochs2giveup=20 \
+    --train_data=./data/merge_all_train_set_128_bertweet.bin --test_data=./data/merge_srq_test_set_128_bertweet.bin \
+    --k_folds=4 --folds2run=1 \
+    --pretrain_model=./log_files/saved_models/exp57_my_Bertweet.bin \
+    --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+'
 
 # ===================== the semevel dataset =====================
+: '
 # exp56
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
-    --batch_train=50 --batch_test=300 --epochs=100 --learning_rate=0.000020 --optimizer=adam \
+    --batch_train=50 --batch_test=300 --epochs=100 --learning_rate=0.000060 --optimizer=adam \
     --model_name=my_Bertweet --exp_name=exp56 --epochs2giveup=20 \
     --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/test_set_128_semeval17_bertweet.bin \
     --k_folds=4 --folds2run=1 \
@@ -13,7 +69,7 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
 
 # exp55
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
-    --batch_train=50 --batch_test=300 --epochs=100 --learning_rate=0.000020 --optimizer=adam \
+    --batch_train=50 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
     --model_name=my_Bertweet --exp_name=exp55 --epochs2giveup=20 \
     --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/test_set_128_semeval17_bertweet.bin \
     --k_folds=4 --folds2run=1 \
@@ -29,7 +85,7 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
 
 # exp53
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
-    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000020 --optimizer=adam \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000060 --optimizer=adam \
     --model_name=my_Bertweet --exp_name=exp53 --epochs2giveup=20 \
     --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/test_set_128_semeval17_bertweet.bin \
     --k_folds=4 --folds2run=1 \
@@ -37,12 +93,12 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
 
 # exp52
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
-    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000020 --optimizer=adam \
+    --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \
     --model_name=my_Bertweet --exp_name=exp52 --epochs2giveup=20 \
     --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/test_set_128_semeval17_bertweet.bin \
     --k_folds=4 --folds2run=1 \
     --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
-
+    
 # exp51
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
     --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000020 --optimizer=adam \
@@ -51,7 +107,6 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1,3 python main_v2.py \
     --k_folds=4 --folds2run=1 \
     --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
 
-: '
 # ===============================================================
 
 # exp50

@@ -2,6 +2,23 @@
 #@author: jakeyap on 20210208 1100am
 
 
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
+    --batch_train=3 --batch_test=20 --epochs=3 --learning_rate=0.00001 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=expXX --epochs2giveup=20 \
+    --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/merge_semeval_test_set_128_bertweet.bin \
+    --k_folds=4 --folds2run=1 \
+    --pretrain_model=./log_files/saved_models/exp56_my_Bertweet.bin \
+    --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+    
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
+    --batch_train=3 --batch_test=20 --epochs=3 --learning_rate=0.00001 --optimizer=adam \
+    --model_name=my_Bertweet --exp_name=expXX --epochs2giveup=20 \
+    --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/merge_srq_test_set_128_bertweet.bin \
+    --k_folds=4 --folds2run=1 \
+    --pretrain_model=./log_files/saved_models/exp56_my_Bertweet.bin \
+    --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
+
+: "
 # expXX
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
     --batch_train=3 --batch_test=3 --epochs=3 --learning_rate=0.00001 --optimizer=adam \
@@ -9,6 +26,8 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
     --train_data=./data/train_set_128_semeval17_bertweet.bin --test_data=./data/test_set_128_semeval17_bertweet.bin \
     --k_folds=4 --folds2run=1 \
     --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.2 --debug
+"
+
 
 # i=models
 # k=fold

@@ -1,0 +1,81 @@
+03/01/2021 11:25:12 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/01/2021 11:25:12 - INFO - __main__ -   ======== my_Bertweet =========
+03/01/2021 11:25:12 - INFO - __main__ -   ===== Hyperparameters ======
+03/01/2021 11:25:12 - INFO - __main__ -   ('batch_train', 100)
+03/01/2021 11:25:12 - INFO - __main__ -   ('batch_test', 300)
+03/01/2021 11:25:12 - INFO - __main__ -   ('epochs', 100)
+03/01/2021 11:25:12 - INFO - __main__ -   ('learning_rate', 4e-05)
+03/01/2021 11:25:12 - INFO - __main__ -   ('optimizer', 'adam')
+03/01/2021 11:25:12 - INFO - __main__ -   ('do_train', False)
+03/01/2021 11:25:12 - INFO - __main__ -   ('do_test', True)
+03/01/2021 11:25:12 - INFO - __main__ -   ('model_name', 'my_Bertweet')
+03/01/2021 11:25:12 - INFO - __main__ -   ('exp_name', 'exp58')
+03/01/2021 11:25:12 - INFO - __main__ -   ('train_data', './data/merge_all_train_set_128_bertweet_no_meta.bin')
+03/01/2021 11:25:12 - INFO - __main__ -   ('test_data', './data/merge_semeval_test_set_128_bertweet_no_meta.bin')
+03/01/2021 11:25:12 - INFO - __main__ -   ('k_folds', 4)
+03/01/2021 11:25:12 - INFO - __main__ -   ('folds2run', 1)
+03/01/2021 11:25:12 - INFO - __main__ -   ('debug', False)
+03/01/2021 11:25:12 - INFO - __main__ -   ('log_interval', 1)
+03/01/2021 11:25:12 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/01/2021 11:25:12 - INFO - __main__ -   ('w_sample', True)
+03/01/2021 11:25:12 - INFO - __main__ -   ('pretrain_model', './log_files/saved_models/exp58_my_Bertweet.bin')
+03/01/2021 11:25:12 - INFO - __main__ -   ('epochs2giveup', 20)
+03/01/2021 11:25:12 - INFO - __main__ -   ('dropout', 0.1)
+03/01/2021 11:25:12 - INFO - __main__ -   ------------------ Getting model -------------------
+03/01/2021 11:25:19 - INFO - __main__ -   loading pretrained model file ./log_files/saved_models/exp58_my_Bertweet.bin
+03/01/2021 11:25:19 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/01/2021 11:25:20 - INFO - __main__ -   	Testing test Minibatch:    0
+03/01/2021 11:25:20 - INFO - __main__ -   	Testing test Minibatch:    1
+03/01/2021 11:25:21 - INFO - __main__ -   	Testing test Minibatch:    2
+03/01/2021 11:25:22 - INFO - __main__ -   	Testing test Minibatch:    3
+03/01/2021 11:25:22 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.3286	0.3333	0.3309	69
+Support	0.2490	0.6383	0.3582	94
+Comment	0.2511	0.5728	0.3491	103
+Queries	0.8358	0.5258	0.6455	755
+MacroF1	0.4209
+F1w_avg	0.5679
+Acc    	52.8
+
+03/01/2021 11:25:22 - INFO - __main__ -   Time taken: 0h 0m 10s
+03/01/2021 11:25:25 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/01/2021 11:25:25 - INFO - __main__ -   ======== my_Bertweet =========
+03/01/2021 11:25:25 - INFO - __main__ -   ===== Hyperparameters ======
+03/01/2021 11:25:25 - INFO - __main__ -   ('batch_train', 100)
+03/01/2021 11:25:25 - INFO - __main__ -   ('batch_test', 300)
+03/01/2021 11:25:25 - INFO - __main__ -   ('epochs', 100)
+03/01/2021 11:25:25 - INFO - __main__ -   ('learning_rate', 4e-05)
+03/01/2021 11:25:25 - INFO - __main__ -   ('optimizer', 'adam')
+03/01/2021 11:25:25 - INFO - __main__ -   ('do_train', False)
+03/01/2021 11:25:25 - INFO - __main__ -   ('do_test', True)
+03/01/2021 11:25:25 - INFO - __main__ -   ('model_name', 'my_Bertweet')
+03/01/2021 11:25:25 - INFO - __main__ -   ('exp_name', 'exp58')
+03/01/2021 11:25:25 - INFO - __main__ -   ('train_data', './data/merge_all_train_set_128_bertweet_no_meta.bin')
+03/01/2021 11:25:25 - INFO - __main__ -   ('test_data', './data/merge_srq_test_set_128_bertweet_no_meta.bin')
+03/01/2021 11:25:25 - INFO - __main__ -   ('k_folds', 4)
+03/01/2021 11:25:25 - INFO - __main__ -   ('folds2run', 1)
+03/01/2021 11:25:25 - INFO - __main__ -   ('debug', False)
+03/01/2021 11:25:25 - INFO - __main__ -   ('log_interval', 1)
+03/01/2021 11:25:25 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/01/2021 11:25:25 - INFO - __main__ -   ('w_sample', True)
+03/01/2021 11:25:25 - INFO - __main__ -   ('pretrain_model', './log_files/saved_models/exp58_my_Bertweet.bin')
+03/01/2021 11:25:25 - INFO - __main__ -   ('epochs2giveup', 20)
+03/01/2021 11:25:25 - INFO - __main__ -   ('dropout', 0.1)
+03/01/2021 11:25:25 - INFO - __main__ -   ------------------ Getting model -------------------
+03/01/2021 11:25:31 - INFO - __main__ -   loading pretrained model file ./log_files/saved_models/exp58_my_Bertweet.bin
+03/01/2021 11:25:32 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/01/2021 11:25:32 - INFO - __main__ -   	Testing test Minibatch:    0
+03/01/2021 11:25:33 - INFO - __main__ -   	Testing test Minibatch:    1
+03/01/2021 11:25:34 - INFO - __main__ -   	Testing test Minibatch:    2
+03/01/2021 11:25:35 - INFO - __main__ -   
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6949	0.6833	0.6891	300
+Support	0.5928	0.6431	0.6169	283
+Comment	0.5381	0.4979	0.5172	241
+Queries	0.3448	0.3333	0.3390	30
+MacroF1	0.5406
+F1w_avg	0.6044
+Acc    	60.5
+
+03/01/2021 11:25:35 - INFO - __main__ -   Time taken: 0h 0m  9s
