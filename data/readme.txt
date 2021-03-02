@@ -11,3 +11,21 @@ merge_all_test_set_128_bertweet.bin         all the test data combined
 merge_semeval_test_set_128_bertweet.bin     only semeval's test data
 merge_srq_test_set_srq_128_bertweet.bin     only srq's test data
 
+===========================================
+train_set_128_w_length_bertweet.bin (length 2766)
+test_set_128_w_length_bertweet.bin (length 692)
+These files are the stance dataset, but filtered. Rows with missing txt are removed.
+Rows which have their meta data missing on twitter are also removed.
+
+For the TRAINING SET, if you want to split virality based on LIKES, the thresholds are as follows
+10% : 4         70% : 1415
+20% : 22        80% : 3556
+30% : 54        90% : 11236
+50% : 291.5
+
+For the TRAINING SET, if you want to split virality based on RETWEETS, the thresholds are as follows
+10% : 1         70% : 587
+20% : 8         80% : 1417
+30% : 24        90% : 4260
+50% : 128.5
+===========================================

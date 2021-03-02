@@ -239,6 +239,40 @@ class my_Bertweet(nn.Module):
         outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
 
         return outputs  # logits, (hidden_states), (attentions)
+    
+class mtt_Bertweet(nn.Module):
+    ''' For multitask. Viral and stance prediction '''
+    def __init__(self, num_labels, dropout):
+        super(mtt_Bertweet, self).__init__()
+        self.num_labels = num_labels
+
+        self.bertweet = AutoModel.from_pretrained("vinai/bertweet-base")
+        config = self.bertweet.config
+        self.dropout0 = torch.nn.Dropout(dropout)
+        self.classifier0 = torch.nn.Linear(config.hidden_size, 4) # for stance
+        self.classifier1 = torch.nn.Linear(config.hidden_size, 3) # for viral
+        
+    def forward(self, input_ids, attention_mask=None, token_type_ids=None,
+                position_ids=None, task='stance'):
+        
+        outputs = self.bertweet(input_ids,
+                                attention_mask=attention_mask,
+                                token_type_ids=token_type_ids,
+                                position_ids=position_ids)
+        
+        output = outputs[1] # get only the last layer outputs
+        pooled_output = self.dropout0(output)
+        
+        if task=='stance':
+            logits = self.classifier0(pooled_output)
+        elif task=='viral':
+            logits = self.classifier1(pooled_output)
+        else:
+            raise Exception('Task not found: ' + task)
+        # shape of outputs[0] is (n,4)
+        outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
+
+        return outputs  # logits, (hidden_states), (attentions)
 
 
 class SelfAdjDiceLoss(torch.nn.Module):
