@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 #@author: jakeyap on 20210208 1100am
+
+
+: '
 # ===================== the semevel dataset =====================
 # ======= merged datasets. train together, test separately ======
 
@@ -29,7 +32,6 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
     --pretrain_model=./log_files/saved_models/exp58_my_Bertweet.bin \
     --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
 
-: '
 # exp57
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \
     --batch_train=100 --batch_test=300 --epochs=100 --learning_rate=0.000040 --optimizer=adam \

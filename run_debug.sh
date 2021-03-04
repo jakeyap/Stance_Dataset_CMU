@@ -1,6 +1,41 @@
 #!/usr/bin/env bash
 #@author: jakeyap on 20210208 1100am
 
+: "
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask.py \
+    --batch_train=3 --batch_test=20 --epochs=2 --learning_rate=0.00001 --optimizer=adam \
+    --model_name=mtt_Bertweet --exp_name=expXX_stance_stance --epochs2giveup=20 \
+    --train_data=./data/train_set_128_w_length_bertweet.bin --test_data=./data/test_set_128_w_length_bertweet.bin \
+    --k_folds=4 --folds2run=1 \
+    --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.1 \
+    --viral_threshold=80 --weight_attr=stance --task=stance --mtt_weight=1.0 \
+    --debug
+"
+#MY_NUM=0
+#  echo i: $i
+#  ((i=i+1))
+
+#for W_ATTR in stance likes retweets
+for W_ATTR in stance
+do
+    #for TASK in stance multi viral
+    for TASK in multi
+    do 
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask.py \
+        --batch_train=3 --batch_test=20 --epochs=2 --learning_rate=0.00001 --optimizer=adam \
+        --model_name=mtt_Bertweet --exp_name=expXX_${W_ATTR}_${TASK} --epochs2giveup=20 \
+        --train_data=./data/train_set_128_w_length_bertweet.bin --test_data=./data/test_set_128_w_length_bertweet.bin \
+        --k_folds=4 --folds2run=1 \
+        --log_interval=1 --do_train --do_test --loss_fn=ce_loss --w_sample --dropout=0.1 \
+        --viral_threshold=80 --weight_attr=${W_ATTR} --task=${TASK} --mtt_weight=1.0 \
+        --debug
+    done
+done
+# weight_attr=[stance, likes, retweets]
+# task=[stance, multi, viral]
+
+
+: "
 
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
     --batch_train=3 --batch_test=20 --epochs=3 --learning_rate=0.00001 --optimizer=adam \
@@ -18,7 +53,7 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
     --pretrain_model=./log_files/saved_models/exp56_my_Bertweet.bin \
     --log_interval=1 --do_test --loss_fn=ce_loss --w_sample --dropout=0.1
 
-: "
+
 # expXX
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
     --batch_train=3 --batch_test=3 --epochs=3 --learning_rate=0.00001 --optimizer=adam \
@@ -34,7 +69,7 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_v2.py \
 #for i in my_modelA0 
 #do
 #    echo ${i}
-#    for k in 0
+#    for k in 0 1
 #    do
 #        echo ${k}
 #        PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_v2.py \

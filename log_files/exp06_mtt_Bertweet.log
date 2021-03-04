@@ -1,0 +1,28 @@
+03/04/2021 21:54:55 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/04/2021 21:54:55 - INFO - __main__ -   ======== mtt_Bertweet =========
+03/04/2021 21:54:55 - INFO - __main__ -   ===== Hyperparameters ======
+03/04/2021 21:54:55 - INFO - __main__ -   ('batch_train', 2)
+03/04/2021 21:54:55 - INFO - __main__ -   ('batch_test', 300)
+03/04/2021 21:54:55 - INFO - __main__ -   ('epochs', 200)
+03/04/2021 21:54:55 - INFO - __main__ -   ('learning_rate', 4e-05)
+03/04/2021 21:54:55 - INFO - __main__ -   ('optimizer', 'adam')
+03/04/2021 21:54:55 - INFO - __main__ -   ('do_train', True)
+03/04/2021 21:54:55 - INFO - __main__ -   ('do_test', True)
+03/04/2021 21:54:55 - INFO - __main__ -   ('model_name', 'mtt_Bertweet')
+03/04/2021 21:54:55 - INFO - __main__ -   ('exp_name', 'exp06')
+03/04/2021 21:54:55 - INFO - __main__ -   ('train_data', './data/train_set_128_w_length_bertweet.bin')
+03/04/2021 21:54:55 - INFO - __main__ -   ('test_data', './data/test_set_128_w_length_bertweet.bin')
+03/04/2021 21:54:55 - INFO - __main__ -   ('k_folds', 4)
+03/04/2021 21:54:55 - INFO - __main__ -   ('folds2run', 1)
+03/04/2021 21:54:55 - INFO - __main__ -   ('debug', True)
+03/04/2021 21:54:55 - INFO - __main__ -   ('log_interval', 1)
+03/04/2021 21:54:55 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/04/2021 21:54:55 - INFO - __main__ -   ('w_sample', True)
+03/04/2021 21:54:55 - INFO - __main__ -   ('pretrain_model', '')
+03/04/2021 21:54:55 - INFO - __main__ -   ('epochs2giveup', 20)
+03/04/2021 21:54:55 - INFO - __main__ -   ('dropout', 0.1)
+03/04/2021 21:54:55 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/04/2021 21:54:55 - INFO - __main__ -   ('weight_attr', 'retweets')
+03/04/2021 21:54:55 - INFO - __main__ -   ('task', 'multi')
+03/04/2021 21:54:55 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/04/2021 21:54:55 - INFO - __main__ -   ------------------ Getting model -------------------

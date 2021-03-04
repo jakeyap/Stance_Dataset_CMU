@@ -477,10 +477,10 @@ def df_2_dl_v3(dataframe,
     
     if viral_attr=='likes':
         threshold = np.percentile(favorite_count, viral_threshold)
-        viral_score = favorite_count > threshold
+        viral_score = (favorite_count > threshold) * 1
     elif viral_attr=='retweets':
         threshold = np.percentile(retweets_count, viral_threshold)
-        viral_score = retweets_count > threshold
+        viral_score = (retweets_count > threshold) * 1
     
     dataset = TensorDataset(posts_index,
                             encoded_tweets,

@@ -250,7 +250,7 @@ class mtt_Bertweet(nn.Module):
         config = self.bertweet.config
         self.dropout0 = torch.nn.Dropout(dropout)
         self.classifier0 = torch.nn.Linear(config.hidden_size, 4) # for stance
-        self.classifier1 = torch.nn.Linear(config.hidden_size, 3) # for viral
+        self.classifier1 = torch.nn.Linear(config.hidden_size, 2) # for viral
         
     def forward(self, input_ids, attention_mask=None, token_type_ids=None,
                 position_ids=None, task='stance'):
@@ -263,16 +263,19 @@ class mtt_Bertweet(nn.Module):
         output = outputs[1] # get only the last layer outputs
         pooled_output = self.dropout0(output)
         
-        if task=='stance':
-            logits = self.classifier0(pooled_output)
-        elif task=='viral':
-            logits = self.classifier1(pooled_output)
-        else:
+        stance_logits = None
+        viral_logits = None
+        if task not in ['stance','multi','viral']:
             raise Exception('Task not found: ' + task)
-        # shape of outputs[0] is (n,4)
-        outputs = (logits,) + outputs[2:]  # add hidden states and attention if they are here
-
-        return outputs  # logits, (hidden_states), (attentions)
+        if task in ['stance','multi']:
+            stance_logits = self.classifier0(pooled_output)
+        if task in ['viral','multi']:
+            viral_logits = self.classifier1(pooled_output)
+        
+        # shape of stance_logits is (n,4), viral_logits is (n,2)
+        outputs = (stance_logits, viral_logits, ) + outputs[2:]  # add hidden states and attention if they are here
+        
+        return outputs
 
 
 class SelfAdjDiceLoss(torch.nn.Module):

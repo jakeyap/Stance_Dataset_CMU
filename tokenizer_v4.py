@@ -200,7 +200,7 @@ if __name__ == '__main__':
     test_set  = df.iloc[train_index:].copy() # length 692
     
     torch.save(train_set, './data/train_set_128_w_length_bertweet.bin')
-    torch.save(train_set, './data/test_set_128_w_length_bertweet.bin')
+    torch.save(test_set, './data/test_set_128_w_length_bertweet.bin')
 
     favorite_count_all = list(df.favorite_count)
     retweets_count_all = list(df.retweets_count)
