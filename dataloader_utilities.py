@@ -392,7 +392,7 @@ def df_2_dl_v3(dataframe,
         The default is False.
     weighted_sample : boolean, optional
         Decides whether to use weights for sampling. Default is False
-    weight_attr : string, default is 'stance'. Must be 1 of ['stance','likes','retweets']
+    weight_attr : string, default is 'stance'. Must be 1 of ['stance','viral']
         Used when weighted_sample==True. Choose how to weigh the sampling
     viral_attr : string, default is 'likes'. 
         Decides what virality metric to use. Must be 1 of ['likes','retweets']
@@ -502,7 +502,7 @@ def df_2_dl_v3(dataframe,
                                                   dtype=torch.float) 
                 sample_weights = class_weights[number_labels_4] # for each sample, adjust its sample weight
                     
-            elif weight_attr in ['likes', 'retweets'] :         # For handling LIKES and RETWEETS
+            elif weight_attr=='viral' :                         # For handling LIKES and RETWEETS
                 class_counts = [0,0]
                 for i in range(len(class_counts)):              # for each VIRAL class 
                     count = (viral_score==i).sum().item()       # count the num of examples

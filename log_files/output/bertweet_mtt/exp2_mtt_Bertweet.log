@@ -1,0 +1,1097 @@
+03/05/2021 09:12:14 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/05/2021 09:12:14 - INFO - __main__ -   ======== mtt_Bertweet =========
+03/05/2021 09:12:14 - INFO - __main__ -   ===== Hyperparameters ======
+03/05/2021 09:12:14 - INFO - __main__ -   ('batch_train', 100)
+03/05/2021 09:12:14 - INFO - __main__ -   ('batch_test', 300)
+03/05/2021 09:12:14 - INFO - __main__ -   ('epochs', 200)
+03/05/2021 09:12:14 - INFO - __main__ -   ('learning_rate', 4e-05)
+03/05/2021 09:12:14 - INFO - __main__ -   ('optimizer', 'adam')
+03/05/2021 09:12:14 - INFO - __main__ -   ('do_train', True)
+03/05/2021 09:12:14 - INFO - __main__ -   ('do_test', True)
+03/05/2021 09:12:14 - INFO - __main__ -   ('model_name', 'mtt_Bertweet')
+03/05/2021 09:12:14 - INFO - __main__ -   ('exp_name', 'exp2')
+03/05/2021 09:12:14 - INFO - __main__ -   ('train_data', './data/train_set_128_w_length_bertweet.bin')
+03/05/2021 09:12:14 - INFO - __main__ -   ('test_data', './data/test_set_128_w_length_bertweet.bin')
+03/05/2021 09:12:14 - INFO - __main__ -   ('k_folds', 4)
+03/05/2021 09:12:14 - INFO - __main__ -   ('folds2run', 1)
+03/05/2021 09:12:14 - INFO - __main__ -   ('debug', False)
+03/05/2021 09:12:14 - INFO - __main__ -   ('log_interval', 1)
+03/05/2021 09:12:14 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/05/2021 09:12:14 - INFO - __main__ -   ('w_sample', True)
+03/05/2021 09:12:14 - INFO - __main__ -   ('pretrain_model', '')
+03/05/2021 09:12:14 - INFO - __main__ -   ('epochs2giveup', 20)
+03/05/2021 09:12:14 - INFO - __main__ -   ('dropout', 0.1)
+03/05/2021 09:12:14 - INFO - __main__ -   ('viral_attr', 'retweets')
+03/05/2021 09:12:14 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/05/2021 09:12:14 - INFO - __main__ -   ('weight_attr', 'stance')
+03/05/2021 09:12:14 - INFO - __main__ -   ('task', 'multi')
+03/05/2021 09:12:14 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/05/2021 09:12:14 - INFO - __main__ -   ------------------ Getting model -------------------
+03/05/2021 09:12:20 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/05/2021 09:12:20 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+03/05/2021 09:12:20 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+03/05/2021 09:12:20 - INFO - __main__ -   class:    0 	count:  752
+03/05/2021 09:12:20 - INFO - __main__ -   class:    1 	count:  616
+03/05/2021 09:12:20 - INFO - __main__ -   class:    2 	count:  631
+03/05/2021 09:12:20 - INFO - __main__ -   class:    3 	count:   76
+03/05/2021 09:12:20 - INFO - __main__ -   ---------------- Starting training -----------------
+03/05/2021 09:12:20 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    0
+03/05/2021 09:12:21 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    1
+03/05/2021 09:12:22 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    2
+03/05/2021 09:12:23 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    3
+03/05/2021 09:12:23 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    4
+03/05/2021 09:12:24 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    5
+03/05/2021 09:12:25 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    6
+03/05/2021 09:12:25 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    7
+03/05/2021 09:12:26 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    8
+03/05/2021 09:12:27 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    9
+03/05/2021 09:12:27 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   10
+03/05/2021 09:12:28 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   11
+03/05/2021 09:12:29 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   12
+03/05/2021 09:12:29 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   13
+03/05/2021 09:12:30 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   14
+03/05/2021 09:12:31 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   15
+03/05/2021 09:12:31 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   16
+03/05/2021 09:12:32 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   17
+03/05/2021 09:12:33 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   18
+03/05/2021 09:12:33 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   19
+03/05/2021 09:12:34 - INFO - __main__ -   	EPOCH:   0	MiniBatch:   20
+03/05/2021 09:12:35 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:12:36 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:12:36 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:12:37 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4082	0.7326	0.5242	273
+Support	0.0000	0.0000	0.0000	204
+Comment	0.5000	0.0938	0.1579	192
+Queries	0.0364	0.2727	0.0642	22
+MacroF1	0.1866
+F1w_avg	0.2530
+Acc    	32.4
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8003	1.0000	0.8891	553
+Viral  	0.0000	0.0000	0.0000	138
+MacroF1	0.4445
+F1w_avg	0.7115
+Acc    	80.0
+
+03/05/2021 09:12:37 - INFO - __main__ -   Best results so far. Saving model...
+03/05/2021 09:12:38 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    0
+03/05/2021 09:12:39 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    1
+03/05/2021 09:12:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    2
+03/05/2021 09:12:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    3
+03/05/2021 09:12:41 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    4
+03/05/2021 09:12:42 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    5
+03/05/2021 09:12:42 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    6
+03/05/2021 09:12:43 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    7
+03/05/2021 09:12:44 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    8
+03/05/2021 09:12:45 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    9
+03/05/2021 09:12:45 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   10
+03/05/2021 09:12:46 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   11
+03/05/2021 09:12:47 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   12
+03/05/2021 09:12:47 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   13
+03/05/2021 09:12:48 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   14
+03/05/2021 09:12:49 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   15
+03/05/2021 09:12:49 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   16
+03/05/2021 09:12:50 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   17
+03/05/2021 09:12:51 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   18
+03/05/2021 09:12:51 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   19
+03/05/2021 09:12:52 - INFO - __main__ -   	EPOCH:   1	MiniBatch:   20
+03/05/2021 09:12:53 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:12:53 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:12:54 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:12:54 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5075	0.7436	0.6033	273
+Support	0.4865	0.2647	0.3429	204
+Comment	0.4421	0.2188	0.2927	192
+Queries	0.1529	0.5909	0.2430	22
+MacroF1	0.3704
+F1w_avg	0.4286
+Acc    	45.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8096	0.9765	0.8852	553
+Viral  	0.4583	0.0797	0.1358	138
+MacroF1	0.5105
+F1w_avg	0.7356
+Acc    	79.7
+
+03/05/2021 09:12:54 - INFO - __main__ -   Best results so far. Saving model...
+03/05/2021 09:12:56 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    0
+03/05/2021 09:12:57 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    1
+03/05/2021 09:12:58 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    2
+03/05/2021 09:12:58 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    3
+03/05/2021 09:12:59 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    4
+03/05/2021 09:13:00 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    5
+03/05/2021 09:13:00 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    6
+03/05/2021 09:13:01 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    7
+03/05/2021 09:13:02 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    8
+03/05/2021 09:13:02 - INFO - __main__ -   	EPOCH:   2	MiniBatch:    9
+03/05/2021 09:13:03 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   10
+03/05/2021 09:13:04 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   11
+03/05/2021 09:13:04 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   12
+03/05/2021 09:13:05 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   13
+03/05/2021 09:13:06 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   14
+03/05/2021 09:13:06 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   15
+03/05/2021 09:13:07 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   16
+03/05/2021 09:13:08 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   17
+03/05/2021 09:13:09 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   18
+03/05/2021 09:13:09 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   19
+03/05/2021 09:13:10 - INFO - __main__ -   	EPOCH:   2	MiniBatch:   20
+03/05/2021 09:13:11 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:13:11 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:13:12 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:13:12 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6284	0.3407	0.4418	273
+Support	0.4129	0.5343	0.4658	204
+Comment	0.4263	0.5573	0.4831	192
+Queries	0.3929	0.5000	0.4400	22
+MacroF1	0.4577
+F1w_avg	0.4603
+Acc    	46.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8104	0.9819	0.8880	553
+Viral  	0.5238	0.0797	0.1384	138
+MacroF1	0.5132
+F1w_avg	0.7383
+Acc    	80.2
+
+03/05/2021 09:13:12 - INFO - __main__ -   Best results so far. Saving model...
+03/05/2021 09:13:14 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    0
+03/05/2021 09:13:15 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    1
+03/05/2021 09:13:15 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    2
+03/05/2021 09:13:16 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    3
+03/05/2021 09:13:17 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    4
+03/05/2021 09:13:18 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    5
+03/05/2021 09:13:18 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    6
+03/05/2021 09:13:19 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    7
+03/05/2021 09:13:20 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    8
+03/05/2021 09:13:20 - INFO - __main__ -   	EPOCH:   3	MiniBatch:    9
+03/05/2021 09:13:21 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   10
+03/05/2021 09:13:22 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   11
+03/05/2021 09:13:22 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   12
+03/05/2021 09:13:23 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   13
+03/05/2021 09:13:24 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   14
+03/05/2021 09:13:24 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   15
+03/05/2021 09:13:25 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   16
+03/05/2021 09:13:26 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   17
+03/05/2021 09:13:26 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   18
+03/05/2021 09:13:27 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   19
+03/05/2021 09:13:28 - INFO - __main__ -   	EPOCH:   3	MiniBatch:   20
+03/05/2021 09:13:29 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:13:29 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:13:30 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:13:30 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7264	0.5348	0.6160	273
+Support	0.4576	0.6618	0.5411	204
+Comment	0.5322	0.4740	0.5014	192
+Queries	0.5000	0.5455	0.5217	22
+MacroF1	0.5451
+F1w_avg	0.5590
+Acc    	55.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8691	0.8047	0.8357	553
+Viral  	0.3966	0.5145	0.4479	138
+MacroF1	0.6418
+F1w_avg	0.7582
+Acc    	74.7
+
+03/05/2021 09:13:30 - INFO - __main__ -   Best results so far. Saving model...
+03/05/2021 09:13:32 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    0
+03/05/2021 09:13:33 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    1
+03/05/2021 09:13:33 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    2
+03/05/2021 09:13:34 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    3
+03/05/2021 09:13:35 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    4
+03/05/2021 09:13:35 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    5
+03/05/2021 09:13:36 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    6
+03/05/2021 09:13:37 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    7
+03/05/2021 09:13:37 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    8
+03/05/2021 09:13:38 - INFO - __main__ -   	EPOCH:   4	MiniBatch:    9
+03/05/2021 09:13:39 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   10
+03/05/2021 09:13:40 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   11
+03/05/2021 09:13:40 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   12
+03/05/2021 09:13:41 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   13
+03/05/2021 09:13:42 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   14
+03/05/2021 09:13:42 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   15
+03/05/2021 09:13:43 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   16
+03/05/2021 09:13:44 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   17
+03/05/2021 09:13:44 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   18
+03/05/2021 09:13:45 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   19
+03/05/2021 09:13:46 - INFO - __main__ -   	EPOCH:   4	MiniBatch:   20
+03/05/2021 09:13:46 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:13:47 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:13:48 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:13:48 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6795	0.6447	0.6617	273
+Support	0.4444	0.7843	0.5674	204
+Comment	0.6885	0.2188	0.3320	192
+Queries	0.4545	0.2273	0.3030	22
+MacroF1	0.4660
+F1w_avg	0.5308
+Acc    	55.4
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8501	0.9024	0.8754	553
+Viral  	0.4808	0.3623	0.4132	138
+MacroF1	0.6443
+F1w_avg	0.7831
+Acc    	79.5
+
+03/05/2021 09:13:48 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    0
+03/05/2021 09:13:49 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    1
+03/05/2021 09:13:50 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    2
+03/05/2021 09:13:50 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    3
+03/05/2021 09:13:51 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    4
+03/05/2021 09:13:52 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    5
+03/05/2021 09:13:52 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    6
+03/05/2021 09:13:53 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    7
+03/05/2021 09:13:54 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    8
+03/05/2021 09:13:55 - INFO - __main__ -   	EPOCH:   5	MiniBatch:    9
+03/05/2021 09:13:55 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   10
+03/05/2021 09:13:56 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   11
+03/05/2021 09:13:57 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   12
+03/05/2021 09:13:57 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   13
+03/05/2021 09:13:58 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   14
+03/05/2021 09:13:59 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   15
+03/05/2021 09:13:59 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   16
+03/05/2021 09:14:00 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   17
+03/05/2021 09:14:01 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   18
+03/05/2021 09:14:01 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   19
+03/05/2021 09:14:02 - INFO - __main__ -   	EPOCH:   5	MiniBatch:   20
+03/05/2021 09:14:03 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:14:04 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:14:04 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:14:05 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7101	0.7179	0.7140	273
+Support	0.5320	0.6520	0.5859	204
+Comment	0.5541	0.4531	0.4986	192
+Queries	0.3750	0.1364	0.2000	22
+MacroF1	0.4996
+F1w_avg	0.6000
+Acc    	60.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8475	0.8843	0.8655	553
+Viral  	0.4386	0.3623	0.3968	138
+MacroF1	0.6312
+F1w_avg	0.7719
+Acc    	78.0
+
+03/05/2021 09:14:05 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    0
+03/05/2021 09:14:05 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    1
+03/05/2021 09:14:06 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    2
+03/05/2021 09:14:07 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    3
+03/05/2021 09:14:07 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    4
+03/05/2021 09:14:08 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    5
+03/05/2021 09:14:09 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    6
+03/05/2021 09:14:10 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    7
+03/05/2021 09:14:10 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    8
+03/05/2021 09:14:11 - INFO - __main__ -   	EPOCH:   6	MiniBatch:    9
+03/05/2021 09:14:12 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   10
+03/05/2021 09:14:12 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   11
+03/05/2021 09:14:13 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   12
+03/05/2021 09:14:14 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   13
+03/05/2021 09:14:14 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   14
+03/05/2021 09:14:15 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   15
+03/05/2021 09:14:16 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   16
+03/05/2021 09:14:16 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   17
+03/05/2021 09:14:17 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   18
+03/05/2021 09:14:18 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   19
+03/05/2021 09:14:18 - INFO - __main__ -   	EPOCH:   6	MiniBatch:   20
+03/05/2021 09:14:19 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:14:20 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:14:21 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:14:21 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6541	0.7619	0.7039	273
+Support	0.5369	0.6422	0.5848	204
+Comment	0.5847	0.3594	0.4452	192
+Queries	0.3636	0.1818	0.2424	22
+MacroF1	0.4941
+F1w_avg	0.5822
+Acc    	59.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8385	0.8825	0.8599	553
+Viral  	0.4037	0.3188	0.3563	138
+MacroF1	0.6081
+F1w_avg	0.7593
+Acc    	77.0
+
+03/05/2021 09:14:21 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    0
+03/05/2021 09:14:22 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    1
+03/05/2021 09:14:22 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    2
+03/05/2021 09:14:23 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    3
+03/05/2021 09:14:24 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    4
+03/05/2021 09:14:24 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    5
+03/05/2021 09:14:25 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    6
+03/05/2021 09:14:26 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    7
+03/05/2021 09:14:27 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    8
+03/05/2021 09:14:27 - INFO - __main__ -   	EPOCH:   7	MiniBatch:    9
+03/05/2021 09:14:28 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   10
+03/05/2021 09:14:29 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   11
+03/05/2021 09:14:29 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   12
+03/05/2021 09:14:30 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   13
+03/05/2021 09:14:31 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   14
+03/05/2021 09:14:31 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   15
+03/05/2021 09:14:32 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   16
+03/05/2021 09:14:33 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   17
+03/05/2021 09:14:34 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   18
+03/05/2021 09:14:34 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   19
+03/05/2021 09:14:35 - INFO - __main__ -   	EPOCH:   7	MiniBatch:   20
+03/05/2021 09:14:36 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:14:36 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:14:37 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:14:37 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6835	0.6960	0.6897	273
+Support	0.6138	0.4363	0.5100	204
+Comment	0.4724	0.6250	0.5381	192
+Queries	0.3571	0.2273	0.2778	22
+MacroF1	0.5039
+F1w_avg	0.5814
+Acc    	58.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8525	0.8571	0.8548	553
+Viral  	0.4148	0.4058	0.4103	138
+MacroF1	0.6325
+F1w_avg	0.7660
+Acc    	76.7
+
+03/05/2021 09:14:37 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    0
+03/05/2021 09:14:38 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    1
+03/05/2021 09:14:39 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    2
+03/05/2021 09:14:40 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    3
+03/05/2021 09:14:40 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    4
+03/05/2021 09:14:41 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    5
+03/05/2021 09:14:42 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    6
+03/05/2021 09:14:42 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    7
+03/05/2021 09:14:43 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    8
+03/05/2021 09:14:44 - INFO - __main__ -   	EPOCH:   8	MiniBatch:    9
+03/05/2021 09:14:44 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   10
+03/05/2021 09:14:45 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   11
+03/05/2021 09:14:46 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   12
+03/05/2021 09:14:46 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   13
+03/05/2021 09:14:47 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   14
+03/05/2021 09:14:48 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   15
+03/05/2021 09:14:49 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   16
+03/05/2021 09:14:49 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   17
+03/05/2021 09:14:50 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   18
+03/05/2021 09:14:51 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   19
+03/05/2021 09:14:51 - INFO - __main__ -   	EPOCH:   8	MiniBatch:   20
+03/05/2021 09:14:52 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:14:53 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:14:53 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:14:54 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6429	0.7582	0.6958	273
+Support	0.5484	0.5833	0.5653	204
+Comment	0.5652	0.4062	0.4727	192
+Queries	0.5714	0.3636	0.4444	22
+MacroF1	0.5446
+F1w_avg	0.5873
+Acc    	59.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8208	0.9439	0.8780	553
+Viral  	0.4364	0.1739	0.2487	138
+MacroF1	0.5634
+F1w_avg	0.7524
+Acc    	79.0
+
+03/05/2021 09:14:54 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    0
+03/05/2021 09:14:55 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    1
+03/05/2021 09:14:55 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    2
+03/05/2021 09:14:56 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    3
+03/05/2021 09:14:57 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    4
+03/05/2021 09:14:57 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    5
+03/05/2021 09:14:58 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    6
+03/05/2021 09:14:59 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    7
+03/05/2021 09:14:59 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    8
+03/05/2021 09:15:00 - INFO - __main__ -   	EPOCH:   9	MiniBatch:    9
+03/05/2021 09:15:01 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   10
+03/05/2021 09:15:01 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   11
+03/05/2021 09:15:02 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   12
+03/05/2021 09:15:03 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   13
+03/05/2021 09:15:03 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   14
+03/05/2021 09:15:04 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   15
+03/05/2021 09:15:05 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   16
+03/05/2021 09:15:06 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   17
+03/05/2021 09:15:06 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   18
+03/05/2021 09:15:07 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   19
+03/05/2021 09:15:08 - INFO - __main__ -   	EPOCH:   9	MiniBatch:   20
+03/05/2021 09:15:08 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:15:09 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:15:10 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:15:10 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6555	0.7179	0.6853	273
+Support	0.5799	0.4804	0.5255	204
+Comment	0.5192	0.5625	0.5400	192
+Queries	0.4667	0.3182	0.3784	22
+MacroF1	0.5323
+F1w_avg	0.5880
+Acc    	59.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8447	0.8951	0.8692	553
+Viral  	0.4476	0.3406	0.3868	138
+MacroF1	0.6280
+F1w_avg	0.7729
+Acc    	78.4
+
+03/05/2021 09:15:10 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    0
+03/05/2021 09:15:11 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    1
+03/05/2021 09:15:12 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    2
+03/05/2021 09:15:12 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    3
+03/05/2021 09:15:13 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    4
+03/05/2021 09:15:14 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    5
+03/05/2021 09:15:14 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    6
+03/05/2021 09:15:15 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    7
+03/05/2021 09:15:16 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    8
+03/05/2021 09:15:16 - INFO - __main__ -   	EPOCH:  10	MiniBatch:    9
+03/05/2021 09:15:17 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   10
+03/05/2021 09:15:18 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   11
+03/05/2021 09:15:19 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   12
+03/05/2021 09:15:19 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   13
+03/05/2021 09:15:20 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   14
+03/05/2021 09:15:21 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   15
+03/05/2021 09:15:21 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   16
+03/05/2021 09:15:22 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   17
+03/05/2021 09:15:23 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   18
+03/05/2021 09:15:23 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   19
+03/05/2021 09:15:24 - INFO - __main__ -   	EPOCH:  10	MiniBatch:   20
+03/05/2021 09:15:25 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:15:25 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:15:26 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:15:26 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6330	0.7582	0.6900	273
+Support	0.5652	0.5098	0.5361	204
+Comment	0.5409	0.4479	0.4900	192
+Queries	0.3333	0.3182	0.3256	22
+MacroF1	0.5104
+F1w_avg	0.5774
+Acc    	58.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8579	0.8843	0.8709	553
+Viral  	0.4711	0.4130	0.4402	138
+MacroF1	0.6555
+F1w_avg	0.7849
+Acc    	79.0
+
+03/05/2021 09:15:27 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    0
+03/05/2021 09:15:27 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    1
+03/05/2021 09:15:28 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    2
+03/05/2021 09:15:29 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    3
+03/05/2021 09:15:29 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    4
+03/05/2021 09:15:30 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    5
+03/05/2021 09:15:31 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    6
+03/05/2021 09:15:32 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    7
+03/05/2021 09:15:32 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    8
+03/05/2021 09:15:33 - INFO - __main__ -   	EPOCH:  11	MiniBatch:    9
+03/05/2021 09:15:34 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   10
+03/05/2021 09:15:34 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   11
+03/05/2021 09:15:35 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   12
+03/05/2021 09:15:36 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   13
+03/05/2021 09:15:36 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   14
+03/05/2021 09:15:37 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   15
+03/05/2021 09:15:38 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   16
+03/05/2021 09:15:38 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   17
+03/05/2021 09:15:39 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   18
+03/05/2021 09:15:40 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   19
+03/05/2021 09:15:41 - INFO - __main__ -   	EPOCH:  11	MiniBatch:   20
+03/05/2021 09:15:41 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:15:42 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:15:43 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:15:43 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5842	0.7875	0.6708	273
+Support	0.6548	0.2696	0.3819	204
+Comment	0.4978	0.5781	0.5349	192
+Queries	0.4375	0.3182	0.3684	22
+MacroF1	0.4890
+F1w_avg	0.5382
+Acc    	56.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8527	0.8897	0.8708	553
+Viral  	0.4649	0.3841	0.4206	138
+MacroF1	0.6457
+F1w_avg	0.7809
+Acc    	78.9
+
+03/05/2021 09:15:43 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    0
+03/05/2021 09:15:44 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    1
+03/05/2021 09:15:45 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    2
+03/05/2021 09:15:45 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    3
+03/05/2021 09:15:46 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    4
+03/05/2021 09:15:47 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    5
+03/05/2021 09:15:47 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    6
+03/05/2021 09:15:48 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    7
+03/05/2021 09:15:49 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    8
+03/05/2021 09:15:49 - INFO - __main__ -   	EPOCH:  12	MiniBatch:    9
+03/05/2021 09:15:50 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   10
+03/05/2021 09:15:51 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   11
+03/05/2021 09:15:51 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   12
+03/05/2021 09:15:52 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   13
+03/05/2021 09:15:53 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   14
+03/05/2021 09:15:53 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   15
+03/05/2021 09:15:54 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   16
+03/05/2021 09:15:55 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   17
+03/05/2021 09:15:56 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   18
+03/05/2021 09:15:56 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   19
+03/05/2021 09:15:57 - INFO - __main__ -   	EPOCH:  12	MiniBatch:   20
+03/05/2021 09:15:58 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:15:58 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:15:59 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:15:59 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7644	0.5348	0.6293	273
+Support	0.5150	0.6716	0.5830	204
+Comment	0.4933	0.5729	0.5301	192
+Queries	0.5455	0.2727	0.3636	22
+MacroF1	0.5265
+F1w_avg	0.5796
+Acc    	57.7
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8540	0.8354	0.8446	553
+Viral  	0.3933	0.4275	0.4097	138
+MacroF1	0.6272
+F1w_avg	0.7578
+Acc    	75.4
+
+03/05/2021 09:15:59 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    0
+03/05/2021 09:16:00 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    1
+03/05/2021 09:16:01 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    2
+03/05/2021 09:16:02 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    3
+03/05/2021 09:16:02 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    4
+03/05/2021 09:16:03 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    5
+03/05/2021 09:16:04 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    6
+03/05/2021 09:16:04 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    7
+03/05/2021 09:16:05 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    8
+03/05/2021 09:16:06 - INFO - __main__ -   	EPOCH:  13	MiniBatch:    9
+03/05/2021 09:16:06 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   10
+03/05/2021 09:16:07 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   11
+03/05/2021 09:16:08 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   12
+03/05/2021 09:16:08 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   13
+03/05/2021 09:16:09 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   14
+03/05/2021 09:16:10 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   15
+03/05/2021 09:16:11 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   16
+03/05/2021 09:16:11 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   17
+03/05/2021 09:16:12 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   18
+03/05/2021 09:16:13 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   19
+03/05/2021 09:16:13 - INFO - __main__ -   	EPOCH:  13	MiniBatch:   20
+03/05/2021 09:16:14 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:16:15 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:16:15 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:16:16 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6242	0.7179	0.6678	273
+Support	0.5827	0.3627	0.4471	204
+Comment	0.4764	0.5781	0.5224	192
+Queries	0.4706	0.3636	0.4103	22
+MacroF1	0.5119
+F1w_avg	0.5540
+Acc    	56.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8360	0.9313	0.8811	553
+Viral  	0.4933	0.2681	0.3474	138
+MacroF1	0.6143
+F1w_avg	0.7745
+Acc    	79.9
+
+03/05/2021 09:16:16 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    0
+03/05/2021 09:16:17 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    1
+03/05/2021 09:16:17 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    2
+03/05/2021 09:16:18 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    3
+03/05/2021 09:16:19 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    4
+03/05/2021 09:16:19 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    5
+03/05/2021 09:16:20 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    6
+03/05/2021 09:16:21 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    7
+03/05/2021 09:16:21 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    8
+03/05/2021 09:16:22 - INFO - __main__ -   	EPOCH:  14	MiniBatch:    9
+03/05/2021 09:16:23 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   10
+03/05/2021 09:16:23 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   11
+03/05/2021 09:16:24 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   12
+03/05/2021 09:16:25 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   13
+03/05/2021 09:16:26 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   14
+03/05/2021 09:16:26 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   15
+03/05/2021 09:16:27 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   16
+03/05/2021 09:16:28 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   17
+03/05/2021 09:16:28 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   18
+03/05/2021 09:16:29 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   19
+03/05/2021 09:16:30 - INFO - __main__ -   	EPOCH:  14	MiniBatch:   20
+03/05/2021 09:16:30 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:16:31 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:16:32 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:16:32 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7012	0.6190	0.6576	273
+Support	0.5320	0.6520	0.5859	204
+Comment	0.5333	0.5000	0.5161	192
+Queries	0.4500	0.4091	0.4286	22
+MacroF1	0.5470
+F1w_avg	0.5898
+Acc    	58.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8511	0.8788	0.8648	553
+Viral  	0.4417	0.3841	0.4109	138
+MacroF1	0.6378
+F1w_avg	0.7741
+Acc    	78.0
+
+03/05/2021 09:16:32 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    0
+03/05/2021 09:16:33 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    1
+03/05/2021 09:16:34 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    2
+03/05/2021 09:16:34 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    3
+03/05/2021 09:16:35 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    4
+03/05/2021 09:16:36 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    5
+03/05/2021 09:16:36 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    6
+03/05/2021 09:16:37 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    7
+03/05/2021 09:16:38 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    8
+03/05/2021 09:16:38 - INFO - __main__ -   	EPOCH:  15	MiniBatch:    9
+03/05/2021 09:16:39 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   10
+03/05/2021 09:16:40 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   11
+03/05/2021 09:16:41 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   12
+03/05/2021 09:16:41 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   13
+03/05/2021 09:16:42 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   14
+03/05/2021 09:16:43 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   15
+03/05/2021 09:16:43 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   16
+03/05/2021 09:16:44 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   17
+03/05/2021 09:16:45 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   18
+03/05/2021 09:16:45 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   19
+03/05/2021 09:16:46 - INFO - __main__ -   	EPOCH:  15	MiniBatch:   20
+03/05/2021 09:16:47 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:16:47 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:16:48 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:16:48 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6453	0.7729	0.7033	273
+Support	0.5829	0.5000	0.5383	204
+Comment	0.5284	0.4844	0.5054	192
+Queries	0.5385	0.3182	0.4000	22
+MacroF1	0.5368
+F1w_avg	0.5900
+Acc    	59.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8600	0.8445	0.8522	553
+Viral  	0.4189	0.4493	0.4336	138
+MacroF1	0.6429
+F1w_avg	0.7686
+Acc    	76.6
+
+03/05/2021 09:16:49 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    0
+03/05/2021 09:16:49 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    1
+03/05/2021 09:16:50 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    2
+03/05/2021 09:16:51 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    3
+03/05/2021 09:16:51 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    4
+03/05/2021 09:16:52 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    5
+03/05/2021 09:16:53 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    6
+03/05/2021 09:16:53 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    7
+03/05/2021 09:16:54 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    8
+03/05/2021 09:16:55 - INFO - __main__ -   	EPOCH:  16	MiniBatch:    9
+03/05/2021 09:16:56 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   10
+03/05/2021 09:16:56 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   11
+03/05/2021 09:16:57 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   12
+03/05/2021 09:16:58 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   13
+03/05/2021 09:16:58 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   14
+03/05/2021 09:16:59 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   15
+03/05/2021 09:17:00 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   16
+03/05/2021 09:17:00 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   17
+03/05/2021 09:17:01 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   18
+03/05/2021 09:17:02 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   19
+03/05/2021 09:17:02 - INFO - __main__ -   	EPOCH:  16	MiniBatch:   20
+03/05/2021 09:17:03 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:17:04 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:17:05 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:17:05 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7328	0.6227	0.6733	273
+Support	0.5381	0.6225	0.5773	204
+Comment	0.4951	0.5312	0.5126	192
+Queries	0.4118	0.3182	0.3590	22
+MacroF1	0.5305
+F1w_avg	0.5903
+Acc    	58.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8569	0.8553	0.8561	553
+Viral  	0.4245	0.4275	0.4260	138
+MacroF1	0.6411
+F1w_avg	0.7702
+Acc    	77.0
+
+03/05/2021 09:17:05 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    0
+03/05/2021 09:17:06 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    1
+03/05/2021 09:17:06 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    2
+03/05/2021 09:17:07 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    3
+03/05/2021 09:17:08 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    4
+03/05/2021 09:17:08 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    5
+03/05/2021 09:17:09 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    6
+03/05/2021 09:17:10 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    7
+03/05/2021 09:17:11 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    8
+03/05/2021 09:17:11 - INFO - __main__ -   	EPOCH:  17	MiniBatch:    9
+03/05/2021 09:17:12 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   10
+03/05/2021 09:17:13 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   11
+03/05/2021 09:17:13 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   12
+03/05/2021 09:17:14 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   13
+03/05/2021 09:17:15 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   14
+03/05/2021 09:17:15 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   15
+03/05/2021 09:17:16 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   16
+03/05/2021 09:17:17 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   17
+03/05/2021 09:17:17 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   18
+03/05/2021 09:17:18 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   19
+03/05/2021 09:17:19 - INFO - __main__ -   	EPOCH:  17	MiniBatch:   20
+03/05/2021 09:17:20 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:17:20 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:17:21 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:17:21 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6262	0.7363	0.6768	273
+Support	0.5490	0.5490	0.5490	204
+Comment	0.5442	0.4167	0.4720	192
+Queries	0.4211	0.3636	0.3902	22
+MacroF1	0.5220
+F1w_avg	0.5730
+Acc    	58.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8360	0.9313	0.8811	553
+Viral  	0.4933	0.2681	0.3474	138
+MacroF1	0.6143
+F1w_avg	0.7745
+Acc    	79.9
+
+03/05/2021 09:17:21 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    0
+03/05/2021 09:17:22 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    1
+03/05/2021 09:17:23 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    2
+03/05/2021 09:17:24 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    3
+03/05/2021 09:17:24 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    4
+03/05/2021 09:17:25 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    5
+03/05/2021 09:17:26 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    6
+03/05/2021 09:17:26 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    7
+03/05/2021 09:17:27 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    8
+03/05/2021 09:17:28 - INFO - __main__ -   	EPOCH:  18	MiniBatch:    9
+03/05/2021 09:17:28 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   10
+03/05/2021 09:17:29 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   11
+03/05/2021 09:17:30 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   12
+03/05/2021 09:17:30 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   13
+03/05/2021 09:17:31 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   14
+03/05/2021 09:17:32 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   15
+03/05/2021 09:17:32 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   16
+03/05/2021 09:17:33 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   17
+03/05/2021 09:17:34 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   18
+03/05/2021 09:17:35 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   19
+03/05/2021 09:17:35 - INFO - __main__ -   	EPOCH:  18	MiniBatch:   20
+03/05/2021 09:17:36 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:17:37 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:17:37 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:17:38 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6586	0.6996	0.6785	273
+Support	0.5251	0.5637	0.5437	204
+Comment	0.5375	0.4479	0.4886	192
+Queries	0.4545	0.4545	0.4545	22
+MacroF1	0.5414
+F1w_avg	0.5788
+Acc    	58.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8396	0.9277	0.8814	553
+Viral  	0.5000	0.2899	0.3670	138
+MacroF1	0.6242
+F1w_avg	0.7787
+Acc    	80.0
+
+03/05/2021 09:17:38 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    0
+03/05/2021 09:17:39 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    1
+03/05/2021 09:17:39 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    2
+03/05/2021 09:17:40 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    3
+03/05/2021 09:17:41 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    4
+03/05/2021 09:17:41 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    5
+03/05/2021 09:17:42 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    6
+03/05/2021 09:17:43 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    7
+03/05/2021 09:17:43 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    8
+03/05/2021 09:17:44 - INFO - __main__ -   	EPOCH:  19	MiniBatch:    9
+03/05/2021 09:17:45 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   10
+03/05/2021 09:17:45 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   11
+03/05/2021 09:17:46 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   12
+03/05/2021 09:17:47 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   13
+03/05/2021 09:17:47 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   14
+03/05/2021 09:17:48 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   15
+03/05/2021 09:17:49 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   16
+03/05/2021 09:17:50 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   17
+03/05/2021 09:17:50 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   18
+03/05/2021 09:17:51 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   19
+03/05/2021 09:17:52 - INFO - __main__ -   	EPOCH:  19	MiniBatch:   20
+03/05/2021 09:17:52 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:17:53 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:17:54 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:17:54 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6207	0.7253	0.6689	273
+Support	0.6500	0.3186	0.4276	204
+Comment	0.4542	0.5938	0.5147	192
+Queries	0.4286	0.4091	0.4186	22
+MacroF1	0.5075
+F1w_avg	0.5469
+Acc    	55.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8657	0.8391	0.8522	553
+Viral  	0.4258	0.4783	0.4505	138
+MacroF1	0.6513
+F1w_avg	0.7719
+Acc    	76.7
+
+03/05/2021 09:17:54 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    0
+03/05/2021 09:17:55 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    1
+03/05/2021 09:17:56 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    2
+03/05/2021 09:17:56 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    3
+03/05/2021 09:17:57 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    4
+03/05/2021 09:17:58 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    5
+03/05/2021 09:17:58 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    6
+03/05/2021 09:17:59 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    7
+03/05/2021 09:18:00 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    8
+03/05/2021 09:18:00 - INFO - __main__ -   	EPOCH:  20	MiniBatch:    9
+03/05/2021 09:18:01 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   10
+03/05/2021 09:18:02 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   11
+03/05/2021 09:18:02 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   12
+03/05/2021 09:18:03 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   13
+03/05/2021 09:18:04 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   14
+03/05/2021 09:18:05 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   15
+03/05/2021 09:18:05 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   16
+03/05/2021 09:18:06 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   17
+03/05/2021 09:18:07 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   18
+03/05/2021 09:18:07 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   19
+03/05/2021 09:18:08 - INFO - __main__ -   	EPOCH:  20	MiniBatch:   20
+03/05/2021 09:18:09 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:18:09 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:18:10 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:18:10 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6526	0.7363	0.6919	273
+Support	0.6048	0.4951	0.5445	204
+Comment	0.5147	0.5469	0.5303	192
+Queries	0.5000	0.2727	0.3529	22
+MacroF1	0.5299
+F1w_avg	0.5927
+Acc    	59.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8587	0.8463	0.8525	553
+Viral  	0.4178	0.4420	0.4296	138
+MacroF1	0.6410
+F1w_avg	0.7680
+Acc    	76.6
+
+03/05/2021 09:18:11 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    0
+03/05/2021 09:18:11 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    1
+03/05/2021 09:18:12 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    2
+03/05/2021 09:18:13 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    3
+03/05/2021 09:18:13 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    4
+03/05/2021 09:18:14 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    5
+03/05/2021 09:18:15 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    6
+03/05/2021 09:18:15 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    7
+03/05/2021 09:18:16 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    8
+03/05/2021 09:18:17 - INFO - __main__ -   	EPOCH:  21	MiniBatch:    9
+03/05/2021 09:18:17 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   10
+03/05/2021 09:18:18 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   11
+03/05/2021 09:18:19 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   12
+03/05/2021 09:18:20 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   13
+03/05/2021 09:18:20 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   14
+03/05/2021 09:18:21 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   15
+03/05/2021 09:18:22 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   16
+03/05/2021 09:18:22 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   17
+03/05/2021 09:18:23 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   18
+03/05/2021 09:18:24 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   19
+03/05/2021 09:18:24 - INFO - __main__ -   	EPOCH:  21	MiniBatch:   20
+03/05/2021 09:18:25 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:18:26 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:18:26 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:18:27 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6386	0.7766	0.7008	273
+Support	0.5657	0.5490	0.5572	204
+Comment	0.5548	0.4219	0.4793	192
+Queries	0.4000	0.2727	0.3243	22
+MacroF1	0.5154
+F1w_avg	0.5849
+Acc    	59.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8436	0.9168	0.8787	553
+Viral  	0.4889	0.3188	0.3860	138
+MacroF1	0.6323
+F1w_avg	0.7803
+Acc    	79.7
+
+03/05/2021 09:18:27 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    0
+03/05/2021 09:18:28 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    1
+03/05/2021 09:18:28 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    2
+03/05/2021 09:18:29 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    3
+03/05/2021 09:18:30 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    4
+03/05/2021 09:18:30 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    5
+03/05/2021 09:18:31 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    6
+03/05/2021 09:18:32 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    7
+03/05/2021 09:18:32 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    8
+03/05/2021 09:18:33 - INFO - __main__ -   	EPOCH:  22	MiniBatch:    9
+03/05/2021 09:18:34 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   10
+03/05/2021 09:18:35 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   11
+03/05/2021 09:18:35 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   12
+03/05/2021 09:18:36 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   13
+03/05/2021 09:18:37 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   14
+03/05/2021 09:18:37 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   15
+03/05/2021 09:18:38 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   16
+03/05/2021 09:18:39 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   17
+03/05/2021 09:18:39 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   18
+03/05/2021 09:18:40 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   19
+03/05/2021 09:18:41 - INFO - __main__ -   	EPOCH:  22	MiniBatch:   20
+03/05/2021 09:18:41 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:18:42 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:18:43 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:18:43 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6188	0.7253	0.6678	273
+Support	0.6126	0.3333	0.4317	204
+Comment	0.4677	0.6042	0.5273	192
+Queries	0.4167	0.2273	0.2941	22
+MacroF1	0.4802
+F1w_avg	0.5472
+Acc    	56.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8522	0.8445	0.8483	553
+Viral  	0.3986	0.4130	0.4057	138
+MacroF1	0.6270
+F1w_avg	0.7599
+Acc    	75.8
+
+03/05/2021 09:18:43 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    0
+03/05/2021 09:18:44 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    1
+03/05/2021 09:18:45 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    2
+03/05/2021 09:18:45 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    3
+03/05/2021 09:18:46 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    4
+03/05/2021 09:18:47 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    5
+03/05/2021 09:18:47 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    6
+03/05/2021 09:18:48 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    7
+03/05/2021 09:18:49 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    8
+03/05/2021 09:18:50 - INFO - __main__ -   	EPOCH:  23	MiniBatch:    9
+03/05/2021 09:18:50 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   10
+03/05/2021 09:18:51 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   11
+03/05/2021 09:18:52 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   12
+03/05/2021 09:18:52 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   13
+03/05/2021 09:18:53 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   14
+03/05/2021 09:18:54 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   15
+03/05/2021 09:18:54 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   16
+03/05/2021 09:18:55 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   17
+03/05/2021 09:18:56 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   18
+03/05/2021 09:18:56 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   19
+03/05/2021 09:18:57 - INFO - __main__ -   	EPOCH:  23	MiniBatch:   20
+03/05/2021 09:18:58 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/05/2021 09:18:59 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/05/2021 09:18:59 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/05/2021 09:19:00 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6934	0.6960	0.6947	273
+Support	0.5628	0.5490	0.5558	204
+Comment	0.4851	0.5104	0.4975	192
+Queries	0.4375	0.3182	0.3684	22
+MacroF1	0.5291
+F1w_avg	0.5885
+Acc    	58.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8614	0.7866	0.8223	553
+Viral  	0.3656	0.4928	0.4198	138
+MacroF1	0.6210
+F1w_avg	0.7419
+Acc    	72.8
+
+03/05/2021 09:19:00 - INFO - __main__ -   No improvements in F1 for 20 epochs
+03/05/2021 09:19:02 - INFO - __main__ -   	Testing test Minibatch:    0
+03/05/2021 09:19:02 - INFO - __main__ -   	Testing test Minibatch:    1
+03/05/2021 09:19:03 - INFO - __main__ -   	Testing test Minibatch:    2
+03/05/2021 09:19:03 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7059	0.5116	0.5933	258
+Support	0.4917	0.6607	0.5638	224
+Comment	0.4943	0.4599	0.4765	187
+Queries	0.4667	0.6087	0.5283	23
+MacroF1	0.5405
+F1w_avg	0.5500
+Acc    	54.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8720	0.7884	0.8281	553
+Viral  	0.3906	0.5396	0.4532	139
+MacroF1	0.6406
+F1w_avg	0.7528
+Acc    	73.8
+
+03/05/2021 09:19:03 - INFO - __main__ -   Time taken: 0h 6m 49s

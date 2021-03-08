@@ -104,6 +104,7 @@ def main():
     PRETRAIN =      args.pretrain_model
     EPOCHS2GIVEUP = args.epochs2giveup
     DROPOUT =       args.dropout
+    V_ATTR =        args.viral_attr
     V_THRESHOLD =   args.viral_threshold
     W_ATTR =        args.weight_attr 
     TASK =          args.task
@@ -186,12 +187,14 @@ def main():
                                          randomize=True, 
                                          weighted_sample=W_SAMPLE, 
                                          weight_attr=W_ATTR,
+                                         viral_attr=V_ATTR,
                                          viral_threshold=V_THRESHOLD, 
                                          logger=logger)
         dev_dl = dataloader.df_2_dl_v3(dev_df, 
                                        batch_size=TEST_MB_SIZE, 
                                        randomize=False, 
-                                       weighted_sample=False, 
+                                       weighted_sample=False,
+                                       viral_attr=V_ATTR,
                                        viral_threshold=V_THRESHOLD, 
                                        logger=logger)
     
@@ -208,7 +211,12 @@ def main():
         saved_params = torch.load(model_savefile)
         model.load_state_dict(saved_params)
         
-    test_dl = dataloader.df_2_dl_v3(test_df, TEST_MB_SIZE, randomize=False)
+    test_dl = dataloader.df_2_dl_v3(test_df, 
+                                    batch_size=TEST_MB_SIZE, 
+                                    randomize=False,
+                                    viral_attr=V_ATTR,
+                                    viral_threshold=V_THRESHOLD, 
+                                    logger=logger)
     results = test(model=model, 
                    dataloader=test_dl,
                    logger=logger,
@@ -345,6 +353,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
                 loss_v = loss_fn(logits_v, y_v) # calculate the viral loss
                 losses_v.append(loss_v.item())  # archive the loss
                 loss = loss_s+mtt_weight*loss_v # sum the losses
+                loss = loss / (1 + mtt_weight)
             else:
                 err_string = 'task not found : ' + task
                 logger.info(err_string)
@@ -433,13 +442,14 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
     ax0 = axes[0]
     ax1 = axes[1]
     if task in ['viral', 'multi']:
-        ax0.scatter(dev_loss_horz, dev_losses_v, label='viral')
-        ax1.scatter(dev_f1_horz, dev_f1_scores_v, label='viral') 
+        ax0.scatter(dev_loss_horz, dev_losses_v, label='viral_dev')
+        ax1.scatter(dev_f1_horz, dev_f1_scores_v, label='viral_dev') 
     if task in ['stance','multi']:
-        ax0.scatter(dev_loss_horz, dev_losses_s, label='stance')
-        ax1.scatter(dev_f1_horz, dev_f1_scores_s, label='stance')
+        ax0.scatter(dev_loss_horz, dev_losses_s, label='stance_dev')
+        ax1.scatter(dev_f1_horz, dev_f1_scores_s, label='stance_dev')
     
-    ax0.scatter(dev_loss_horz, dev_losses, label='obj')
+    ax0.scatter(dev_loss_horz, dev_losses, label='dev_loss')
+    ax0.scatter(loss_horz, losses, label='train_loss')
     ax1.scatter(dev_f1_horz, dev_f1_scores, label='obj')
     
     #if task in ['viral','multi']: ax0.scatter(dev_loss_horz, dev_losses_v, label='viral')
@@ -677,8 +687,9 @@ def get_args():
     parser.add_argument('--pretrain_model', default='',          help='model file that was pretrained on big twitter dataset')
     parser.add_argument('--epochs2giveup',  default=5, type=int, help='training is stopped if no improvements are seen after this number of epochs')
     parser.add_argument('--dropout',        default=0.1,type=float, help='dropout probability of last layer')
+    parser.add_argument('--viral_attr',     default='likes',     help='what attribute to use to define viral, must be ["likes", "retweets"]')
     parser.add_argument('--viral_threshold',default=80, type=float, help='percentile to define viral post')
-    parser.add_argument('--weight_attr',    default='stance',    help='attribute for weighted sampling. must be "stance", "likes", "retweets"')
+    parser.add_argument('--weight_attr',    default='stance',    help='attribute for weighted sampling. must be "stance", "viral"')
     parser.add_argument('--task',           default='multi',     help='task to train on. must be "multi", "stance", "viral"')
     parser.add_argument('--mtt_weight',     default=1.0,type=float, help='relative weight of viral task to stance task')
     ''' ===================================================='''
