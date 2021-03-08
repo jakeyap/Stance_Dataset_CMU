@@ -1,0 +1,2543 @@
+03/08/2021 10:49:14 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/08/2021 10:49:14 - INFO - __main__ -   ======== mtt_Bertweet =========
+03/08/2021 10:49:14 - INFO - __main__ -   ===== Hyperparameters ======
+03/08/2021 10:49:14 - INFO - __main__ -   ('batch_train', 100)
+03/08/2021 10:49:14 - INFO - __main__ -   ('batch_test', 200)
+03/08/2021 10:49:14 - INFO - __main__ -   ('epochs', 200)
+03/08/2021 10:49:14 - INFO - __main__ -   ('learning_rate', 1e-05)
+03/08/2021 10:49:14 - INFO - __main__ -   ('optimizer', 'adam')
+03/08/2021 10:49:14 - INFO - __main__ -   ('do_train', True)
+03/08/2021 10:49:14 - INFO - __main__ -   ('do_test', True)
+03/08/2021 10:49:14 - INFO - __main__ -   ('model_name', 'mtt_Bertweet')
+03/08/2021 10:49:14 - INFO - __main__ -   ('exp_name', 'exp38')
+03/08/2021 10:49:14 - INFO - __main__ -   ('train_data', './data/train_set_128_w_length_bertweet.bin')
+03/08/2021 10:49:14 - INFO - __main__ -   ('test_data', './data/test_set_128_w_length_bertweet.bin')
+03/08/2021 10:49:14 - INFO - __main__ -   ('k_folds', 4)
+03/08/2021 10:49:14 - INFO - __main__ -   ('folds2run', 1)
+03/08/2021 10:49:14 - INFO - __main__ -   ('debug', False)
+03/08/2021 10:49:14 - INFO - __main__ -   ('log_interval', 1)
+03/08/2021 10:49:14 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/08/2021 10:49:14 - INFO - __main__ -   ('w_sample', True)
+03/08/2021 10:49:14 - INFO - __main__ -   ('pretrain_model', '')
+03/08/2021 10:49:14 - INFO - __main__ -   ('epochs2giveup', 20)
+03/08/2021 10:49:14 - INFO - __main__ -   ('dropout', 0.1)
+03/08/2021 10:49:14 - INFO - __main__ -   ('viral_attr', 'retweets')
+03/08/2021 10:49:14 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/08/2021 10:49:14 - INFO - __main__ -   ('weight_attr', 'stance')
+03/08/2021 10:49:14 - INFO - __main__ -   ('task', 'multi')
+03/08/2021 10:49:14 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/08/2021 10:49:14 - INFO - __main__ -   ------------------ Getting model -------------------
+03/08/2021 10:49:19 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/08/2021 10:49:20 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+03/08/2021 10:49:20 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+03/08/2021 10:49:20 - INFO - __main__ -   class:    0 	count:  752
+03/08/2021 10:49:20 - INFO - __main__ -   class:    1 	count:  616
+03/08/2021 10:49:20 - INFO - __main__ -   class:    2 	count:  631
+03/08/2021 10:49:20 - INFO - __main__ -   class:    3 	count:   76
+03/08/2021 10:49:20 - INFO - __main__ -   class:    0 	count: 1660
+03/08/2021 10:49:20 - INFO - __main__ -   class:    1 	count:  415
+03/08/2021 10:49:20 - INFO - __main__ -   ---------------- Starting training -----------------
+03/08/2021 10:49:20 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    0
+03/08/2021 10:49:21 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    1
+03/08/2021 10:49:21 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    2
+03/08/2021 10:49:22 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    3
+03/08/2021 10:49:23 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    4
+03/08/2021 10:49:23 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    5
+03/08/2021 10:49:24 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    6
+03/08/2021 10:49:25 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    7
+03/08/2021 10:49:26 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    8
+03/08/2021 10:49:26 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:    9
+03/08/2021 10:49:27 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   10
+03/08/2021 10:49:28 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   11
+03/08/2021 10:49:28 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   12
+03/08/2021 10:49:29 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   13
+03/08/2021 10:49:30 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   14
+03/08/2021 10:49:30 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   15
+03/08/2021 10:49:31 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   16
+03/08/2021 10:49:32 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   17
+03/08/2021 10:49:33 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   18
+03/08/2021 10:49:33 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   19
+03/08/2021 10:49:34 - INFO - __main__ -   	Stance	EPOCH:   0	MiniBatch:   20
+03/08/2021 10:49:35 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    0
+03/08/2021 10:49:35 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    1
+03/08/2021 10:49:36 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    2
+03/08/2021 10:49:37 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    3
+03/08/2021 10:49:38 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    4
+03/08/2021 10:49:38 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    5
+03/08/2021 10:49:39 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    6
+03/08/2021 10:49:40 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    7
+03/08/2021 10:49:40 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    8
+03/08/2021 10:49:41 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:    9
+03/08/2021 10:49:42 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   10
+03/08/2021 10:49:42 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   11
+03/08/2021 10:49:43 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   12
+03/08/2021 10:49:44 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   13
+03/08/2021 10:49:45 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   14
+03/08/2021 10:49:45 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   15
+03/08/2021 10:49:46 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   16
+03/08/2021 10:49:47 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   17
+03/08/2021 10:49:47 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   18
+03/08/2021 10:49:48 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   19
+03/08/2021 10:49:49 - INFO - __main__ -   	Viral	EPOCH:   0	MiniBatch:   20
+03/08/2021 10:49:50 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:49:50 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:49:50 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:49:51 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:49:51 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4114	0.6630	0.5077	273
+Support	0.4286	0.0147	0.0284	204
+Comment	0.3416	0.2865	0.3116	192
+Queries	0.0602	0.2273	0.0952	22
+MacroF1	0.2358
+F1w_avg	0.2986
+Acc    	35.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8221	0.9277	0.8717	553
+Viral  	0.4030	0.1957	0.2634	138
+MacroF1	0.5676
+F1w_avg	0.7502
+Acc    	78.1
+
+03/08/2021 10:49:51 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:49:52 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    0
+03/08/2021 10:49:53 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    1
+03/08/2021 10:49:53 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    2
+03/08/2021 10:49:54 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    3
+03/08/2021 10:49:55 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    4
+03/08/2021 10:49:55 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    5
+03/08/2021 10:49:56 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    6
+03/08/2021 10:49:57 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    7
+03/08/2021 10:49:58 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    8
+03/08/2021 10:49:58 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:    9
+03/08/2021 10:49:59 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   10
+03/08/2021 10:50:00 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   11
+03/08/2021 10:50:00 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   12
+03/08/2021 10:50:01 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   13
+03/08/2021 10:50:02 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   14
+03/08/2021 10:50:02 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   15
+03/08/2021 10:50:03 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   16
+03/08/2021 10:50:04 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   17
+03/08/2021 10:50:05 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   18
+03/08/2021 10:50:05 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   19
+03/08/2021 10:50:06 - INFO - __main__ -   	Stance	EPOCH:   1	MiniBatch:   20
+03/08/2021 10:50:07 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    0
+03/08/2021 10:50:07 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    1
+03/08/2021 10:50:08 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    2
+03/08/2021 10:50:09 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    3
+03/08/2021 10:50:09 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    4
+03/08/2021 10:50:10 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    5
+03/08/2021 10:50:11 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    6
+03/08/2021 10:50:12 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    7
+03/08/2021 10:50:12 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    8
+03/08/2021 10:50:13 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:    9
+03/08/2021 10:50:14 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   10
+03/08/2021 10:50:14 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   11
+03/08/2021 10:50:15 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   12
+03/08/2021 10:50:16 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   13
+03/08/2021 10:50:17 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   14
+03/08/2021 10:50:17 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   15
+03/08/2021 10:50:18 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   16
+03/08/2021 10:50:19 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   17
+03/08/2021 10:50:19 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   18
+03/08/2021 10:50:20 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   19
+03/08/2021 10:50:21 - INFO - __main__ -   	Viral	EPOCH:   1	MiniBatch:   20
+03/08/2021 10:50:22 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:50:22 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:50:22 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:50:23 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:50:23 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.4800	0.4835	0.4818	273
+Support	0.5208	0.2451	0.3333	204
+Comment	0.3286	0.2396	0.2771	192
+Queries	0.0667	0.5455	0.1188	22
+MacroF1	0.3028
+F1w_avg	0.3695
+Acc    	34.7
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8571	0.7269	0.7867	553
+Viral  	0.3198	0.5145	0.3944	138
+MacroF1	0.5906
+F1w_avg	0.7084
+Acc    	68.5
+
+03/08/2021 10:50:23 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:50:25 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    0
+03/08/2021 10:50:26 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    1
+03/08/2021 10:50:26 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    2
+03/08/2021 10:50:27 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    3
+03/08/2021 10:50:28 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    4
+03/08/2021 10:50:29 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    5
+03/08/2021 10:50:29 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    6
+03/08/2021 10:50:30 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    7
+03/08/2021 10:50:31 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    8
+03/08/2021 10:50:31 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:    9
+03/08/2021 10:50:32 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   10
+03/08/2021 10:50:33 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   11
+03/08/2021 10:50:33 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   12
+03/08/2021 10:50:34 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   13
+03/08/2021 10:50:35 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   14
+03/08/2021 10:50:36 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   15
+03/08/2021 10:50:36 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   16
+03/08/2021 10:50:37 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   17
+03/08/2021 10:50:38 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   18
+03/08/2021 10:50:38 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   19
+03/08/2021 10:50:39 - INFO - __main__ -   	Stance	EPOCH:   2	MiniBatch:   20
+03/08/2021 10:50:40 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    0
+03/08/2021 10:50:41 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    1
+03/08/2021 10:50:41 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    2
+03/08/2021 10:50:42 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    3
+03/08/2021 10:50:43 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    4
+03/08/2021 10:50:43 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    5
+03/08/2021 10:50:44 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    6
+03/08/2021 10:50:45 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    7
+03/08/2021 10:50:45 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    8
+03/08/2021 10:50:46 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:    9
+03/08/2021 10:50:47 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   10
+03/08/2021 10:50:48 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   11
+03/08/2021 10:50:48 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   12
+03/08/2021 10:50:49 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   13
+03/08/2021 10:50:50 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   14
+03/08/2021 10:50:50 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   15
+03/08/2021 10:50:51 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   16
+03/08/2021 10:50:52 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   17
+03/08/2021 10:50:52 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   18
+03/08/2021 10:50:53 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   19
+03/08/2021 10:50:54 - INFO - __main__ -   	Viral	EPOCH:   2	MiniBatch:   20
+03/08/2021 10:50:55 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:50:55 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:50:55 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:50:56 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:50:56 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5907	0.4176	0.4893	273
+Support	0.4402	0.3971	0.4175	204
+Comment	0.3333	0.0521	0.0901	192
+Queries	0.0704	0.9091	0.1307	22
+MacroF1	0.2819
+F1w_avg	0.3458
+Acc    	32.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8821	0.6763	0.7656	553
+Viral  	0.3296	0.6377	0.4346	138
+MacroF1	0.6001
+F1w_avg	0.6995
+Acc    	66.9
+
+03/08/2021 10:50:56 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    0
+03/08/2021 10:50:57 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    1
+03/08/2021 10:50:58 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    2
+03/08/2021 10:50:59 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    3
+03/08/2021 10:50:59 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    4
+03/08/2021 10:51:00 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    5
+03/08/2021 10:51:01 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    6
+03/08/2021 10:51:01 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    7
+03/08/2021 10:51:02 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    8
+03/08/2021 10:51:03 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:    9
+03/08/2021 10:51:03 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   10
+03/08/2021 10:51:04 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   11
+03/08/2021 10:51:05 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   12
+03/08/2021 10:51:06 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   13
+03/08/2021 10:51:06 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   14
+03/08/2021 10:51:07 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   15
+03/08/2021 10:51:08 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   16
+03/08/2021 10:51:08 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   17
+03/08/2021 10:51:09 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   18
+03/08/2021 10:51:10 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   19
+03/08/2021 10:51:10 - INFO - __main__ -   	Stance	EPOCH:   3	MiniBatch:   20
+03/08/2021 10:51:11 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    0
+03/08/2021 10:51:12 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    1
+03/08/2021 10:51:13 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    2
+03/08/2021 10:51:13 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    3
+03/08/2021 10:51:14 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    4
+03/08/2021 10:51:15 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    5
+03/08/2021 10:51:15 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    6
+03/08/2021 10:51:16 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    7
+03/08/2021 10:51:17 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    8
+03/08/2021 10:51:18 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:    9
+03/08/2021 10:51:18 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   10
+03/08/2021 10:51:19 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   11
+03/08/2021 10:51:20 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   12
+03/08/2021 10:51:20 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   13
+03/08/2021 10:51:21 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   14
+03/08/2021 10:51:22 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   15
+03/08/2021 10:51:23 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   16
+03/08/2021 10:51:23 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   17
+03/08/2021 10:51:24 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   18
+03/08/2021 10:51:25 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   19
+03/08/2021 10:51:25 - INFO - __main__ -   	Viral	EPOCH:   3	MiniBatch:   20
+03/08/2021 10:51:26 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:51:27 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:51:27 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:51:27 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:51:28 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5502	0.5421	0.5461	273
+Support	0.5222	0.2304	0.3197	204
+Comment	0.3740	0.2396	0.2921	192
+Queries	0.0957	0.9091	0.1732	22
+MacroF1	0.3328
+F1w_avg	0.3968
+Acc    	37.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8845	0.7342	0.8024	553
+Viral  	0.3664	0.6159	0.4595	138
+MacroF1	0.6309
+F1w_avg	0.7339
+Acc    	71.1
+
+03/08/2021 10:51:28 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:51:30 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    0
+03/08/2021 10:51:30 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    1
+03/08/2021 10:51:31 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    2
+03/08/2021 10:51:32 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    3
+03/08/2021 10:51:32 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    4
+03/08/2021 10:51:33 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    5
+03/08/2021 10:51:34 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    6
+03/08/2021 10:51:34 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    7
+03/08/2021 10:51:35 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    8
+03/08/2021 10:51:36 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:    9
+03/08/2021 10:51:37 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   10
+03/08/2021 10:51:37 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   11
+03/08/2021 10:51:38 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   12
+03/08/2021 10:51:39 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   13
+03/08/2021 10:51:39 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   14
+03/08/2021 10:51:40 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   15
+03/08/2021 10:51:41 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   16
+03/08/2021 10:51:41 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   17
+03/08/2021 10:51:42 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   18
+03/08/2021 10:51:43 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   19
+03/08/2021 10:51:44 - INFO - __main__ -   	Stance	EPOCH:   4	MiniBatch:   20
+03/08/2021 10:51:44 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    0
+03/08/2021 10:51:45 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    1
+03/08/2021 10:51:46 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    2
+03/08/2021 10:51:46 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    3
+03/08/2021 10:51:47 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    4
+03/08/2021 10:51:48 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    5
+03/08/2021 10:51:48 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    6
+03/08/2021 10:51:49 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    7
+03/08/2021 10:51:50 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    8
+03/08/2021 10:51:51 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:    9
+03/08/2021 10:51:51 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   10
+03/08/2021 10:51:52 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   11
+03/08/2021 10:51:53 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   12
+03/08/2021 10:51:53 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   13
+03/08/2021 10:51:54 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   14
+03/08/2021 10:51:55 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   15
+03/08/2021 10:51:55 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   16
+03/08/2021 10:51:56 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   17
+03/08/2021 10:51:57 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   18
+03/08/2021 10:51:58 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   19
+03/08/2021 10:51:58 - INFO - __main__ -   	Viral	EPOCH:   4	MiniBatch:   20
+03/08/2021 10:51:59 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:51:59 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:52:00 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:52:00 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:52:01 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5367	0.5897	0.5620	273
+Support	0.5625	0.1324	0.2143	204
+Comment	0.4242	0.2188	0.2887	192
+Queries	0.0861	0.9545	0.1579	22
+MacroF1	0.3057
+F1w_avg	0.3705
+Acc    	36.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8682	0.8101	0.8382	553
+Viral  	0.4000	0.5072	0.4473	138
+MacroF1	0.6427
+F1w_avg	0.7601
+Acc    	75.0
+
+03/08/2021 10:52:01 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    0
+03/08/2021 10:52:02 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    1
+03/08/2021 10:52:02 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    2
+03/08/2021 10:52:03 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    3
+03/08/2021 10:52:04 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    4
+03/08/2021 10:52:04 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    5
+03/08/2021 10:52:05 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    6
+03/08/2021 10:52:06 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    7
+03/08/2021 10:52:06 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    8
+03/08/2021 10:52:07 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:    9
+03/08/2021 10:52:08 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   10
+03/08/2021 10:52:09 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   11
+03/08/2021 10:52:09 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   12
+03/08/2021 10:52:10 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   13
+03/08/2021 10:52:11 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   14
+03/08/2021 10:52:11 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   15
+03/08/2021 10:52:12 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   16
+03/08/2021 10:52:13 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   17
+03/08/2021 10:52:13 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   18
+03/08/2021 10:52:14 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   19
+03/08/2021 10:52:15 - INFO - __main__ -   	Stance	EPOCH:   5	MiniBatch:   20
+03/08/2021 10:52:16 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    0
+03/08/2021 10:52:16 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    1
+03/08/2021 10:52:17 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    2
+03/08/2021 10:52:18 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    3
+03/08/2021 10:52:18 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    4
+03/08/2021 10:52:19 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    5
+03/08/2021 10:52:20 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    6
+03/08/2021 10:52:21 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    7
+03/08/2021 10:52:21 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    8
+03/08/2021 10:52:22 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:    9
+03/08/2021 10:52:23 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   10
+03/08/2021 10:52:23 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   11
+03/08/2021 10:52:24 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   12
+03/08/2021 10:52:25 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   13
+03/08/2021 10:52:26 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   14
+03/08/2021 10:52:26 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   15
+03/08/2021 10:52:27 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   16
+03/08/2021 10:52:28 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   17
+03/08/2021 10:52:28 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   18
+03/08/2021 10:52:29 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   19
+03/08/2021 10:52:30 - INFO - __main__ -   	Viral	EPOCH:   5	MiniBatch:   20
+03/08/2021 10:52:30 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:52:31 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:52:31 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:52:32 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:52:32 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5634	0.6996	0.6242	273
+Support	0.6036	0.3284	0.4254	204
+Comment	0.4908	0.4167	0.4507	192
+Queries	0.2308	0.8182	0.3600	22
+MacroF1	0.4651
+F1w_avg	0.5089
+Acc    	51.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8539	0.8246	0.8390	553
+Viral  	0.3822	0.4348	0.4068	138
+MacroF1	0.6229
+F1w_avg	0.7527
+Acc    	74.7
+
+03/08/2021 10:52:32 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:52:34 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    0
+03/08/2021 10:52:35 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    1
+03/08/2021 10:52:35 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    2
+03/08/2021 10:52:36 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    3
+03/08/2021 10:52:37 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    4
+03/08/2021 10:52:37 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    5
+03/08/2021 10:52:38 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    6
+03/08/2021 10:52:39 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    7
+03/08/2021 10:52:40 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    8
+03/08/2021 10:52:40 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:    9
+03/08/2021 10:52:41 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   10
+03/08/2021 10:52:42 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   11
+03/08/2021 10:52:42 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   12
+03/08/2021 10:52:43 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   13
+03/08/2021 10:52:44 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   14
+03/08/2021 10:52:44 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   15
+03/08/2021 10:52:45 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   16
+03/08/2021 10:52:46 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   17
+03/08/2021 10:52:47 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   18
+03/08/2021 10:52:47 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   19
+03/08/2021 10:52:48 - INFO - __main__ -   	Stance	EPOCH:   6	MiniBatch:   20
+03/08/2021 10:52:49 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    0
+03/08/2021 10:52:49 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    1
+03/08/2021 10:52:50 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    2
+03/08/2021 10:52:51 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    3
+03/08/2021 10:52:52 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    4
+03/08/2021 10:52:52 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    5
+03/08/2021 10:52:53 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    6
+03/08/2021 10:52:54 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    7
+03/08/2021 10:52:54 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    8
+03/08/2021 10:52:55 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:    9
+03/08/2021 10:52:56 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   10
+03/08/2021 10:52:56 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   11
+03/08/2021 10:52:57 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   12
+03/08/2021 10:52:58 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   13
+03/08/2021 10:52:59 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   14
+03/08/2021 10:52:59 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   15
+03/08/2021 10:53:00 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   16
+03/08/2021 10:53:01 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   17
+03/08/2021 10:53:01 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   18
+03/08/2021 10:53:02 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   19
+03/08/2021 10:53:03 - INFO - __main__ -   	Viral	EPOCH:   6	MiniBatch:   20
+03/08/2021 10:53:04 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:53:04 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:53:04 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:53:05 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:53:05 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6217	0.5238	0.5686	273
+Support	0.5976	0.2402	0.3427	204
+Comment	0.3946	0.6146	0.4807	192
+Queries	0.2125	0.7727	0.3333	22
+MacroF1	0.4313
+F1w_avg	0.4700
+Acc    	47.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8716	0.7486	0.8054	553
+Viral  	0.3565	0.5580	0.4350	138
+MacroF1	0.6202
+F1w_avg	0.7315
+Acc    	71.1
+
+03/08/2021 10:53:05 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    0
+03/08/2021 10:53:06 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    1
+03/08/2021 10:53:07 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    2
+03/08/2021 10:53:08 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    3
+03/08/2021 10:53:08 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    4
+03/08/2021 10:53:09 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    5
+03/08/2021 10:53:10 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    6
+03/08/2021 10:53:10 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    7
+03/08/2021 10:53:11 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    8
+03/08/2021 10:53:12 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:    9
+03/08/2021 10:53:12 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   10
+03/08/2021 10:53:13 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   11
+03/08/2021 10:53:14 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   12
+03/08/2021 10:53:15 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   13
+03/08/2021 10:53:15 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   14
+03/08/2021 10:53:16 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   15
+03/08/2021 10:53:17 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   16
+03/08/2021 10:53:17 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   17
+03/08/2021 10:53:18 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   18
+03/08/2021 10:53:19 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   19
+03/08/2021 10:53:20 - INFO - __main__ -   	Stance	EPOCH:   7	MiniBatch:   20
+03/08/2021 10:53:20 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    0
+03/08/2021 10:53:21 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    1
+03/08/2021 10:53:22 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    2
+03/08/2021 10:53:22 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    3
+03/08/2021 10:53:23 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    4
+03/08/2021 10:53:24 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    5
+03/08/2021 10:53:24 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    6
+03/08/2021 10:53:25 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    7
+03/08/2021 10:53:26 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    8
+03/08/2021 10:53:27 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:    9
+03/08/2021 10:53:27 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   10
+03/08/2021 10:53:28 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   11
+03/08/2021 10:53:29 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   12
+03/08/2021 10:53:29 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   13
+03/08/2021 10:53:30 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   14
+03/08/2021 10:53:31 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   15
+03/08/2021 10:53:32 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   16
+03/08/2021 10:53:32 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   17
+03/08/2021 10:53:33 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   18
+03/08/2021 10:53:34 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   19
+03/08/2021 10:53:34 - INFO - __main__ -   	Viral	EPOCH:   7	MiniBatch:   20
+03/08/2021 10:53:35 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:53:36 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:53:36 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:53:36 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:53:37 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7143	0.4579	0.5580	273
+Support	0.5773	0.2745	0.3721	204
+Comment	0.3867	0.7292	0.5054	192
+Queries	0.2456	0.6364	0.3544	22
+MacroF1	0.4475
+F1w_avg	0.4820
+Acc    	48.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8521	0.8336	0.8428	553
+Viral  	0.3867	0.4203	0.4028	138
+MacroF1	0.6228
+F1w_avg	0.7549
+Acc    	75.1
+
+03/08/2021 10:53:37 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    0
+03/08/2021 10:53:38 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    1
+03/08/2021 10:53:38 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    2
+03/08/2021 10:53:39 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    3
+03/08/2021 10:53:40 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    4
+03/08/2021 10:53:40 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    5
+03/08/2021 10:53:41 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    6
+03/08/2021 10:53:42 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    7
+03/08/2021 10:53:43 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    8
+03/08/2021 10:53:43 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:    9
+03/08/2021 10:53:44 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   10
+03/08/2021 10:53:45 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   11
+03/08/2021 10:53:45 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   12
+03/08/2021 10:53:46 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   13
+03/08/2021 10:53:47 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   14
+03/08/2021 10:53:47 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   15
+03/08/2021 10:53:48 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   16
+03/08/2021 10:53:49 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   17
+03/08/2021 10:53:50 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   18
+03/08/2021 10:53:50 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   19
+03/08/2021 10:53:51 - INFO - __main__ -   	Stance	EPOCH:   8	MiniBatch:   20
+03/08/2021 10:53:52 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    0
+03/08/2021 10:53:52 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    1
+03/08/2021 10:53:53 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    2
+03/08/2021 10:53:54 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    3
+03/08/2021 10:53:55 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    4
+03/08/2021 10:53:55 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    5
+03/08/2021 10:53:56 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    6
+03/08/2021 10:53:57 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    7
+03/08/2021 10:53:57 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    8
+03/08/2021 10:53:58 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:    9
+03/08/2021 10:53:59 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   10
+03/08/2021 10:54:00 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   11
+03/08/2021 10:54:00 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   12
+03/08/2021 10:54:01 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   13
+03/08/2021 10:54:02 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   14
+03/08/2021 10:54:02 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   15
+03/08/2021 10:54:03 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   16
+03/08/2021 10:54:04 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   17
+03/08/2021 10:54:04 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   18
+03/08/2021 10:54:05 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   19
+03/08/2021 10:54:06 - INFO - __main__ -   	Viral	EPOCH:   8	MiniBatch:   20
+03/08/2021 10:54:07 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:54:07 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:54:08 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:54:08 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:54:08 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6959	0.5531	0.6163	273
+Support	0.6076	0.2353	0.3392	204
+Comment	0.3957	0.6719	0.4981	192
+Queries	0.2464	0.7727	0.3736	22
+MacroF1	0.4568
+F1w_avg	0.4939
+Acc    	49.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8514	0.8391	0.8452	553
+Viral  	0.3904	0.4130	0.4014	138
+MacroF1	0.6233
+F1w_avg	0.7565
+Acc    	75.4
+
+03/08/2021 10:54:08 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    0
+03/08/2021 10:54:09 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    1
+03/08/2021 10:54:10 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    2
+03/08/2021 10:54:11 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    3
+03/08/2021 10:54:11 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    4
+03/08/2021 10:54:12 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    5
+03/08/2021 10:54:13 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    6
+03/08/2021 10:54:13 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    7
+03/08/2021 10:54:14 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    8
+03/08/2021 10:54:15 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:    9
+03/08/2021 10:54:16 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   10
+03/08/2021 10:54:16 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   11
+03/08/2021 10:54:17 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   12
+03/08/2021 10:54:18 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   13
+03/08/2021 10:54:18 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   14
+03/08/2021 10:54:19 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   15
+03/08/2021 10:54:20 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   16
+03/08/2021 10:54:20 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   17
+03/08/2021 10:54:21 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   18
+03/08/2021 10:54:22 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   19
+03/08/2021 10:54:23 - INFO - __main__ -   	Stance	EPOCH:   9	MiniBatch:   20
+03/08/2021 10:54:23 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    0
+03/08/2021 10:54:24 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    1
+03/08/2021 10:54:25 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    2
+03/08/2021 10:54:25 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    3
+03/08/2021 10:54:26 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    4
+03/08/2021 10:54:27 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    5
+03/08/2021 10:54:28 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    6
+03/08/2021 10:54:28 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    7
+03/08/2021 10:54:29 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    8
+03/08/2021 10:54:30 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:    9
+03/08/2021 10:54:30 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   10
+03/08/2021 10:54:31 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   11
+03/08/2021 10:54:32 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   12
+03/08/2021 10:54:32 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   13
+03/08/2021 10:54:33 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   14
+03/08/2021 10:54:34 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   15
+03/08/2021 10:54:35 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   16
+03/08/2021 10:54:35 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   17
+03/08/2021 10:54:36 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   18
+03/08/2021 10:54:37 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   19
+03/08/2021 10:54:37 - INFO - __main__ -   	Viral	EPOCH:   9	MiniBatch:   20
+03/08/2021 10:54:38 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:54:39 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:54:39 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:54:40 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:54:40 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6733	0.6190	0.6450	273
+Support	0.6183	0.3971	0.4836	204
+Comment	0.4562	0.6510	0.5365	192
+Queries	0.2857	0.4545	0.3509	22
+MacroF1	0.5040
+F1w_avg	0.5578
+Acc    	55.7
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8512	0.8481	0.8496	553
+Viral  	0.4000	0.4058	0.4029	138
+MacroF1	0.6263
+F1w_avg	0.7604
+Acc    	76.0
+
+03/08/2021 10:54:40 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:54:42 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    0
+03/08/2021 10:54:42 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    1
+03/08/2021 10:54:43 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    2
+03/08/2021 10:54:44 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    3
+03/08/2021 10:54:44 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    4
+03/08/2021 10:54:45 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    5
+03/08/2021 10:54:46 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    6
+03/08/2021 10:54:47 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    7
+03/08/2021 10:54:47 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    8
+03/08/2021 10:54:48 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:    9
+03/08/2021 10:54:49 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   10
+03/08/2021 10:54:49 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   11
+03/08/2021 10:54:50 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   12
+03/08/2021 10:54:51 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   13
+03/08/2021 10:54:52 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   14
+03/08/2021 10:54:52 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   15
+03/08/2021 10:54:53 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   16
+03/08/2021 10:54:54 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   17
+03/08/2021 10:54:54 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   18
+03/08/2021 10:54:55 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   19
+03/08/2021 10:54:56 - INFO - __main__ -   	Stance	EPOCH:  10	MiniBatch:   20
+03/08/2021 10:54:56 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    0
+03/08/2021 10:54:57 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    1
+03/08/2021 10:54:58 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    2
+03/08/2021 10:54:59 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    3
+03/08/2021 10:54:59 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    4
+03/08/2021 10:55:00 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    5
+03/08/2021 10:55:01 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    6
+03/08/2021 10:55:01 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    7
+03/08/2021 10:55:02 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    8
+03/08/2021 10:55:03 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:    9
+03/08/2021 10:55:04 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   10
+03/08/2021 10:55:04 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   11
+03/08/2021 10:55:05 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   12
+03/08/2021 10:55:06 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   13
+03/08/2021 10:55:06 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   14
+03/08/2021 10:55:07 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   15
+03/08/2021 10:55:08 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   16
+03/08/2021 10:55:08 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   17
+03/08/2021 10:55:09 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   18
+03/08/2021 10:55:10 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   19
+03/08/2021 10:55:11 - INFO - __main__ -   	Viral	EPOCH:  10	MiniBatch:   20
+03/08/2021 10:55:11 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:55:12 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:55:12 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:55:13 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:55:13 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5932	0.6996	0.6420	273
+Support	0.7209	0.1520	0.2510	204
+Comment	0.4341	0.7031	0.5368	192
+Queries	0.4000	0.2727	0.3243	22
+MacroF1	0.4385
+F1w_avg	0.4872
+Acc    	52.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8596	0.8083	0.8332	553
+Viral  	0.3801	0.4710	0.4207	138
+MacroF1	0.6269
+F1w_avg	0.7508
+Acc    	74.1
+
+03/08/2021 10:55:13 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    0
+03/08/2021 10:55:14 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    1
+03/08/2021 10:55:15 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    2
+03/08/2021 10:55:15 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    3
+03/08/2021 10:55:16 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    4
+03/08/2021 10:55:17 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    5
+03/08/2021 10:55:17 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    6
+03/08/2021 10:55:18 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    7
+03/08/2021 10:55:19 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    8
+03/08/2021 10:55:19 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:    9
+03/08/2021 10:55:20 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   10
+03/08/2021 10:55:21 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   11
+03/08/2021 10:55:22 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   12
+03/08/2021 10:55:22 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   13
+03/08/2021 10:55:23 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   14
+03/08/2021 10:55:24 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   15
+03/08/2021 10:55:24 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   16
+03/08/2021 10:55:25 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   17
+03/08/2021 10:55:26 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   18
+03/08/2021 10:55:27 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   19
+03/08/2021 10:55:27 - INFO - __main__ -   	Stance	EPOCH:  11	MiniBatch:   20
+03/08/2021 10:55:28 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    0
+03/08/2021 10:55:29 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    1
+03/08/2021 10:55:29 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    2
+03/08/2021 10:55:30 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    3
+03/08/2021 10:55:31 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    4
+03/08/2021 10:55:31 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    5
+03/08/2021 10:55:32 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    6
+03/08/2021 10:55:33 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    7
+03/08/2021 10:55:34 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    8
+03/08/2021 10:55:34 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:    9
+03/08/2021 10:55:35 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   10
+03/08/2021 10:55:36 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   11
+03/08/2021 10:55:36 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   12
+03/08/2021 10:55:37 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   13
+03/08/2021 10:55:38 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   14
+03/08/2021 10:55:39 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   15
+03/08/2021 10:55:39 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   16
+03/08/2021 10:55:40 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   17
+03/08/2021 10:55:41 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   18
+03/08/2021 10:55:41 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   19
+03/08/2021 10:55:42 - INFO - __main__ -   	Viral	EPOCH:  11	MiniBatch:   20
+03/08/2021 10:55:43 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:55:43 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:55:44 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:55:44 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:55:44 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6438	0.7216	0.6805	273
+Support	0.6106	0.3382	0.4353	204
+Comment	0.4904	0.6667	0.5651	192
+Queries	0.4545	0.2273	0.3030	22
+MacroF1	0.4960
+F1w_avg	0.5640
+Acc    	57.7
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8593	0.8391	0.8490	553
+Viral  	0.4106	0.4493	0.4291	138
+MacroF1	0.6391
+F1w_avg	0.7652
+Acc    	76.1
+
+03/08/2021 10:55:44 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:55:46 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    0
+03/08/2021 10:55:47 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    1
+03/08/2021 10:55:48 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    2
+03/08/2021 10:55:48 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    3
+03/08/2021 10:55:49 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    4
+03/08/2021 10:55:50 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    5
+03/08/2021 10:55:51 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    6
+03/08/2021 10:55:51 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    7
+03/08/2021 10:55:52 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    8
+03/08/2021 10:55:53 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:    9
+03/08/2021 10:55:53 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   10
+03/08/2021 10:55:54 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   11
+03/08/2021 10:55:55 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   12
+03/08/2021 10:55:55 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   13
+03/08/2021 10:55:56 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   14
+03/08/2021 10:55:57 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   15
+03/08/2021 10:55:58 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   16
+03/08/2021 10:55:58 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   17
+03/08/2021 10:55:59 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   18
+03/08/2021 10:56:00 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   19
+03/08/2021 10:56:00 - INFO - __main__ -   	Stance	EPOCH:  12	MiniBatch:   20
+03/08/2021 10:56:01 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    0
+03/08/2021 10:56:02 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    1
+03/08/2021 10:56:03 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    2
+03/08/2021 10:56:03 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    3
+03/08/2021 10:56:04 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    4
+03/08/2021 10:56:05 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    5
+03/08/2021 10:56:05 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    6
+03/08/2021 10:56:06 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    7
+03/08/2021 10:56:07 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    8
+03/08/2021 10:56:07 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:    9
+03/08/2021 10:56:08 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   10
+03/08/2021 10:56:09 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   11
+03/08/2021 10:56:10 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   12
+03/08/2021 10:56:10 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   13
+03/08/2021 10:56:11 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   14
+03/08/2021 10:56:12 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   15
+03/08/2021 10:56:12 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   16
+03/08/2021 10:56:13 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   17
+03/08/2021 10:56:14 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   18
+03/08/2021 10:56:15 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   19
+03/08/2021 10:56:15 - INFO - __main__ -   	Viral	EPOCH:  12	MiniBatch:   20
+03/08/2021 10:56:16 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:56:16 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:56:17 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:56:17 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:56:18 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6518	0.7473	0.6962	273
+Support	0.5802	0.3725	0.4537	204
+Comment	0.5044	0.5938	0.5455	192
+Queries	0.2857	0.2727	0.2791	22
+MacroF1	0.4936
+F1w_avg	0.5695
+Acc    	57.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8671	0.8137	0.8396	553
+Viral  	0.4012	0.5000	0.4452	138
+MacroF1	0.6424
+F1w_avg	0.7608
+Acc    	75.1
+
+03/08/2021 10:56:18 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:56:19 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    0
+03/08/2021 10:56:20 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    1
+03/08/2021 10:56:21 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    2
+03/08/2021 10:56:21 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    3
+03/08/2021 10:56:22 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    4
+03/08/2021 10:56:23 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    5
+03/08/2021 10:56:24 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    6
+03/08/2021 10:56:24 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    7
+03/08/2021 10:56:25 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    8
+03/08/2021 10:56:26 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:    9
+03/08/2021 10:56:26 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   10
+03/08/2021 10:56:27 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   11
+03/08/2021 10:56:28 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   12
+03/08/2021 10:56:29 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   13
+03/08/2021 10:56:29 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   14
+03/08/2021 10:56:30 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   15
+03/08/2021 10:56:31 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   16
+03/08/2021 10:56:31 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   17
+03/08/2021 10:56:32 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   18
+03/08/2021 10:56:33 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   19
+03/08/2021 10:56:33 - INFO - __main__ -   	Stance	EPOCH:  13	MiniBatch:   20
+03/08/2021 10:56:34 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    0
+03/08/2021 10:56:35 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    1
+03/08/2021 10:56:36 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    2
+03/08/2021 10:56:36 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    3
+03/08/2021 10:56:37 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    4
+03/08/2021 10:56:38 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    5
+03/08/2021 10:56:38 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    6
+03/08/2021 10:56:39 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    7
+03/08/2021 10:56:40 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    8
+03/08/2021 10:56:40 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:    9
+03/08/2021 10:56:41 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   10
+03/08/2021 10:56:42 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   11
+03/08/2021 10:56:43 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   12
+03/08/2021 10:56:43 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   13
+03/08/2021 10:56:44 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   14
+03/08/2021 10:56:45 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   15
+03/08/2021 10:56:45 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   16
+03/08/2021 10:56:46 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   17
+03/08/2021 10:56:47 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   18
+03/08/2021 10:56:48 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   19
+03/08/2021 10:56:48 - INFO - __main__ -   	Viral	EPOCH:  13	MiniBatch:   20
+03/08/2021 10:56:49 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:56:49 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:56:50 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:56:50 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:56:51 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6512	0.7179	0.6829	273
+Support	0.5822	0.4167	0.4857	204
+Comment	0.4894	0.5990	0.5386	192
+Queries	0.5556	0.2273	0.3226	22
+MacroF1	0.5075
+F1w_avg	0.5731
+Acc    	58.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8489	0.8734	0.8610	553
+Viral  	0.4262	0.3768	0.4000	138
+MacroF1	0.6305
+F1w_avg	0.7689
+Acc    	77.4
+
+03/08/2021 10:56:51 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:56:52 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    0
+03/08/2021 10:56:53 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    1
+03/08/2021 10:56:54 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    2
+03/08/2021 10:56:55 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    3
+03/08/2021 10:56:55 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    4
+03/08/2021 10:56:56 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    5
+03/08/2021 10:56:57 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    6
+03/08/2021 10:56:57 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    7
+03/08/2021 10:56:58 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    8
+03/08/2021 10:56:59 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:    9
+03/08/2021 10:56:59 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   10
+03/08/2021 10:57:00 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   11
+03/08/2021 10:57:01 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   12
+03/08/2021 10:57:02 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   13
+03/08/2021 10:57:02 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   14
+03/08/2021 10:57:03 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   15
+03/08/2021 10:57:04 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   16
+03/08/2021 10:57:04 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   17
+03/08/2021 10:57:05 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   18
+03/08/2021 10:57:06 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   19
+03/08/2021 10:57:07 - INFO - __main__ -   	Stance	EPOCH:  14	MiniBatch:   20
+03/08/2021 10:57:07 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    0
+03/08/2021 10:57:08 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    1
+03/08/2021 10:57:09 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    2
+03/08/2021 10:57:09 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    3
+03/08/2021 10:57:10 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    4
+03/08/2021 10:57:11 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    5
+03/08/2021 10:57:11 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    6
+03/08/2021 10:57:12 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    7
+03/08/2021 10:57:13 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    8
+03/08/2021 10:57:14 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:    9
+03/08/2021 10:57:14 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   10
+03/08/2021 10:57:15 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   11
+03/08/2021 10:57:16 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   12
+03/08/2021 10:57:16 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   13
+03/08/2021 10:57:17 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   14
+03/08/2021 10:57:18 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   15
+03/08/2021 10:57:19 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   16
+03/08/2021 10:57:19 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   17
+03/08/2021 10:57:20 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   18
+03/08/2021 10:57:21 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   19
+03/08/2021 10:57:21 - INFO - __main__ -   	Viral	EPOCH:  14	MiniBatch:   20
+03/08/2021 10:57:22 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:57:23 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:57:23 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:57:23 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:57:24 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7344	0.5165	0.6065	273
+Support	0.5859	0.3676	0.4518	204
+Comment	0.4069	0.7396	0.5250	192
+Queries	0.3182	0.3182	0.3182	22
+MacroF1	0.4753
+F1w_avg	0.5290
+Acc    	52.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8328	0.9096	0.8695	553
+Viral  	0.4253	0.2681	0.3289	138
+MacroF1	0.5992
+F1w_avg	0.7615
+Acc    	78.1
+
+03/08/2021 10:57:24 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    0
+03/08/2021 10:57:25 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    1
+03/08/2021 10:57:25 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    2
+03/08/2021 10:57:26 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    3
+03/08/2021 10:57:27 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    4
+03/08/2021 10:57:27 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    5
+03/08/2021 10:57:28 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    6
+03/08/2021 10:57:29 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    7
+03/08/2021 10:57:30 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    8
+03/08/2021 10:57:30 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:    9
+03/08/2021 10:57:31 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   10
+03/08/2021 10:57:32 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   11
+03/08/2021 10:57:32 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   12
+03/08/2021 10:57:33 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   13
+03/08/2021 10:57:34 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   14
+03/08/2021 10:57:35 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   15
+03/08/2021 10:57:35 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   16
+03/08/2021 10:57:36 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   17
+03/08/2021 10:57:37 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   18
+03/08/2021 10:57:37 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   19
+03/08/2021 10:57:38 - INFO - __main__ -   	Stance	EPOCH:  15	MiniBatch:   20
+03/08/2021 10:57:39 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    0
+03/08/2021 10:57:39 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    1
+03/08/2021 10:57:40 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    2
+03/08/2021 10:57:41 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    3
+03/08/2021 10:57:42 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    4
+03/08/2021 10:57:42 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    5
+03/08/2021 10:57:43 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    6
+03/08/2021 10:57:44 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    7
+03/08/2021 10:57:44 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    8
+03/08/2021 10:57:45 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:    9
+03/08/2021 10:57:46 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   10
+03/08/2021 10:57:46 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   11
+03/08/2021 10:57:47 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   12
+03/08/2021 10:57:48 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   13
+03/08/2021 10:57:49 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   14
+03/08/2021 10:57:49 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   15
+03/08/2021 10:57:50 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   16
+03/08/2021 10:57:51 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   17
+03/08/2021 10:57:51 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   18
+03/08/2021 10:57:52 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   19
+03/08/2021 10:57:53 - INFO - __main__ -   	Viral	EPOCH:  15	MiniBatch:   20
+03/08/2021 10:57:53 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:57:54 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:57:54 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:57:55 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:57:55 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7171	0.5385	0.6151	273
+Support	0.5851	0.2696	0.3691	204
+Comment	0.4031	0.8021	0.5366	192
+Queries	0.5000	0.2273	0.3125	22
+MacroF1	0.4583
+F1w_avg	0.5110
+Acc    	52.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8215	0.9403	0.8769	553
+Viral  	0.4310	0.1812	0.2551	138
+MacroF1	0.5660
+F1w_avg	0.7527
+Acc    	78.9
+
+03/08/2021 10:57:55 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    0
+03/08/2021 10:57:56 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    1
+03/08/2021 10:57:57 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    2
+03/08/2021 10:57:57 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    3
+03/08/2021 10:57:58 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    4
+03/08/2021 10:57:59 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    5
+03/08/2021 10:58:00 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    6
+03/08/2021 10:58:00 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    7
+03/08/2021 10:58:01 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    8
+03/08/2021 10:58:02 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:    9
+03/08/2021 10:58:02 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   10
+03/08/2021 10:58:03 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   11
+03/08/2021 10:58:04 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   12
+03/08/2021 10:58:04 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   13
+03/08/2021 10:58:05 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   14
+03/08/2021 10:58:06 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   15
+03/08/2021 10:58:07 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   16
+03/08/2021 10:58:07 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   17
+03/08/2021 10:58:08 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   18
+03/08/2021 10:58:09 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   19
+03/08/2021 10:58:09 - INFO - __main__ -   	Stance	EPOCH:  16	MiniBatch:   20
+03/08/2021 10:58:10 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    0
+03/08/2021 10:58:11 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    1
+03/08/2021 10:58:12 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    2
+03/08/2021 10:58:12 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    3
+03/08/2021 10:58:13 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    4
+03/08/2021 10:58:14 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    5
+03/08/2021 10:58:14 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    6
+03/08/2021 10:58:15 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    7
+03/08/2021 10:58:16 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    8
+03/08/2021 10:58:16 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:    9
+03/08/2021 10:58:17 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   10
+03/08/2021 10:58:18 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   11
+03/08/2021 10:58:19 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   12
+03/08/2021 10:58:19 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   13
+03/08/2021 10:58:20 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   14
+03/08/2021 10:58:21 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   15
+03/08/2021 10:58:21 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   16
+03/08/2021 10:58:22 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   17
+03/08/2021 10:58:23 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   18
+03/08/2021 10:58:23 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   19
+03/08/2021 10:58:24 - INFO - __main__ -   	Viral	EPOCH:  16	MiniBatch:   20
+03/08/2021 10:58:25 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:58:25 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:58:26 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:58:26 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:58:27 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7306	0.5861	0.6504	273
+Support	0.6080	0.3725	0.4620	204
+Comment	0.4273	0.7344	0.5402	192
+Queries	0.2941	0.2273	0.2564	22
+MacroF1	0.4773
+F1w_avg	0.5516
+Acc    	55.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8350	0.9150	0.8732	553
+Viral  	0.4471	0.2754	0.3408	138
+MacroF1	0.6070
+F1w_avg	0.7668
+Acc    	78.7
+
+03/08/2021 10:58:27 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    0
+03/08/2021 10:58:27 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    1
+03/08/2021 10:58:28 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    2
+03/08/2021 10:58:29 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    3
+03/08/2021 10:58:30 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    4
+03/08/2021 10:58:30 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    5
+03/08/2021 10:58:31 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    6
+03/08/2021 10:58:32 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    7
+03/08/2021 10:58:32 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    8
+03/08/2021 10:58:33 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:    9
+03/08/2021 10:58:34 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   10
+03/08/2021 10:58:34 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   11
+03/08/2021 10:58:35 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   12
+03/08/2021 10:58:36 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   13
+03/08/2021 10:58:37 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   14
+03/08/2021 10:58:37 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   15
+03/08/2021 10:58:38 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   16
+03/08/2021 10:58:39 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   17
+03/08/2021 10:58:39 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   18
+03/08/2021 10:58:40 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   19
+03/08/2021 10:58:41 - INFO - __main__ -   	Stance	EPOCH:  17	MiniBatch:   20
+03/08/2021 10:58:42 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    0
+03/08/2021 10:58:42 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    1
+03/08/2021 10:58:43 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    2
+03/08/2021 10:58:44 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    3
+03/08/2021 10:58:44 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    4
+03/08/2021 10:58:45 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    5
+03/08/2021 10:58:46 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    6
+03/08/2021 10:58:46 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    7
+03/08/2021 10:58:47 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    8
+03/08/2021 10:58:48 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:    9
+03/08/2021 10:58:49 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   10
+03/08/2021 10:58:49 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   11
+03/08/2021 10:58:50 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   12
+03/08/2021 10:58:51 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   13
+03/08/2021 10:58:51 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   14
+03/08/2021 10:58:52 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   15
+03/08/2021 10:58:53 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   16
+03/08/2021 10:58:53 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   17
+03/08/2021 10:58:54 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   18
+03/08/2021 10:58:55 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   19
+03/08/2021 10:58:56 - INFO - __main__ -   	Viral	EPOCH:  17	MiniBatch:   20
+03/08/2021 10:58:56 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:58:57 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:58:57 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:58:58 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:58:58 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7193	0.6007	0.6547	273
+Support	0.5955	0.5196	0.5550	204
+Comment	0.4621	0.6667	0.5458	192
+Queries	0.6250	0.2273	0.3333	22
+MacroF1	0.5222
+F1w_avg	0.5848
+Acc    	58.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8556	0.8680	0.8618	553
+Viral  	0.4385	0.4130	0.4254	138
+MacroF1	0.6436
+F1w_avg	0.7746
+Acc    	77.7
+
+03/08/2021 10:58:58 - INFO - __main__ -   Best results so far. Saving model...
+03/08/2021 10:59:00 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    0
+03/08/2021 10:59:00 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    1
+03/08/2021 10:59:01 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    2
+03/08/2021 10:59:02 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    3
+03/08/2021 10:59:03 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    4
+03/08/2021 10:59:03 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    5
+03/08/2021 10:59:04 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    6
+03/08/2021 10:59:05 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    7
+03/08/2021 10:59:05 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    8
+03/08/2021 10:59:06 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:    9
+03/08/2021 10:59:07 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   10
+03/08/2021 10:59:08 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   11
+03/08/2021 10:59:08 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   12
+03/08/2021 10:59:09 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   13
+03/08/2021 10:59:10 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   14
+03/08/2021 10:59:10 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   15
+03/08/2021 10:59:11 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   16
+03/08/2021 10:59:12 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   17
+03/08/2021 10:59:12 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   18
+03/08/2021 10:59:13 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   19
+03/08/2021 10:59:14 - INFO - __main__ -   	Stance	EPOCH:  18	MiniBatch:   20
+03/08/2021 10:59:15 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    0
+03/08/2021 10:59:15 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    1
+03/08/2021 10:59:16 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    2
+03/08/2021 10:59:17 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    3
+03/08/2021 10:59:17 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    4
+03/08/2021 10:59:18 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    5
+03/08/2021 10:59:19 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    6
+03/08/2021 10:59:20 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    7
+03/08/2021 10:59:20 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    8
+03/08/2021 10:59:21 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:    9
+03/08/2021 10:59:22 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   10
+03/08/2021 10:59:22 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   11
+03/08/2021 10:59:23 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   12
+03/08/2021 10:59:24 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   13
+03/08/2021 10:59:24 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   14
+03/08/2021 10:59:25 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   15
+03/08/2021 10:59:26 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   16
+03/08/2021 10:59:27 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   17
+03/08/2021 10:59:27 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   18
+03/08/2021 10:59:28 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   19
+03/08/2021 10:59:29 - INFO - __main__ -   	Viral	EPOCH:  18	MiniBatch:   20
+03/08/2021 10:59:29 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 10:59:30 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 10:59:30 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 10:59:31 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 10:59:31 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7703	0.4176	0.5416	273
+Support	0.5657	0.4853	0.5224	204
+Comment	0.4029	0.7344	0.5203	192
+Queries	0.2778	0.2273	0.2500	22
+MacroF1	0.4586
+F1w_avg	0.5207
+Acc    	52.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8566	0.8535	0.8551	553
+Viral  	0.4214	0.4275	0.4245	138
+MacroF1	0.6398
+F1w_avg	0.7691
+Acc    	76.8
+
+03/08/2021 10:59:31 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    0
+03/08/2021 10:59:32 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    1
+03/08/2021 10:59:33 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    2
+03/08/2021 10:59:33 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    3
+03/08/2021 10:59:34 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    4
+03/08/2021 10:59:35 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    5
+03/08/2021 10:59:35 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    6
+03/08/2021 10:59:36 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    7
+03/08/2021 10:59:37 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    8
+03/08/2021 10:59:38 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:    9
+03/08/2021 10:59:38 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   10
+03/08/2021 10:59:39 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   11
+03/08/2021 10:59:40 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   12
+03/08/2021 10:59:40 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   13
+03/08/2021 10:59:41 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   14
+03/08/2021 10:59:42 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   15
+03/08/2021 10:59:43 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   16
+03/08/2021 10:59:43 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   17
+03/08/2021 10:59:44 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   18
+03/08/2021 10:59:45 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   19
+03/08/2021 10:59:45 - INFO - __main__ -   	Stance	EPOCH:  19	MiniBatch:   20
+03/08/2021 10:59:46 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    0
+03/08/2021 10:59:47 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    1
+03/08/2021 10:59:47 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    2
+03/08/2021 10:59:48 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    3
+03/08/2021 10:59:49 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    4
+03/08/2021 10:59:50 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    5
+03/08/2021 10:59:50 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    6
+03/08/2021 10:59:51 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    7
+03/08/2021 10:59:52 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    8
+03/08/2021 10:59:52 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:    9
+03/08/2021 10:59:53 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   10
+03/08/2021 10:59:54 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   11
+03/08/2021 10:59:54 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   12
+03/08/2021 10:59:55 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   13
+03/08/2021 10:59:56 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   14
+03/08/2021 10:59:57 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   15
+03/08/2021 10:59:57 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   16
+03/08/2021 10:59:58 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   17
+03/08/2021 10:59:59 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   18
+03/08/2021 10:59:59 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   19
+03/08/2021 11:00:00 - INFO - __main__ -   	Viral	EPOCH:  19	MiniBatch:   20
+03/08/2021 11:00:01 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:00:01 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:00:02 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:00:02 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:00:02 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7124	0.6081	0.6561	273
+Support	0.5707	0.5343	0.5519	204
+Comment	0.4883	0.6510	0.5580	192
+Queries	0.4545	0.2273	0.3030	22
+MacroF1	0.5173
+F1w_avg	0.5869
+Acc    	58.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8515	0.8915	0.8710	553
+Viral  	0.4643	0.3768	0.4160	138
+MacroF1	0.6435
+F1w_avg	0.7802
+Acc    	78.9
+
+03/08/2021 11:00:03 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    0
+03/08/2021 11:00:03 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    1
+03/08/2021 11:00:04 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    2
+03/08/2021 11:00:05 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    3
+03/08/2021 11:00:05 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    4
+03/08/2021 11:00:06 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    5
+03/08/2021 11:00:07 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    6
+03/08/2021 11:00:08 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    7
+03/08/2021 11:00:08 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    8
+03/08/2021 11:00:09 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:    9
+03/08/2021 11:00:10 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   10
+03/08/2021 11:00:10 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   11
+03/08/2021 11:00:11 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   12
+03/08/2021 11:00:12 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   13
+03/08/2021 11:00:12 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   14
+03/08/2021 11:00:13 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   15
+03/08/2021 11:00:14 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   16
+03/08/2021 11:00:15 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   17
+03/08/2021 11:00:15 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   18
+03/08/2021 11:00:16 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   19
+03/08/2021 11:00:17 - INFO - __main__ -   	Stance	EPOCH:  20	MiniBatch:   20
+03/08/2021 11:00:17 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    0
+03/08/2021 11:00:18 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    1
+03/08/2021 11:00:19 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    2
+03/08/2021 11:00:20 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    3
+03/08/2021 11:00:20 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    4
+03/08/2021 11:00:21 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    5
+03/08/2021 11:00:22 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    6
+03/08/2021 11:00:22 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    7
+03/08/2021 11:00:23 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    8
+03/08/2021 11:00:24 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:    9
+03/08/2021 11:00:24 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   10
+03/08/2021 11:00:25 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   11
+03/08/2021 11:00:26 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   12
+03/08/2021 11:00:27 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   13
+03/08/2021 11:00:27 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   14
+03/08/2021 11:00:28 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   15
+03/08/2021 11:00:29 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   16
+03/08/2021 11:00:29 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   17
+03/08/2021 11:00:30 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   18
+03/08/2021 11:00:31 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   19
+03/08/2021 11:00:31 - INFO - __main__ -   	Viral	EPOCH:  20	MiniBatch:   20
+03/08/2021 11:00:32 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:00:33 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:00:33 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:00:34 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:00:34 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7810	0.3919	0.5220	273
+Support	0.5667	0.4167	0.4802	204
+Comment	0.3876	0.7812	0.5181	192
+Queries	0.2941	0.2273	0.2564	22
+MacroF1	0.4442
+F1w_avg	0.5001
+Acc    	50.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8487	0.8825	0.8652	553
+Viral  	0.4397	0.3696	0.4016	138
+MacroF1	0.6334
+F1w_avg	0.7726
+Acc    	78.0
+
+03/08/2021 11:00:34 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    0
+03/08/2021 11:00:35 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    1
+03/08/2021 11:00:35 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    2
+03/08/2021 11:00:36 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    3
+03/08/2021 11:00:37 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    4
+03/08/2021 11:00:38 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    5
+03/08/2021 11:00:38 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    6
+03/08/2021 11:00:39 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    7
+03/08/2021 11:00:40 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    8
+03/08/2021 11:00:40 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:    9
+03/08/2021 11:00:41 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   10
+03/08/2021 11:00:42 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   11
+03/08/2021 11:00:43 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   12
+03/08/2021 11:00:43 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   13
+03/08/2021 11:00:44 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   14
+03/08/2021 11:00:45 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   15
+03/08/2021 11:00:45 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   16
+03/08/2021 11:00:46 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   17
+03/08/2021 11:00:47 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   18
+03/08/2021 11:00:47 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   19
+03/08/2021 11:00:48 - INFO - __main__ -   	Stance	EPOCH:  21	MiniBatch:   20
+03/08/2021 11:00:49 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    0
+03/08/2021 11:00:50 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    1
+03/08/2021 11:00:50 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    2
+03/08/2021 11:00:51 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    3
+03/08/2021 11:00:52 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    4
+03/08/2021 11:00:52 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    5
+03/08/2021 11:00:53 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    6
+03/08/2021 11:00:54 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    7
+03/08/2021 11:00:55 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    8
+03/08/2021 11:00:55 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:    9
+03/08/2021 11:00:56 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   10
+03/08/2021 11:00:57 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   11
+03/08/2021 11:00:57 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   12
+03/08/2021 11:00:58 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   13
+03/08/2021 11:00:59 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   14
+03/08/2021 11:00:59 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   15
+03/08/2021 11:01:00 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   16
+03/08/2021 11:01:01 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   17
+03/08/2021 11:01:02 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   18
+03/08/2021 11:01:02 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   19
+03/08/2021 11:01:03 - INFO - __main__ -   	Viral	EPOCH:  21	MiniBatch:   20
+03/08/2021 11:01:04 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:01:04 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:01:05 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:01:05 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:01:05 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7059	0.6154	0.6575	273
+Support	0.5987	0.4461	0.5112	204
+Comment	0.4629	0.6823	0.5516	192
+Queries	0.3889	0.3182	0.3500	22
+MacroF1	0.5176
+F1w_avg	0.5751
+Acc    	57.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8492	0.8553	0.8523	553
+Viral  	0.4030	0.3913	0.3971	138
+MacroF1	0.6247
+F1w_avg	0.7613
+Acc    	76.3
+
+03/08/2021 11:01:06 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    0
+03/08/2021 11:01:06 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    1
+03/08/2021 11:01:07 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    2
+03/08/2021 11:01:08 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    3
+03/08/2021 11:01:08 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    4
+03/08/2021 11:01:09 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    5
+03/08/2021 11:01:10 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    6
+03/08/2021 11:01:11 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    7
+03/08/2021 11:01:11 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    8
+03/08/2021 11:01:12 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:    9
+03/08/2021 11:01:13 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   10
+03/08/2021 11:01:13 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   11
+03/08/2021 11:01:14 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   12
+03/08/2021 11:01:15 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   13
+03/08/2021 11:01:15 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   14
+03/08/2021 11:01:16 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   15
+03/08/2021 11:01:17 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   16
+03/08/2021 11:01:18 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   17
+03/08/2021 11:01:18 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   18
+03/08/2021 11:01:19 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   19
+03/08/2021 11:01:20 - INFO - __main__ -   	Stance	EPOCH:  22	MiniBatch:   20
+03/08/2021 11:01:20 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    0
+03/08/2021 11:01:21 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    1
+03/08/2021 11:01:22 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    2
+03/08/2021 11:01:23 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    3
+03/08/2021 11:01:23 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    4
+03/08/2021 11:01:24 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    5
+03/08/2021 11:01:25 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    6
+03/08/2021 11:01:25 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    7
+03/08/2021 11:01:26 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    8
+03/08/2021 11:01:27 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:    9
+03/08/2021 11:01:27 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   10
+03/08/2021 11:01:28 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   11
+03/08/2021 11:01:29 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   12
+03/08/2021 11:01:30 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   13
+03/08/2021 11:01:30 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   14
+03/08/2021 11:01:31 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   15
+03/08/2021 11:01:32 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   16
+03/08/2021 11:01:32 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   17
+03/08/2021 11:01:33 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   18
+03/08/2021 11:01:34 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   19
+03/08/2021 11:01:35 - INFO - __main__ -   	Viral	EPOCH:  22	MiniBatch:   20
+03/08/2021 11:01:35 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:01:36 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:01:36 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:01:37 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:01:37 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6092	0.7766	0.6828	273
+Support	0.5758	0.4657	0.5149	204
+Comment	0.5427	0.4635	0.5000	192
+Queries	0.3571	0.2273	0.2778	22
+MacroF1	0.4939
+F1w_avg	0.5695
+Acc    	58.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8451	0.8680	0.8564	553
+Viral  	0.4065	0.3623	0.3831	138
+MacroF1	0.6198
+F1w_avg	0.7619
+Acc    	76.7
+
+03/08/2021 11:01:37 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    0
+03/08/2021 11:01:38 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    1
+03/08/2021 11:01:39 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    2
+03/08/2021 11:01:39 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    3
+03/08/2021 11:01:40 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    4
+03/08/2021 11:01:41 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    5
+03/08/2021 11:01:41 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    6
+03/08/2021 11:01:42 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    7
+03/08/2021 11:01:43 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    8
+03/08/2021 11:01:43 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:    9
+03/08/2021 11:01:44 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   10
+03/08/2021 11:01:45 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   11
+03/08/2021 11:01:46 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   12
+03/08/2021 11:01:46 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   13
+03/08/2021 11:01:47 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   14
+03/08/2021 11:01:48 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   15
+03/08/2021 11:01:48 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   16
+03/08/2021 11:01:49 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   17
+03/08/2021 11:01:50 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   18
+03/08/2021 11:01:51 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   19
+03/08/2021 11:01:51 - INFO - __main__ -   	Stance	EPOCH:  23	MiniBatch:   20
+03/08/2021 11:01:52 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    0
+03/08/2021 11:01:53 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    1
+03/08/2021 11:01:53 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    2
+03/08/2021 11:01:54 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    3
+03/08/2021 11:01:55 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    4
+03/08/2021 11:01:55 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    5
+03/08/2021 11:01:56 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    6
+03/08/2021 11:01:57 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    7
+03/08/2021 11:01:58 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    8
+03/08/2021 11:01:58 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:    9
+03/08/2021 11:01:59 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   10
+03/08/2021 11:02:00 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   11
+03/08/2021 11:02:00 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   12
+03/08/2021 11:02:01 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   13
+03/08/2021 11:02:02 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   14
+03/08/2021 11:02:02 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   15
+03/08/2021 11:02:03 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   16
+03/08/2021 11:02:04 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   17
+03/08/2021 11:02:05 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   18
+03/08/2021 11:02:05 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   19
+03/08/2021 11:02:06 - INFO - __main__ -   	Viral	EPOCH:  23	MiniBatch:   20
+03/08/2021 11:02:07 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:02:07 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:02:08 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:02:08 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:02:08 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6949	0.6007	0.6444	273
+Support	0.5497	0.5147	0.5316	204
+Comment	0.4585	0.6042	0.5213	192
+Queries	0.4545	0.2273	0.3030	22
+MacroF1	0.5001
+F1w_avg	0.5661
+Acc    	56.4
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8460	0.8644	0.8551	553
+Viral  	0.4048	0.3696	0.3864	138
+MacroF1	0.6207
+F1w_avg	0.7615
+Acc    	76.6
+
+03/08/2021 11:02:09 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    0
+03/08/2021 11:02:09 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    1
+03/08/2021 11:02:10 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    2
+03/08/2021 11:02:11 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    3
+03/08/2021 11:02:11 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    4
+03/08/2021 11:02:12 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    5
+03/08/2021 11:02:13 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    6
+03/08/2021 11:02:13 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    7
+03/08/2021 11:02:14 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    8
+03/08/2021 11:02:15 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:    9
+03/08/2021 11:02:16 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   10
+03/08/2021 11:02:16 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   11
+03/08/2021 11:02:17 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   12
+03/08/2021 11:02:18 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   13
+03/08/2021 11:02:18 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   14
+03/08/2021 11:02:19 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   15
+03/08/2021 11:02:20 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   16
+03/08/2021 11:02:21 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   17
+03/08/2021 11:02:21 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   18
+03/08/2021 11:02:22 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   19
+03/08/2021 11:02:23 - INFO - __main__ -   	Stance	EPOCH:  24	MiniBatch:   20
+03/08/2021 11:02:23 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    0
+03/08/2021 11:02:24 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    1
+03/08/2021 11:02:25 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    2
+03/08/2021 11:02:25 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    3
+03/08/2021 11:02:26 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    4
+03/08/2021 11:02:27 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    5
+03/08/2021 11:02:28 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    6
+03/08/2021 11:02:28 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    7
+03/08/2021 11:02:29 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    8
+03/08/2021 11:02:30 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:    9
+03/08/2021 11:02:30 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   10
+03/08/2021 11:02:31 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   11
+03/08/2021 11:02:32 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   12
+03/08/2021 11:02:32 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   13
+03/08/2021 11:02:33 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   14
+03/08/2021 11:02:34 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   15
+03/08/2021 11:02:35 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   16
+03/08/2021 11:02:35 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   17
+03/08/2021 11:02:36 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   18
+03/08/2021 11:02:37 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   19
+03/08/2021 11:02:37 - INFO - __main__ -   	Viral	EPOCH:  24	MiniBatch:   20
+03/08/2021 11:02:38 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:02:39 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:02:39 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:02:40 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:02:40 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6400	0.7619	0.6957	273
+Support	0.6308	0.4020	0.4910	204
+Comment	0.5204	0.5990	0.5569	192
+Queries	0.4000	0.2727	0.3243	22
+MacroF1	0.5170
+F1w_avg	0.5849
+Acc    	59.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8415	0.8644	0.8528	553
+Viral  	0.3902	0.3478	0.3678	138
+MacroF1	0.6103
+F1w_avg	0.7560
+Acc    	76.1
+
+03/08/2021 11:02:40 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    0
+03/08/2021 11:02:41 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    1
+03/08/2021 11:02:41 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    2
+03/08/2021 11:02:42 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    3
+03/08/2021 11:02:43 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    4
+03/08/2021 11:02:44 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    5
+03/08/2021 11:02:44 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    6
+03/08/2021 11:02:45 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    7
+03/08/2021 11:02:46 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    8
+03/08/2021 11:02:46 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:    9
+03/08/2021 11:02:47 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   10
+03/08/2021 11:02:48 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   11
+03/08/2021 11:02:48 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   12
+03/08/2021 11:02:49 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   13
+03/08/2021 11:02:50 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   14
+03/08/2021 11:02:51 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   15
+03/08/2021 11:02:51 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   16
+03/08/2021 11:02:52 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   17
+03/08/2021 11:02:53 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   18
+03/08/2021 11:02:53 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   19
+03/08/2021 11:02:54 - INFO - __main__ -   	Stance	EPOCH:  25	MiniBatch:   20
+03/08/2021 11:02:55 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    0
+03/08/2021 11:02:56 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    1
+03/08/2021 11:02:56 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    2
+03/08/2021 11:02:57 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    3
+03/08/2021 11:02:58 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    4
+03/08/2021 11:02:58 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    5
+03/08/2021 11:02:59 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    6
+03/08/2021 11:03:00 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    7
+03/08/2021 11:03:01 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    8
+03/08/2021 11:03:01 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:    9
+03/08/2021 11:03:02 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   10
+03/08/2021 11:03:03 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   11
+03/08/2021 11:03:03 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   12
+03/08/2021 11:03:04 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   13
+03/08/2021 11:03:05 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   14
+03/08/2021 11:03:05 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   15
+03/08/2021 11:03:06 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   16
+03/08/2021 11:03:07 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   17
+03/08/2021 11:03:08 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   18
+03/08/2021 11:03:08 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   19
+03/08/2021 11:03:09 - INFO - __main__ -   	Viral	EPOCH:  25	MiniBatch:   20
+03/08/2021 11:03:10 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:03:10 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:03:11 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:03:11 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:03:11 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6128	0.7363	0.6689	273
+Support	0.5231	0.5539	0.5381	204
+Comment	0.6090	0.4219	0.4985	192
+Queries	0.4286	0.2727	0.3333	22
+MacroF1	0.5097
+F1w_avg	0.5722
+Acc    	58.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8466	0.8680	0.8571	553
+Viral  	0.4113	0.3696	0.3893	138
+MacroF1	0.6232
+F1w_avg	0.7637
+Acc    	76.8
+
+03/08/2021 11:03:12 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    0
+03/08/2021 11:03:12 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    1
+03/08/2021 11:03:13 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    2
+03/08/2021 11:03:14 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    3
+03/08/2021 11:03:14 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    4
+03/08/2021 11:03:15 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    5
+03/08/2021 11:03:16 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    6
+03/08/2021 11:03:17 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    7
+03/08/2021 11:03:17 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    8
+03/08/2021 11:03:18 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:    9
+03/08/2021 11:03:19 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   10
+03/08/2021 11:03:19 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   11
+03/08/2021 11:03:20 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   12
+03/08/2021 11:03:21 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   13
+03/08/2021 11:03:21 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   14
+03/08/2021 11:03:22 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   15
+03/08/2021 11:03:23 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   16
+03/08/2021 11:03:24 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   17
+03/08/2021 11:03:24 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   18
+03/08/2021 11:03:25 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   19
+03/08/2021 11:03:26 - INFO - __main__ -   	Stance	EPOCH:  26	MiniBatch:   20
+03/08/2021 11:03:26 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    0
+03/08/2021 11:03:27 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    1
+03/08/2021 11:03:28 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    2
+03/08/2021 11:03:29 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    3
+03/08/2021 11:03:29 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    4
+03/08/2021 11:03:30 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    5
+03/08/2021 11:03:31 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    6
+03/08/2021 11:03:31 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    7
+03/08/2021 11:03:32 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    8
+03/08/2021 11:03:33 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:    9
+03/08/2021 11:03:33 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   10
+03/08/2021 11:03:34 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   11
+03/08/2021 11:03:35 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   12
+03/08/2021 11:03:36 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   13
+03/08/2021 11:03:36 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   14
+03/08/2021 11:03:37 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   15
+03/08/2021 11:03:38 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   16
+03/08/2021 11:03:38 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   17
+03/08/2021 11:03:39 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   18
+03/08/2021 11:03:40 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   19
+03/08/2021 11:03:40 - INFO - __main__ -   	Viral	EPOCH:  26	MiniBatch:   20
+03/08/2021 11:03:41 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:03:42 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:03:42 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:03:43 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:03:43 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7087	0.5348	0.6096	273
+Support	0.5798	0.5343	0.5561	204
+Comment	0.4437	0.6562	0.5294	192
+Queries	0.3846	0.2273	0.2857	22
+MacroF1	0.4952
+F1w_avg	0.5612
+Acc    	55.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8388	0.8843	0.8609	553
+Viral  	0.4074	0.3188	0.3577	138
+MacroF1	0.6093
+F1w_avg	0.7604
+Acc    	77.1
+
+03/08/2021 11:03:43 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    0
+03/08/2021 11:03:44 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    1
+03/08/2021 11:03:44 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    2
+03/08/2021 11:03:45 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    3
+03/08/2021 11:03:46 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    4
+03/08/2021 11:03:47 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    5
+03/08/2021 11:03:47 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    6
+03/08/2021 11:03:48 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    7
+03/08/2021 11:03:49 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    8
+03/08/2021 11:03:49 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:    9
+03/08/2021 11:03:50 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   10
+03/08/2021 11:03:51 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   11
+03/08/2021 11:03:51 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   12
+03/08/2021 11:03:52 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   13
+03/08/2021 11:03:53 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   14
+03/08/2021 11:03:54 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   15
+03/08/2021 11:03:54 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   16
+03/08/2021 11:03:55 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   17
+03/08/2021 11:03:56 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   18
+03/08/2021 11:03:56 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   19
+03/08/2021 11:03:57 - INFO - __main__ -   	Stance	EPOCH:  27	MiniBatch:   20
+03/08/2021 11:03:58 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    0
+03/08/2021 11:03:59 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    1
+03/08/2021 11:03:59 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    2
+03/08/2021 11:04:00 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    3
+03/08/2021 11:04:01 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    4
+03/08/2021 11:04:01 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    5
+03/08/2021 11:04:02 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    6
+03/08/2021 11:04:03 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    7
+03/08/2021 11:04:03 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    8
+03/08/2021 11:04:04 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:    9
+03/08/2021 11:04:05 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   10
+03/08/2021 11:04:06 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   11
+03/08/2021 11:04:06 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   12
+03/08/2021 11:04:07 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   13
+03/08/2021 11:04:08 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   14
+03/08/2021 11:04:08 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   15
+03/08/2021 11:04:09 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   16
+03/08/2021 11:04:10 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   17
+03/08/2021 11:04:11 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   18
+03/08/2021 11:04:11 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   19
+03/08/2021 11:04:12 - INFO - __main__ -   	Viral	EPOCH:  27	MiniBatch:   20
+03/08/2021 11:04:13 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:04:13 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:04:14 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:04:14 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:04:14 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7349	0.5788	0.6475	273
+Support	0.4620	0.7157	0.5615	204
+Comment	0.5634	0.4167	0.4790	192
+Queries	0.3889	0.3182	0.3500	22
+MacroF1	0.5095
+F1w_avg	0.5659
+Acc    	56.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8422	0.8879	0.8644	553
+Viral  	0.4259	0.3333	0.3740	138
+MacroF1	0.6192
+F1w_avg	0.7665
+Acc    	77.7
+
+03/08/2021 11:04:15 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    0
+03/08/2021 11:04:15 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    1
+03/08/2021 11:04:16 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    2
+03/08/2021 11:04:17 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    3
+03/08/2021 11:04:17 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    4
+03/08/2021 11:04:18 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    5
+03/08/2021 11:04:19 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    6
+03/08/2021 11:04:20 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    7
+03/08/2021 11:04:20 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    8
+03/08/2021 11:04:21 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:    9
+03/08/2021 11:04:22 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   10
+03/08/2021 11:04:22 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   11
+03/08/2021 11:04:23 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   12
+03/08/2021 11:04:24 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   13
+03/08/2021 11:04:24 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   14
+03/08/2021 11:04:25 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   15
+03/08/2021 11:04:26 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   16
+03/08/2021 11:04:27 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   17
+03/08/2021 11:04:27 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   18
+03/08/2021 11:04:28 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   19
+03/08/2021 11:04:29 - INFO - __main__ -   	Stance	EPOCH:  28	MiniBatch:   20
+03/08/2021 11:04:29 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    0
+03/08/2021 11:04:30 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    1
+03/08/2021 11:04:31 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    2
+03/08/2021 11:04:32 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    3
+03/08/2021 11:04:32 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    4
+03/08/2021 11:04:33 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    5
+03/08/2021 11:04:34 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    6
+03/08/2021 11:04:34 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    7
+03/08/2021 11:04:35 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    8
+03/08/2021 11:04:36 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:    9
+03/08/2021 11:04:36 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   10
+03/08/2021 11:04:37 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   11
+03/08/2021 11:04:38 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   12
+03/08/2021 11:04:39 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   13
+03/08/2021 11:04:39 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   14
+03/08/2021 11:04:40 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   15
+03/08/2021 11:04:41 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   16
+03/08/2021 11:04:41 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   17
+03/08/2021 11:04:42 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   18
+03/08/2021 11:04:43 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   19
+03/08/2021 11:04:43 - INFO - __main__ -   	Viral	EPOCH:  28	MiniBatch:   20
+03/08/2021 11:04:44 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:04:45 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:04:45 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:04:46 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:04:46 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7205	0.6044	0.6574	273
+Support	0.5737	0.5343	0.5533	204
+Comment	0.4808	0.6510	0.5531	192
+Queries	0.4167	0.2273	0.2941	22
+MacroF1	0.5145
+F1w_avg	0.5861
+Acc    	58.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8289	0.9114	0.8682	553
+Viral  	0.4096	0.2464	0.3077	138
+MacroF1	0.5880
+F1w_avg	0.7563
+Acc    	77.9
+
+03/08/2021 11:04:46 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    0
+03/08/2021 11:04:47 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    1
+03/08/2021 11:04:47 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    2
+03/08/2021 11:04:48 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    3
+03/08/2021 11:04:49 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    4
+03/08/2021 11:04:50 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    5
+03/08/2021 11:04:50 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    6
+03/08/2021 11:04:51 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    7
+03/08/2021 11:04:52 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    8
+03/08/2021 11:04:52 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:    9
+03/08/2021 11:04:53 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   10
+03/08/2021 11:04:54 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   11
+03/08/2021 11:04:54 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   12
+03/08/2021 11:04:55 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   13
+03/08/2021 11:04:56 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   14
+03/08/2021 11:04:57 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   15
+03/08/2021 11:04:57 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   16
+03/08/2021 11:04:58 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   17
+03/08/2021 11:04:59 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   18
+03/08/2021 11:04:59 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   19
+03/08/2021 11:05:00 - INFO - __main__ -   	Stance	EPOCH:  29	MiniBatch:   20
+03/08/2021 11:05:01 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    0
+03/08/2021 11:05:01 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    1
+03/08/2021 11:05:02 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    2
+03/08/2021 11:05:03 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    3
+03/08/2021 11:05:04 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    4
+03/08/2021 11:05:04 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    5
+03/08/2021 11:05:05 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    6
+03/08/2021 11:05:06 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    7
+03/08/2021 11:05:06 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    8
+03/08/2021 11:05:07 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:    9
+03/08/2021 11:05:08 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   10
+03/08/2021 11:05:08 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   11
+03/08/2021 11:05:09 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   12
+03/08/2021 11:05:10 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   13
+03/08/2021 11:05:11 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   14
+03/08/2021 11:05:11 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   15
+03/08/2021 11:05:12 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   16
+03/08/2021 11:05:13 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   17
+03/08/2021 11:05:13 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   18
+03/08/2021 11:05:14 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   19
+03/08/2021 11:05:15 - INFO - __main__ -   	Viral	EPOCH:  29	MiniBatch:   20
+03/08/2021 11:05:15 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:05:16 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:05:16 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:05:17 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:05:17 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.5714	0.7912	0.6636	273
+Support	0.6015	0.3922	0.4748	204
+Comment	0.5472	0.4531	0.4957	192
+Queries	0.3810	0.3636	0.3721	22
+MacroF1	0.5015
+F1w_avg	0.5519
+Acc    	56.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8342	0.9005	0.8661	553
+Viral  	0.4149	0.2826	0.3362	138
+MacroF1	0.6011
+F1w_avg	0.7603
+Acc    	77.7
+
+03/08/2021 11:05:17 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    0
+03/08/2021 11:05:18 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    1
+03/08/2021 11:05:19 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    2
+03/08/2021 11:05:19 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    3
+03/08/2021 11:05:20 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    4
+03/08/2021 11:05:21 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    5
+03/08/2021 11:05:22 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    6
+03/08/2021 11:05:22 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    7
+03/08/2021 11:05:23 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    8
+03/08/2021 11:05:24 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:    9
+03/08/2021 11:05:24 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   10
+03/08/2021 11:05:25 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   11
+03/08/2021 11:05:26 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   12
+03/08/2021 11:05:27 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   13
+03/08/2021 11:05:27 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   14
+03/08/2021 11:05:28 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   15
+03/08/2021 11:05:29 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   16
+03/08/2021 11:05:29 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   17
+03/08/2021 11:05:30 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   18
+03/08/2021 11:05:31 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   19
+03/08/2021 11:05:31 - INFO - __main__ -   	Stance	EPOCH:  30	MiniBatch:   20
+03/08/2021 11:05:32 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    0
+03/08/2021 11:05:33 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    1
+03/08/2021 11:05:34 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    2
+03/08/2021 11:05:34 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    3
+03/08/2021 11:05:35 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    4
+03/08/2021 11:05:36 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    5
+03/08/2021 11:05:36 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    6
+03/08/2021 11:05:37 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    7
+03/08/2021 11:05:38 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    8
+03/08/2021 11:05:39 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:    9
+03/08/2021 11:05:39 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   10
+03/08/2021 11:05:40 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   11
+03/08/2021 11:05:41 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   12
+03/08/2021 11:05:41 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   13
+03/08/2021 11:05:42 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   14
+03/08/2021 11:05:43 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   15
+03/08/2021 11:05:44 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   16
+03/08/2021 11:05:44 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   17
+03/08/2021 11:05:45 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   18
+03/08/2021 11:05:46 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   19
+03/08/2021 11:05:46 - INFO - __main__ -   	Viral	EPOCH:  30	MiniBatch:   20
+03/08/2021 11:05:47 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:05:48 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:05:48 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:05:48 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:05:49 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7427	0.5604	0.6388	273
+Support	0.4589	0.7108	0.5577	204
+Comment	0.5333	0.4167	0.4678	192
+Queries	0.3684	0.3182	0.3415	22
+MacroF1	0.5015
+F1w_avg	0.5579
+Acc    	55.7
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8331	0.9114	0.8705	553
+Viral  	0.4302	0.2681	0.3304	138
+MacroF1	0.6004
+F1w_avg	0.7626
+Acc    	78.3
+
+03/08/2021 11:05:49 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    0
+03/08/2021 11:05:50 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    1
+03/08/2021 11:05:50 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    2
+03/08/2021 11:05:51 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    3
+03/08/2021 11:05:52 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    4
+03/08/2021 11:05:52 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    5
+03/08/2021 11:05:53 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    6
+03/08/2021 11:05:54 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    7
+03/08/2021 11:05:55 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    8
+03/08/2021 11:05:55 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:    9
+03/08/2021 11:05:56 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   10
+03/08/2021 11:05:57 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   11
+03/08/2021 11:05:57 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   12
+03/08/2021 11:05:58 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   13
+03/08/2021 11:05:59 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   14
+03/08/2021 11:05:59 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   15
+03/08/2021 11:06:00 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   16
+03/08/2021 11:06:01 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   17
+03/08/2021 11:06:02 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   18
+03/08/2021 11:06:02 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   19
+03/08/2021 11:06:03 - INFO - __main__ -   	Stance	EPOCH:  31	MiniBatch:   20
+03/08/2021 11:06:04 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    0
+03/08/2021 11:06:04 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    1
+03/08/2021 11:06:05 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    2
+03/08/2021 11:06:06 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    3
+03/08/2021 11:06:07 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    4
+03/08/2021 11:06:07 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    5
+03/08/2021 11:06:08 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    6
+03/08/2021 11:06:09 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    7
+03/08/2021 11:06:09 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    8
+03/08/2021 11:06:10 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:    9
+03/08/2021 11:06:11 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   10
+03/08/2021 11:06:11 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   11
+03/08/2021 11:06:12 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   12
+03/08/2021 11:06:13 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   13
+03/08/2021 11:06:14 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   14
+03/08/2021 11:06:14 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   15
+03/08/2021 11:06:15 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   16
+03/08/2021 11:06:16 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   17
+03/08/2021 11:06:16 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   18
+03/08/2021 11:06:17 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   19
+03/08/2021 11:06:18 - INFO - __main__ -   	Viral	EPOCH:  31	MiniBatch:   20
+03/08/2021 11:06:18 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:06:19 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:06:19 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:06:20 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:06:20 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6152	0.7436	0.6733	273
+Support	0.6090	0.3971	0.4807	204
+Comment	0.5024	0.5417	0.5213	192
+Queries	0.3810	0.3636	0.3721	22
+MacroF1	0.5119
+F1w_avg	0.5646
+Acc    	57.3
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8339	0.9168	0.8734	553
+Viral  	0.4458	0.2681	0.3348	138
+MacroF1	0.6041
+F1w_avg	0.7658
+Acc    	78.7
+
+03/08/2021 11:06:20 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    0
+03/08/2021 11:06:21 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    1
+03/08/2021 11:06:22 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    2
+03/08/2021 11:06:22 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    3
+03/08/2021 11:06:23 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    4
+03/08/2021 11:06:24 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    5
+03/08/2021 11:06:25 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    6
+03/08/2021 11:06:25 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    7
+03/08/2021 11:06:26 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    8
+03/08/2021 11:06:27 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:    9
+03/08/2021 11:06:27 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   10
+03/08/2021 11:06:28 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   11
+03/08/2021 11:06:29 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   12
+03/08/2021 11:06:29 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   13
+03/08/2021 11:06:30 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   14
+03/08/2021 11:06:31 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   15
+03/08/2021 11:06:32 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   16
+03/08/2021 11:06:32 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   17
+03/08/2021 11:06:33 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   18
+03/08/2021 11:06:34 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   19
+03/08/2021 11:06:34 - INFO - __main__ -   	Stance	EPOCH:  32	MiniBatch:   20
+03/08/2021 11:06:35 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    0
+03/08/2021 11:06:36 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    1
+03/08/2021 11:06:37 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    2
+03/08/2021 11:06:37 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    3
+03/08/2021 11:06:38 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    4
+03/08/2021 11:06:39 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    5
+03/08/2021 11:06:39 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    6
+03/08/2021 11:06:40 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    7
+03/08/2021 11:06:41 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    8
+03/08/2021 11:06:41 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:    9
+03/08/2021 11:06:42 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   10
+03/08/2021 11:06:43 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   11
+03/08/2021 11:06:43 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   12
+03/08/2021 11:06:44 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   13
+03/08/2021 11:06:45 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   14
+03/08/2021 11:06:46 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   15
+03/08/2021 11:06:46 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   16
+03/08/2021 11:06:47 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   17
+03/08/2021 11:06:48 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   18
+03/08/2021 11:06:48 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   19
+03/08/2021 11:06:49 - INFO - __main__ -   	Viral	EPOCH:  32	MiniBatch:   20
+03/08/2021 11:06:50 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:06:50 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:06:51 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:06:51 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:06:51 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6471	0.7253	0.6839	273
+Support	0.5890	0.4706	0.5232	204
+Comment	0.5121	0.5521	0.5313	192
+Queries	0.4000	0.2727	0.3243	22
+MacroF1	0.5157
+F1w_avg	0.5826
+Acc    	58.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8383	0.9096	0.8725	553
+Viral  	0.4505	0.2971	0.3581	138
+MacroF1	0.6153
+F1w_avg	0.7698
+Acc    	78.7
+
+03/08/2021 11:06:52 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    0
+03/08/2021 11:06:52 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    1
+03/08/2021 11:06:53 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    2
+03/08/2021 11:06:54 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    3
+03/08/2021 11:06:54 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    4
+03/08/2021 11:06:55 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    5
+03/08/2021 11:06:56 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    6
+03/08/2021 11:06:57 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    7
+03/08/2021 11:06:57 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    8
+03/08/2021 11:06:58 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:    9
+03/08/2021 11:06:59 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   10
+03/08/2021 11:06:59 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   11
+03/08/2021 11:07:00 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   12
+03/08/2021 11:07:01 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   13
+03/08/2021 11:07:02 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   14
+03/08/2021 11:07:02 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   15
+03/08/2021 11:07:03 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   16
+03/08/2021 11:07:04 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   17
+03/08/2021 11:07:04 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   18
+03/08/2021 11:07:05 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   19
+03/08/2021 11:07:06 - INFO - __main__ -   	Stance	EPOCH:  33	MiniBatch:   20
+03/08/2021 11:07:06 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    0
+03/08/2021 11:07:07 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    1
+03/08/2021 11:07:08 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    2
+03/08/2021 11:07:09 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    3
+03/08/2021 11:07:09 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    4
+03/08/2021 11:07:10 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    5
+03/08/2021 11:07:11 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    6
+03/08/2021 11:07:11 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    7
+03/08/2021 11:07:12 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    8
+03/08/2021 11:07:13 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:    9
+03/08/2021 11:07:13 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   10
+03/08/2021 11:07:14 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   11
+03/08/2021 11:07:15 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   12
+03/08/2021 11:07:16 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   13
+03/08/2021 11:07:16 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   14
+03/08/2021 11:07:17 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   15
+03/08/2021 11:07:18 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   16
+03/08/2021 11:07:18 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   17
+03/08/2021 11:07:19 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   18
+03/08/2021 11:07:20 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   19
+03/08/2021 11:07:21 - INFO - __main__ -   	Viral	EPOCH:  33	MiniBatch:   20
+03/08/2021 11:07:21 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:07:22 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:07:22 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:07:23 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:07:23 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7244	0.5971	0.6546	273
+Support	0.4864	0.6127	0.5423	204
+Comment	0.5053	0.5000	0.5026	192
+Queries	0.3684	0.3182	0.3415	22
+MacroF1	0.5102
+F1w_avg	0.5693
+Acc    	56.6
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8295	0.9060	0.8660	553
+Viral  	0.4023	0.2536	0.3111	138
+MacroF1	0.5886
+F1w_avg	0.7552
+Acc    	77.6
+
+03/08/2021 11:07:23 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    0
+03/08/2021 11:07:24 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    1
+03/08/2021 11:07:25 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    2
+03/08/2021 11:07:25 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    3
+03/08/2021 11:07:26 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    4
+03/08/2021 11:07:27 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    5
+03/08/2021 11:07:27 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    6
+03/08/2021 11:07:28 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    7
+03/08/2021 11:07:29 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    8
+03/08/2021 11:07:29 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:    9
+03/08/2021 11:07:30 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   10
+03/08/2021 11:07:31 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   11
+03/08/2021 11:07:32 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   12
+03/08/2021 11:07:32 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   13
+03/08/2021 11:07:33 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   14
+03/08/2021 11:07:34 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   15
+03/08/2021 11:07:34 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   16
+03/08/2021 11:07:35 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   17
+03/08/2021 11:07:36 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   18
+03/08/2021 11:07:37 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   19
+03/08/2021 11:07:37 - INFO - __main__ -   	Stance	EPOCH:  34	MiniBatch:   20
+03/08/2021 11:07:38 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    0
+03/08/2021 11:07:39 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    1
+03/08/2021 11:07:39 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    2
+03/08/2021 11:07:40 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    3
+03/08/2021 11:07:41 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    4
+03/08/2021 11:07:41 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    5
+03/08/2021 11:07:42 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    6
+03/08/2021 11:07:43 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    7
+03/08/2021 11:07:44 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    8
+03/08/2021 11:07:44 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:    9
+03/08/2021 11:07:45 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   10
+03/08/2021 11:07:46 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   11
+03/08/2021 11:07:46 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   12
+03/08/2021 11:07:47 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   13
+03/08/2021 11:07:48 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   14
+03/08/2021 11:07:48 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   15
+03/08/2021 11:07:49 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   16
+03/08/2021 11:07:50 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   17
+03/08/2021 11:07:51 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   18
+03/08/2021 11:07:51 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   19
+03/08/2021 11:07:52 - INFO - __main__ -   	Viral	EPOCH:  34	MiniBatch:   20
+03/08/2021 11:07:53 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:07:53 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:07:54 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:07:54 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:07:54 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6523	0.7216	0.6852	273
+Support	0.6242	0.4559	0.5269	204
+Comment	0.5000	0.5781	0.5362	192
+Queries	0.3333	0.2727	0.3000	22
+MacroF1	0.5121
+F1w_avg	0.5848
+Acc    	58.9
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8341	0.9277	0.8784	553
+Viral  	0.4737	0.2609	0.3364	138
+MacroF1	0.6074
+F1w_avg	0.7702
+Acc    	79.5
+
+03/08/2021 11:07:55 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    0
+03/08/2021 11:07:55 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    1
+03/08/2021 11:07:56 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    2
+03/08/2021 11:07:57 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    3
+03/08/2021 11:07:57 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    4
+03/08/2021 11:07:58 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    5
+03/08/2021 11:07:59 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    6
+03/08/2021 11:07:59 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    7
+03/08/2021 11:08:00 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    8
+03/08/2021 11:08:01 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:    9
+03/08/2021 11:08:02 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   10
+03/08/2021 11:08:02 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   11
+03/08/2021 11:08:03 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   12
+03/08/2021 11:08:04 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   13
+03/08/2021 11:08:04 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   14
+03/08/2021 11:08:05 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   15
+03/08/2021 11:08:06 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   16
+03/08/2021 11:08:06 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   17
+03/08/2021 11:08:07 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   18
+03/08/2021 11:08:08 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   19
+03/08/2021 11:08:09 - INFO - __main__ -   	Stance	EPOCH:  35	MiniBatch:   20
+03/08/2021 11:08:09 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    0
+03/08/2021 11:08:10 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    1
+03/08/2021 11:08:11 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    2
+03/08/2021 11:08:11 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    3
+03/08/2021 11:08:12 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    4
+03/08/2021 11:08:13 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    5
+03/08/2021 11:08:14 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    6
+03/08/2021 11:08:14 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    7
+03/08/2021 11:08:15 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    8
+03/08/2021 11:08:16 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:    9
+03/08/2021 11:08:16 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   10
+03/08/2021 11:08:17 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   11
+03/08/2021 11:08:18 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   12
+03/08/2021 11:08:18 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   13
+03/08/2021 11:08:19 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   14
+03/08/2021 11:08:20 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   15
+03/08/2021 11:08:21 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   16
+03/08/2021 11:08:21 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   17
+03/08/2021 11:08:22 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   18
+03/08/2021 11:08:23 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   19
+03/08/2021 11:08:23 - INFO - __main__ -   	Viral	EPOCH:  35	MiniBatch:   20
+03/08/2021 11:08:24 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:08:25 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:08:25 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:08:25 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:08:26 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6278	0.7289	0.6746	273
+Support	0.5813	0.4559	0.5110	204
+Comment	0.5228	0.5365	0.5296	192
+Queries	0.3529	0.2727	0.3077	22
+MacroF1	0.5057
+F1w_avg	0.5743
+Acc    	58.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8381	0.8987	0.8674	553
+Viral  	0.4286	0.3043	0.3559	138
+MacroF1	0.6116
+F1w_avg	0.7652
+Acc    	78.0
+
+03/08/2021 11:08:26 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    0
+03/08/2021 11:08:27 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    1
+03/08/2021 11:08:27 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    2
+03/08/2021 11:08:28 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    3
+03/08/2021 11:08:29 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    4
+03/08/2021 11:08:29 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    5
+03/08/2021 11:08:30 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    6
+03/08/2021 11:08:31 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    7
+03/08/2021 11:08:32 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    8
+03/08/2021 11:08:32 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:    9
+03/08/2021 11:08:33 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   10
+03/08/2021 11:08:34 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   11
+03/08/2021 11:08:34 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   12
+03/08/2021 11:08:35 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   13
+03/08/2021 11:08:36 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   14
+03/08/2021 11:08:37 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   15
+03/08/2021 11:08:37 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   16
+03/08/2021 11:08:38 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   17
+03/08/2021 11:08:39 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   18
+03/08/2021 11:08:39 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   19
+03/08/2021 11:08:40 - INFO - __main__ -   	Stance	EPOCH:  36	MiniBatch:   20
+03/08/2021 11:08:41 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    0
+03/08/2021 11:08:42 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    1
+03/08/2021 11:08:42 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    2
+03/08/2021 11:08:43 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    3
+03/08/2021 11:08:44 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    4
+03/08/2021 11:08:44 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    5
+03/08/2021 11:08:45 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    6
+03/08/2021 11:08:46 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    7
+03/08/2021 11:08:46 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    8
+03/08/2021 11:08:47 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:    9
+03/08/2021 11:08:48 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   10
+03/08/2021 11:08:49 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   11
+03/08/2021 11:08:49 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   12
+03/08/2021 11:08:50 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   13
+03/08/2021 11:08:51 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   14
+03/08/2021 11:08:51 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   15
+03/08/2021 11:08:52 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   16
+03/08/2021 11:08:53 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   17
+03/08/2021 11:08:54 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   18
+03/08/2021 11:08:54 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   19
+03/08/2021 11:08:55 - INFO - __main__ -   	Viral	EPOCH:  36	MiniBatch:   20
+03/08/2021 11:08:56 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:08:56 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:08:57 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:08:57 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:08:57 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.7049	0.6300	0.6654	273
+Support	0.5142	0.5343	0.5240	204
+Comment	0.4888	0.5677	0.5253	192
+Queries	0.4167	0.2273	0.2941	22
+MacroF1	0.5022
+F1w_avg	0.5729
+Acc    	57.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8458	0.8825	0.8637	553
+Viral  	0.4298	0.3551	0.3889	138
+MacroF1	0.6263
+F1w_avg	0.7689
+Acc    	77.7
+
+03/08/2021 11:08:58 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    0
+03/08/2021 11:08:58 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    1
+03/08/2021 11:08:59 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    2
+03/08/2021 11:09:00 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    3
+03/08/2021 11:09:00 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    4
+03/08/2021 11:09:01 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    5
+03/08/2021 11:09:02 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    6
+03/08/2021 11:09:02 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    7
+03/08/2021 11:09:03 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    8
+03/08/2021 11:09:04 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:    9
+03/08/2021 11:09:05 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   10
+03/08/2021 11:09:05 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   11
+03/08/2021 11:09:06 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   12
+03/08/2021 11:09:07 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   13
+03/08/2021 11:09:07 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   14
+03/08/2021 11:09:08 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   15
+03/08/2021 11:09:09 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   16
+03/08/2021 11:09:09 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   17
+03/08/2021 11:09:10 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   18
+03/08/2021 11:09:11 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   19
+03/08/2021 11:09:12 - INFO - __main__ -   	Stance	EPOCH:  37	MiniBatch:   20
+03/08/2021 11:09:12 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    0
+03/08/2021 11:09:13 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    1
+03/08/2021 11:09:14 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    2
+03/08/2021 11:09:14 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    3
+03/08/2021 11:09:15 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    4
+03/08/2021 11:09:16 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    5
+03/08/2021 11:09:17 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    6
+03/08/2021 11:09:17 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    7
+03/08/2021 11:09:18 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    8
+03/08/2021 11:09:19 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:    9
+03/08/2021 11:09:19 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   10
+03/08/2021 11:09:20 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   11
+03/08/2021 11:09:21 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   12
+03/08/2021 11:09:22 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   13
+03/08/2021 11:09:22 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   14
+03/08/2021 11:09:23 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   15
+03/08/2021 11:09:24 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   16
+03/08/2021 11:09:24 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   17
+03/08/2021 11:09:25 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   18
+03/08/2021 11:09:26 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   19
+03/08/2021 11:09:26 - INFO - __main__ -   	Viral	EPOCH:  37	MiniBatch:   20
+03/08/2021 11:09:27 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/08/2021 11:09:28 - INFO - __main__ -   	Testing dev Minibatch:    1
+03/08/2021 11:09:28 - INFO - __main__ -   	Testing dev Minibatch:    2
+03/08/2021 11:09:29 - INFO - __main__ -   	Testing dev Minibatch:    3
+03/08/2021 11:09:29 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6667	0.6886	0.6775	273
+Support	0.5477	0.5343	0.5409	204
+Comment	0.5183	0.5156	0.5170	192
+Queries	0.3158	0.2727	0.2927	22
+MacroF1	0.5070
+F1w_avg	0.5803
+Acc    	58.2
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8428	0.8626	0.8525	553
+Viral  	0.3920	0.3551	0.3726	138
+MacroF1	0.6126
+F1w_avg	0.7567
+Acc    	76.1
+
+03/08/2021 11:09:29 - INFO - __main__ -   No improvements in F1 for 20 epochs
+03/08/2021 11:09:31 - INFO - __main__ -   	Testing test Minibatch:    0
+03/08/2021 11:09:31 - INFO - __main__ -   	Testing test Minibatch:    1
+03/08/2021 11:09:32 - INFO - __main__ -   	Testing test Minibatch:    2
+03/08/2021 11:09:32 - INFO - __main__ -   	Testing test Minibatch:    3
+03/08/2021 11:09:33 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.6842	0.6047	0.6420	258
+Support	0.5976	0.4509	0.5140	224
+Comment	0.4301	0.6417	0.5150	187
+Queries	0.5625	0.3913	0.4615	23
+MacroF1	0.5331
+F1w_avg	0.5602
+Acc    	55.8
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8644	0.8644	0.8644	553
+Viral  	0.4604	0.4604	0.4604	139
+MacroF1	0.6624
+F1w_avg	0.7832
+Acc    	78.3
+
+03/08/2021 11:09:33 - INFO - __main__ -   Time taken: 0h 20m 18s

@@ -13,6 +13,16 @@ import numpy as np
 import torch
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, WeightedRandomSampler, SequentialSampler
 
+def print_df_row(dataframe=None, cols=[], index=-1):
+    if index == -1:
+        datalen = len(dataframe)
+        index = np.random.randint(0,datalen)
+    
+    print('index %d' % index)
+    for each_col in cols:
+        print(each_col + '\n' + str(dataframe.iloc[index][each_col]))
+    return
+
 def dataframe_2_dataloader(dataframe, 
                            batch_size=64,
                            randomize=False,

@@ -213,7 +213,7 @@ class my_ModelE0(BertPreTrainedModel):
 
         return outputs  # logits, (hidden_states), (attentions)
 
-class my_Bertweet(nn.Module):
+class my_Bertweet(nn.Module):       # used in main_multitask.py
     def __init__(self, num_labels, dropout):
         super(my_Bertweet, self).__init__()
         self.num_labels = num_labels
@@ -240,7 +240,7 @@ class my_Bertweet(nn.Module):
 
         return outputs  # logits, (hidden_states), (attentions)
     
-class mtt_Bertweet(nn.Module):
+class mtt_Bertweet(nn.Module):      # used in main_multitask.py
     ''' For multitask. Viral and stance prediction '''
     def __init__(self, num_labels, dropout):
         super(mtt_Bertweet, self).__init__()

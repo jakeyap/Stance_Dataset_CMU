@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar  2 15:39:18 2021
-for encoding tweets to go into bertweet pairwise
+Created on Mon Mar  8 16:59:47 2021
+same as tokenizers_v4, except does things solo. not pairwise
 @author: jakeyap
 """
 
@@ -24,17 +24,10 @@ torch.manual_seed(0) # for fixing RNG seed
 tokenizer = AutoTokenizer.from_pretrained("vinai/bertweet-base",
                                           normalization=True)
 
-def count_boundary(data, percentile_threshold=10):
-    ''' 
-    Goes thru data, figure out decision boundary to split the data 
-    such that the data is divided into threshold and 1-threshold portions
-    '''
-    threshold = (np.percentile(data, percentile_threshold))
-    print("%.1f \t %.1f" % (percentile_threshold, threshold))
-    return threshold
 
-def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128, 
-                               bertweet=False, incl_meta=True):    
+
+def tokenize_and_encode_pandas_pair(dataframe,stopindex=1e9,max_length=128, 
+                                    bertweet=False, incl_meta=True):    
     """
     Tokenize and encode the text into vectors, then stick inside dataframe
 
@@ -64,16 +57,8 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128,
     
     counter = 0
     for i in range(len(dataframe)):
-        try:
-            #tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['clean_target_text'])
-            #tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['clean_response_text'])
-            text_parent= dataframe.iloc[i]['clean_target_text']
-            text_tweet = dataframe.iloc[i]['clean_response_text']
-        except Exception:
-            #tokenized_parent= tokenizer.tokenize(dataframe.iloc[i]['target_text'])
-            #tokenized_tweet = tokenizer.tokenize(dataframe.iloc[i]['response_text'])
-            text_parent= dataframe.iloc[i]['target_text']
-            text_tweet = dataframe.iloc[i]['response_text']
+        text_parent= dataframe.iloc[i]['target_text']
+        text_tweet = dataframe.iloc[i]['response_text']
         
         if incl_meta:
             interaction = dataframe.iloc[i]['interaction_type']     # reply or quote
@@ -124,6 +109,7 @@ def tokenize_and_encode_pandas(dataframe,stopindex=1e9,max_length=128,
         print(e)
     dataframe.insert(dataframe.shape[1],'interaction_type_num', interaction_types)
     return dataframe
+
 
 
 def json_2_df(folder, fname):
@@ -189,7 +175,7 @@ if __name__ == '__main__':
     
     # drop tweets with missing metadata. remaining data length 3458
     df = df.dropna()
-    df = tokenize_and_encode_pandas(df, max_length=128, bertweet=True, incl_meta=True)
+    df = tokenize_and_encode_pandas_pair(df, max_length=128, bertweet=True, incl_meta=True)
     
     datalength0 = df.shape[0]
     train_index = round (TRAINING_RATIO * datalength0)
