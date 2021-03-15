@@ -29,3 +29,15 @@ For the TRAINING SET, if you want to split virality based on RETWEETS, the thres
 30% : 24        90% : 4260
 50% : 128.5
 ===========================================
+train_set_128_individual_bertweet.bin (length 2761)
+test_set_128_individual_bertweet.bin (length 690)
+
+When this data was hydrated, there were additional tweets that were removed. 
+
+These files are the stance dataset, but with some major changes from previous files. 
+1. Tweets are encoded separately instead of pairwise
+2. Rows with missing txt are removed.
+3. Includes extra data about the users (username and followers_count)
+
+Rows which have their meta data missing about the target post on twitter are also removed.
+For rows with missing response tweet meta data, they are filled in with "unknown user" for username and 0 for follower count. If the root tweet's meta data is missing, the post is dropped.

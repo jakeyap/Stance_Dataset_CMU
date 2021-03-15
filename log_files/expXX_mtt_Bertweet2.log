@@ -1,0 +1,722 @@
+03/15/2021 20:42:28 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/15/2021 20:42:28 - INFO - __main__ -   ======== mtt_Bertweet2 =========
+03/15/2021 20:42:28 - INFO - __main__ -   ===== Hyperparameters ======
+03/15/2021 20:42:28 - INFO - __main__ -   ('batch_train', 3)
+03/15/2021 20:42:28 - INFO - __main__ -   ('batch_test', 20)
+03/15/2021 20:42:28 - INFO - __main__ -   ('epochs', 2)
+03/15/2021 20:42:28 - INFO - __main__ -   ('learning_rate', 1e-05)
+03/15/2021 20:42:28 - INFO - __main__ -   ('optimizer', 'adam')
+03/15/2021 20:42:28 - INFO - __main__ -   ('do_train', True)
+03/15/2021 20:42:28 - INFO - __main__ -   ('do_test', False)
+03/15/2021 20:42:28 - INFO - __main__ -   ('model_name', 'mtt_Bertweet2')
+03/15/2021 20:42:28 - INFO - __main__ -   ('exp_name', 'expXX')
+03/15/2021 20:42:28 - INFO - __main__ -   ('train_data', './data/train_set_128_individual_bertweet.bin')
+03/15/2021 20:42:28 - INFO - __main__ -   ('test_data', './data/test_set_128_individual_bertweet.bin')
+03/15/2021 20:42:28 - INFO - __main__ -   ('k_folds', 2)
+03/15/2021 20:42:28 - INFO - __main__ -   ('folds2run', 1)
+03/15/2021 20:42:28 - INFO - __main__ -   ('debug', True)
+03/15/2021 20:42:28 - INFO - __main__ -   ('log_interval', 1)
+03/15/2021 20:42:28 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/15/2021 20:42:28 - INFO - __main__ -   ('w_sample', True)
+03/15/2021 20:42:28 - INFO - __main__ -   ('pretrain_model', '')
+03/15/2021 20:42:28 - INFO - __main__ -   ('epochs2giveup', 20)
+03/15/2021 20:42:28 - INFO - __main__ -   ('dropout', 0.1)
+03/15/2021 20:42:28 - INFO - __main__ -   ('layers', 2)
+03/15/2021 20:42:28 - INFO - __main__ -   ('viral_attr', 'likes')
+03/15/2021 20:42:28 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/15/2021 20:42:28 - INFO - __main__ -   ('weight_attr', 'stance')
+03/15/2021 20:42:28 - INFO - __main__ -   ('task', 'multi')
+03/15/2021 20:42:28 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/15/2021 20:42:28 - INFO - __main__ -   ------------------ Getting model -------------------
+03/15/2021 20:42:32 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/15/2021 20:42:33 - INFO - __main__ -   ---------- Running a test before training ----------
+03/15/2021 20:42:33 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+03/15/2021 20:42:33 - INFO - __main__ -   -------------- Running KFOLD 1 / 2 ---------------
+03/15/2021 20:42:33 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+03/15/2021 20:42:33 - INFO - __main__ -   class:    0 	count:    4
+03/15/2021 20:42:33 - INFO - __main__ -   class:    1 	count:    5
+03/15/2021 20:42:33 - INFO - __main__ -   class:    2 	count:    9
+03/15/2021 20:42:33 - INFO - __main__ -   class:    3 	count:    2
+03/15/2021 20:42:33 - INFO - __main__ -   ---------------- Starting training -----------------
+03/15/2021 20:42:33 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    0
+03/15/2021 20:42:33 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    1
+03/15/2021 20:42:33 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    2
+03/15/2021 20:42:33 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    3
+03/15/2021 20:42:34 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    4
+03/15/2021 20:42:34 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    5
+03/15/2021 20:42:34 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    6
+03/15/2021 20:42:34 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:42:34 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2778	1.0000	0.4348	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.4000	0.5714	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.2516
+F1w_avg	0.2516
+Acc    	35.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:42:34 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:42:39 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    0
+03/15/2021 20:42:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    1
+03/15/2021 20:42:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    2
+03/15/2021 20:42:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    3
+03/15/2021 20:42:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    4
+03/15/2021 20:42:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    5
+03/15/2021 20:42:40 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    6
+03/15/2021 20:42:40 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:42:41 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:42:41 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:42:47 - INFO - __main__ -   ---------- Running a test after training  ----------
+03/15/2021 20:42:47 - INFO - __main__ -   Original tweet index: 1
+03/15/2021 20:42:47 - INFO - __main__ -   Original head tweet: <s> General Terms </s> Adam Parkhomenko </s> Fact check : “ The DNC servers were never missing. The DNC provided the FBI with a copy of their server... We rate this statement False. ” HTTPURL </s>
+03/15/2021 20:42:47 - INFO - __main__ -   Original tail tweet: <s> General Terms </s> unknown user </s> @USER Comey testified UNDER OATH that The FBI asked multiple times to examine the DNC server, they never examined the server! They relied on crowd strike's assessment... so WHO'S LYING :lying_face:?? </s>
+03/15/2021 20:42:47 - INFO - __main__ -   Original Stance Label:  Support
+03/15/2021 20:42:47 - INFO - __main__ -   Predicted Stance Label: Denial
+03/15/2021 20:42:47 - INFO - __main__ -   Original Viral Label:   0
+03/15/2021 20:42:47 - INFO - __main__ -   Predicted Viral Label:  0
+03/15/2021 20:42:47 - INFO - __main__ -   	Testing test Minibatch:    0
+03/15/2021 20:42:47 - INFO - __main__ -   	Testing test Minibatch:    1
+03/15/2021 20:42:48 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:42:48 - INFO - __main__ -   Time taken: 0h 0m 19s
+03/15/2021 20:42:48 - INFO - __main__ -   
+============ Fold 0 results ============
+------------Dev set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+------------Test set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:42:48 - INFO - __main__ -   
+Perf across folds
+avg_f1_stance	0.2246
+std_f1_stance	0.0000
+avg_f1_viral	0.5429
+std_f1_viral	0.0000
+avg acc_stance	0.3250
+avg_acc_viral	0.8000
+
+03/15/2021 20:42:48 - INFO - __main__ -   Time taken: 0h 0m 19s
+03/15/2021 20:45:09 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/15/2021 20:45:09 - INFO - __main__ -   ======== mtt_Bertweet2 =========
+03/15/2021 20:45:09 - INFO - __main__ -   ===== Hyperparameters ======
+03/15/2021 20:45:09 - INFO - __main__ -   ('batch_train', 3)
+03/15/2021 20:45:09 - INFO - __main__ -   ('batch_test', 20)
+03/15/2021 20:45:09 - INFO - __main__ -   ('epochs', 2)
+03/15/2021 20:45:09 - INFO - __main__ -   ('learning_rate', 1e-05)
+03/15/2021 20:45:09 - INFO - __main__ -   ('optimizer', 'adam')
+03/15/2021 20:45:09 - INFO - __main__ -   ('do_train', True)
+03/15/2021 20:45:09 - INFO - __main__ -   ('do_test', False)
+03/15/2021 20:45:09 - INFO - __main__ -   ('model_name', 'mtt_Bertweet2')
+03/15/2021 20:45:09 - INFO - __main__ -   ('exp_name', 'expXX')
+03/15/2021 20:45:09 - INFO - __main__ -   ('train_data', './data/train_set_128_individual_bertweet.bin')
+03/15/2021 20:45:09 - INFO - __main__ -   ('test_data', './data/test_set_128_individual_bertweet.bin')
+03/15/2021 20:45:09 - INFO - __main__ -   ('k_folds', 2)
+03/15/2021 20:45:09 - INFO - __main__ -   ('folds2run', 1)
+03/15/2021 20:45:09 - INFO - __main__ -   ('debug', True)
+03/15/2021 20:45:09 - INFO - __main__ -   ('log_interval', 1)
+03/15/2021 20:45:09 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/15/2021 20:45:09 - INFO - __main__ -   ('w_sample', True)
+03/15/2021 20:45:09 - INFO - __main__ -   ('pretrain_model', '')
+03/15/2021 20:45:09 - INFO - __main__ -   ('epochs2giveup', 20)
+03/15/2021 20:45:09 - INFO - __main__ -   ('dropout', 0.1)
+03/15/2021 20:45:09 - INFO - __main__ -   ('layers', 2)
+03/15/2021 20:45:09 - INFO - __main__ -   ('viral_attr', 'likes')
+03/15/2021 20:45:09 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/15/2021 20:45:09 - INFO - __main__ -   ('weight_attr', 'stance')
+03/15/2021 20:45:09 - INFO - __main__ -   ('task', 'multi')
+03/15/2021 20:45:09 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/15/2021 20:45:09 - INFO - __main__ -   ------------------ Getting model -------------------
+03/15/2021 20:45:13 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/15/2021 20:45:13 - INFO - __main__ -   ---------- Running a test before training ----------
+03/15/2021 20:45:13 - INFO - __main__ -   0
+03/15/2021 20:45:13 - INFO - __main__ -   Original tweet index: 0
+03/15/2021 20:45:13 - INFO - __main__ -   Original head tweet: <s> Santa Fe Shooting </s> John Loudon </s> Retweet if you're tired of all the #FakeNews </s>
+03/15/2021 20:45:13 - INFO - __main__ -   Original tail tweet: <s> Santa Fe Shooting </s> unknown user </s> @USER @USER I'm tired of the #NRA spouting fake news every minute! </s>
+03/15/2021 20:45:13 - INFO - __main__ -   Original Stance Label:  Comment
+03/15/2021 20:45:13 - INFO - __main__ -   Predicted Stance Label: Denial
+03/15/2021 20:45:13 - INFO - __main__ -   Original Viral Label:   0
+03/15/2021 20:45:13 - INFO - __main__ -   Predicted Viral Label:  0
+03/15/2021 20:45:13 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+03/15/2021 20:45:13 - INFO - __main__ -   -------------- Running KFOLD 1 / 2 ---------------
+03/15/2021 20:45:13 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+03/15/2021 20:45:13 - INFO - __main__ -   class:    0 	count:    4
+03/15/2021 20:45:13 - INFO - __main__ -   class:    1 	count:    5
+03/15/2021 20:45:13 - INFO - __main__ -   class:    2 	count:    9
+03/15/2021 20:45:13 - INFO - __main__ -   class:    3 	count:    2
+03/15/2021 20:45:13 - INFO - __main__ -   ---------------- Starting training -----------------
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    0
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    1
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    2
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    3
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    4
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    5
+03/15/2021 20:45:14 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    6
+03/15/2021 20:45:14 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:45:15 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2778	1.0000	0.4348	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.4000	0.5714	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.2516
+F1w_avg	0.2516
+Acc    	35.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:45:15 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:45:19 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    0
+03/15/2021 20:45:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    1
+03/15/2021 20:45:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    2
+03/15/2021 20:45:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    3
+03/15/2021 20:45:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    4
+03/15/2021 20:45:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    5
+03/15/2021 20:45:20 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    6
+03/15/2021 20:45:20 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:45:21 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:45:21 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:45:27 - INFO - __main__ -   ---------- Running a test after training  ----------
+03/15/2021 20:45:27 - INFO - __main__ -   30
+03/15/2021 20:45:27 - INFO - __main__ -   	Testing test Minibatch:    0
+03/15/2021 20:45:27 - INFO - __main__ -   	Testing test Minibatch:    1
+03/15/2021 20:45:27 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:45:27 - INFO - __main__ -   Time taken: 0h 0m 18s
+03/15/2021 20:45:27 - INFO - __main__ -   
+============ Fold 0 results ============
+------------Dev set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+------------Test set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:45:27 - INFO - __main__ -   
+Perf across folds
+avg_f1_stance	0.2246
+std_f1_stance	0.0000
+avg_f1_viral	0.5429
+std_f1_viral	0.0000
+avg acc_stance	0.3250
+avg_acc_viral	0.8000
+
+03/15/2021 20:45:27 - INFO - __main__ -   Time taken: 0h 0m 18s
+03/15/2021 20:47:07 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/15/2021 20:47:07 - INFO - __main__ -   ======== mtt_Bertweet2 =========
+03/15/2021 20:47:07 - INFO - __main__ -   ===== Hyperparameters ======
+03/15/2021 20:47:07 - INFO - __main__ -   ('batch_train', 3)
+03/15/2021 20:47:07 - INFO - __main__ -   ('batch_test', 20)
+03/15/2021 20:47:07 - INFO - __main__ -   ('epochs', 2)
+03/15/2021 20:47:07 - INFO - __main__ -   ('learning_rate', 1e-05)
+03/15/2021 20:47:07 - INFO - __main__ -   ('optimizer', 'adam')
+03/15/2021 20:47:07 - INFO - __main__ -   ('do_train', True)
+03/15/2021 20:47:07 - INFO - __main__ -   ('do_test', False)
+03/15/2021 20:47:07 - INFO - __main__ -   ('model_name', 'mtt_Bertweet2')
+03/15/2021 20:47:07 - INFO - __main__ -   ('exp_name', 'expXX')
+03/15/2021 20:47:07 - INFO - __main__ -   ('train_data', './data/train_set_128_individual_bertweet.bin')
+03/15/2021 20:47:07 - INFO - __main__ -   ('test_data', './data/test_set_128_individual_bertweet.bin')
+03/15/2021 20:47:07 - INFO - __main__ -   ('k_folds', 2)
+03/15/2021 20:47:07 - INFO - __main__ -   ('folds2run', 1)
+03/15/2021 20:47:07 - INFO - __main__ -   ('debug', True)
+03/15/2021 20:47:07 - INFO - __main__ -   ('log_interval', 1)
+03/15/2021 20:47:07 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/15/2021 20:47:07 - INFO - __main__ -   ('w_sample', True)
+03/15/2021 20:47:07 - INFO - __main__ -   ('pretrain_model', '')
+03/15/2021 20:47:07 - INFO - __main__ -   ('epochs2giveup', 20)
+03/15/2021 20:47:07 - INFO - __main__ -   ('dropout', 0.1)
+03/15/2021 20:47:07 - INFO - __main__ -   ('layers', 2)
+03/15/2021 20:47:07 - INFO - __main__ -   ('viral_attr', 'likes')
+03/15/2021 20:47:07 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/15/2021 20:47:07 - INFO - __main__ -   ('weight_attr', 'stance')
+03/15/2021 20:47:07 - INFO - __main__ -   ('task', 'multi')
+03/15/2021 20:47:07 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/15/2021 20:47:07 - INFO - __main__ -   ------------------ Getting model -------------------
+03/15/2021 20:47:11 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/15/2021 20:47:11 - INFO - __main__ -   ---------- Running a test before training ----------
+03/15/2021 20:47:11 - INFO - __main__ -   20
+03/15/2021 20:47:12 - INFO - __main__ -   Original tweet index: 20
+03/15/2021 20:47:12 - INFO - __main__ -   Original head tweet: <s> Student Marches </s> Dana Loesch </s> It's unproductive and disingenuous to smear millions of innocent American parents as “ child murderers ” or “ terrorists ” simply because their choice of protecting their families is different from yours. </s>
+03/15/2021 20:47:12 - INFO - __main__ -   Original tail tweet: <s> Student Marches </s> :SOS_button: SavannahBayBVI #ProsecuteTrump #SaveDemocracy </s> @USER @USER @USER @USER #LockDanaLoeschUp She is spewing hatred and lies. No more Psychological Warfare from the NRA! This ISN'T 1776! STOP SPEWING FEAR AND DOUBT. YOU CREATE THE PROBLEM. YOU ARE THE PROBLEM! THIS IS 2018 WE DON'T LIVE IN THE WILDERNESS! HTTPURL </s>
+03/15/2021 20:47:12 - INFO - __main__ -   Original Stance Label:  Denial
+03/15/2021 20:47:12 - INFO - __main__ -   Predicted Stance Label: Denial
+03/15/2021 20:47:12 - INFO - __main__ -   Original Viral Label:   1
+03/15/2021 20:47:12 - INFO - __main__ -   Predicted Viral Label:  0
+03/15/2021 20:47:12 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+03/15/2021 20:47:12 - INFO - __main__ -   -------------- Running KFOLD 1 / 2 ---------------
+03/15/2021 20:47:12 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+03/15/2021 20:47:12 - INFO - __main__ -   class:    0 	count:    4
+03/15/2021 20:47:12 - INFO - __main__ -   class:    1 	count:    5
+03/15/2021 20:47:12 - INFO - __main__ -   class:    2 	count:    9
+03/15/2021 20:47:12 - INFO - __main__ -   class:    3 	count:    2
+03/15/2021 20:47:12 - INFO - __main__ -   ---------------- Starting training -----------------
+03/15/2021 20:47:12 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    0
+03/15/2021 20:47:12 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    1
+03/15/2021 20:47:12 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    2
+03/15/2021 20:47:12 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    3
+03/15/2021 20:47:13 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    4
+03/15/2021 20:47:13 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    5
+03/15/2021 20:47:13 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    6
+03/15/2021 20:47:13 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:47:13 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2778	1.0000	0.4348	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.4000	0.5714	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.2516
+F1w_avg	0.2516
+Acc    	35.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:47:13 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:47:18 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    0
+03/15/2021 20:47:18 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    1
+03/15/2021 20:47:18 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    2
+03/15/2021 20:47:18 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    3
+03/15/2021 20:47:19 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    4
+03/15/2021 20:47:19 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    5
+03/15/2021 20:47:19 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    6
+03/15/2021 20:47:19 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:47:19 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:47:19 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:47:25 - INFO - __main__ -   ---------- Running a test after training  ----------
+03/15/2021 20:47:25 - INFO - __main__ -   2
+03/15/2021 20:47:26 - INFO - __main__ -   Original tweet index: 2
+03/15/2021 20:47:26 - INFO - __main__ -   Original head tweet: <s> Santa Fe Shooting </s> Savannah Now </s> Texas school shooting suspect's father thinks he was bullied HTTPURL </s>
+03/15/2021 20:47:26 - INFO - __main__ -   Original tail tweet: <s> Santa Fe Shooting </s> Shelley :butterfly: Powers </s> This is bullshit. He murdered these people for fun. HTTPURL </s>
+03/15/2021 20:47:26 - INFO - __main__ -   Original Stance Label:  Denial
+03/15/2021 20:47:26 - INFO - __main__ -   Predicted Stance Label: Denial
+03/15/2021 20:47:26 - INFO - __main__ -   Original Viral Label:   0
+03/15/2021 20:47:26 - INFO - __main__ -   Predicted Viral Label:  0
+03/15/2021 20:47:26 - INFO - __main__ -   ------- Running on test set after training  --------
+03/15/2021 20:47:26 - INFO - __main__ -   	Testing test Minibatch:    0
+03/15/2021 20:47:26 - INFO - __main__ -   	Testing test Minibatch:    1
+03/15/2021 20:47:26 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:47:26 - INFO - __main__ -   Time taken: 0h 0m 18s
+03/15/2021 20:47:26 - INFO - __main__ -   
+============ Fold 0 results ============
+------------Dev set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+------------Test set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:47:26 - INFO - __main__ -   
+Perf across folds
+avg_f1_stance	0.2246
+std_f1_stance	0.0000
+avg_f1_viral	0.5429
+std_f1_viral	0.0000
+avg acc_stance	0.3250
+avg_acc_viral	0.8000
+
+03/15/2021 20:47:26 - INFO - __main__ -   Time taken: 0h 0m 18s
+03/15/2021 20:48:49 - INFO - __main__ -   ----------------- Hyperparameters ------------------
+03/15/2021 20:48:49 - INFO - __main__ -   ======== mtt_Bertweet2 =========
+03/15/2021 20:48:49 - INFO - __main__ -   ===== Hyperparameters ======
+03/15/2021 20:48:49 - INFO - __main__ -   ('batch_train', 3)
+03/15/2021 20:48:49 - INFO - __main__ -   ('batch_test', 20)
+03/15/2021 20:48:49 - INFO - __main__ -   ('epochs', 2)
+03/15/2021 20:48:49 - INFO - __main__ -   ('learning_rate', 1e-05)
+03/15/2021 20:48:49 - INFO - __main__ -   ('optimizer', 'adam')
+03/15/2021 20:48:49 - INFO - __main__ -   ('do_train', True)
+03/15/2021 20:48:49 - INFO - __main__ -   ('do_test', False)
+03/15/2021 20:48:49 - INFO - __main__ -   ('model_name', 'mtt_Bertweet2')
+03/15/2021 20:48:49 - INFO - __main__ -   ('exp_name', 'expXX')
+03/15/2021 20:48:49 - INFO - __main__ -   ('train_data', './data/train_set_128_individual_bertweet.bin')
+03/15/2021 20:48:49 - INFO - __main__ -   ('test_data', './data/test_set_128_individual_bertweet.bin')
+03/15/2021 20:48:49 - INFO - __main__ -   ('k_folds', 2)
+03/15/2021 20:48:49 - INFO - __main__ -   ('folds2run', 1)
+03/15/2021 20:48:49 - INFO - __main__ -   ('debug', True)
+03/15/2021 20:48:49 - INFO - __main__ -   ('log_interval', 1)
+03/15/2021 20:48:49 - INFO - __main__ -   ('loss_fn', 'ce_loss')
+03/15/2021 20:48:49 - INFO - __main__ -   ('w_sample', True)
+03/15/2021 20:48:49 - INFO - __main__ -   ('pretrain_model', '')
+03/15/2021 20:48:49 - INFO - __main__ -   ('epochs2giveup', 20)
+03/15/2021 20:48:49 - INFO - __main__ -   ('dropout', 0.1)
+03/15/2021 20:48:49 - INFO - __main__ -   ('layers', 2)
+03/15/2021 20:48:49 - INFO - __main__ -   ('viral_attr', 'likes')
+03/15/2021 20:48:49 - INFO - __main__ -   ('viral_threshold', 80.0)
+03/15/2021 20:48:49 - INFO - __main__ -   ('weight_attr', 'stance')
+03/15/2021 20:48:49 - INFO - __main__ -   ('task', 'multi')
+03/15/2021 20:48:49 - INFO - __main__ -   ('mtt_weight', 1.0)
+03/15/2021 20:48:49 - INFO - __main__ -   ------------------ Getting model -------------------
+03/15/2021 20:48:54 - INFO - __main__ -   --------------- Getting dataframes -----------------
+03/15/2021 20:48:54 - INFO - __main__ -   ---------- Running a test before training ----------
+03/15/2021 20:48:54 - INFO - __main__ -   5
+03/15/2021 20:48:54 - INFO - __main__ -   Original tweet index: 5
+03/15/2021 20:48:54 - INFO - __main__ -   Original head tweet: <s> Iran Deal </s> Ben Rhodes </s> Every taunt back and forth between Trump and Kim Jong Un makes deescalation and diplomacy less possible. </s>
+03/15/2021 20:48:54 - INFO - __main__ -   Original tail tweet: <s> Iran Deal </s> unknown user </s> @USER Are you wrong about everything or just Iran and President Trump? Do you piss in your cereal every morning just to give the finger to milk? I've got to know if you defy logic all day because it seems to be the case. </s>
+03/15/2021 20:48:54 - INFO - __main__ -   Original Stance Label:  Denial
+03/15/2021 20:48:54 - INFO - __main__ -   Predicted Stance Label: Denial
+03/15/2021 20:48:54 - INFO - __main__ -   Original Viral Label:   0
+03/15/2021 20:48:54 - INFO - __main__ -   Predicted Viral Label:  0
+03/15/2021 20:48:54 - INFO - __main__ -   ------- Setting loss function and optimizer --------
+03/15/2021 20:48:54 - INFO - __main__ -   -------------- Running KFOLD 1 / 2 ---------------
+03/15/2021 20:48:54 - INFO - __main__ -   ------------ Converting to dataloaders -------------
+03/15/2021 20:48:54 - INFO - __main__ -   class:    0 	count:    4
+03/15/2021 20:48:54 - INFO - __main__ -   class:    1 	count:    5
+03/15/2021 20:48:54 - INFO - __main__ -   class:    2 	count:    9
+03/15/2021 20:48:54 - INFO - __main__ -   class:    3 	count:    2
+03/15/2021 20:48:54 - INFO - __main__ -   ---------------- Starting training -----------------
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    0
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    1
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    2
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    3
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    4
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    5
+03/15/2021 20:48:55 - INFO - __main__ -   	EPOCH:   0	MiniBatch:    6
+03/15/2021 20:48:55 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:48:56 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2778	1.0000	0.4348	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.4000	0.5714	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.2516
+F1w_avg	0.2516
+Acc    	35.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:48:56 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:49:01 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    0
+03/15/2021 20:49:01 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    1
+03/15/2021 20:49:01 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    2
+03/15/2021 20:49:01 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    3
+03/15/2021 20:49:01 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    4
+03/15/2021 20:49:02 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    5
+03/15/2021 20:49:02 - INFO - __main__ -   	EPOCH:   1	MiniBatch:    6
+03/15/2021 20:49:02 - INFO - __main__ -   	Testing dev Minibatch:    0
+03/15/2021 20:49:02 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+
+03/15/2021 20:49:02 - INFO - __main__ -   Best results so far. Saving model...
+03/15/2021 20:49:08 - INFO - __main__ -   ---------- Running a test after training  ----------
+03/15/2021 20:49:08 - INFO - __main__ -   14
+03/15/2021 20:49:09 - INFO - __main__ -   Original tweet index: 14
+03/15/2021 20:49:09 - INFO - __main__ -   Original head tweet: <s> General Terms </s> Frank Isola </s> Just a quick update... HTTPURL </s>
+03/15/2021 20:49:09 - INFO - __main__ -   Original tail tweet: <s> General Terms </s> Darinstrauss </s> The Press is not " the enemy of the ppl " ; the press is under siege. And if they get more stories wrong it's because layoffs have made it near impossible. @USER is the best. If HE can be laid off...? HTTPURL </s>
+03/15/2021 20:49:09 - INFO - __main__ -   Original Stance Label:  Comment
+03/15/2021 20:49:09 - INFO - __main__ -   Predicted Stance Label: Denial
+03/15/2021 20:49:09 - INFO - __main__ -   Original Viral Label:   1
+03/15/2021 20:49:09 - INFO - __main__ -   Predicted Viral Label:  0
+03/15/2021 20:49:09 - INFO - __main__ -   ------- Running on test set after training  --------
+03/15/2021 20:49:09 - INFO - __main__ -   	Testing test Minibatch:    0
+03/15/2021 20:49:09 - INFO - __main__ -   	Testing test Minibatch:    1
+03/15/2021 20:49:09 - INFO - __main__ -   
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:49:09 - INFO - __main__ -   Time taken: 0h 0m 19s
+03/15/2021 20:49:09 - INFO - __main__ -   
+============ Fold 0 results ============
+------------Dev set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2941	1.0000	0.4545	5
+Support	0.0000	0.0000	0.0000	10
+Comment	1.0000	0.6000	0.7500	5
+Queries	0.0000	0.0000	0.0000	0
+MacroF1	0.3011
+F1w_avg	0.3011
+Acc    	40.0
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8421	1.0000	0.9143	16
+Viral  	1.0000	0.2500	0.4000	4
+MacroF1	0.6571
+F1w_avg	0.8114
+Acc    	85.0
+------------Test set------------
+============ Predict Tweet Stance ============
+Labels 	Prec. 	Recall	F1    	Supp  
+Denial 	0.2581	0.8889	0.4000	9
+Support	0.5000	0.0667	0.1176	15
+Comment	0.5714	0.2857	0.3810	14
+Queries	0.0000	0.0000	0.0000	2
+MacroF1	0.2246
+F1w_avg	0.2675
+Acc    	32.5
+
+============ Predict Viral Tweets ============
+Labels 	Prec. 	Recall	F1    	Supp  
+N_viral	0.8158	0.9688	0.8857	32
+Viral  	0.5000	0.1250	0.2000	8
+MacroF1	0.5429
+F1w_avg	0.7486
+Acc    	80.0
+
+03/15/2021 20:49:09 - INFO - __main__ -   
+Perf across folds
+avg_f1_stance	0.2246
+std_f1_stance	0.0000
+avg_f1_viral	0.5429
+std_f1_viral	0.0000
+avg acc_stance	0.3250
+avg_acc_viral	0.8000
+
+03/15/2021 20:49:09 - INFO - __main__ -   Time taken: 0h 0m 19s
