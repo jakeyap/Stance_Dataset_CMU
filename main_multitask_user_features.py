@@ -137,15 +137,6 @@ def main():
     logger.info('===== Hyperparameters ======')
     for eachline in vars(args).items():
         logger.info(eachline)
-    
-    logger.info('------------------ Getting model -------------------')
-    model = get_model(logger,MODEL_NAME, DROPOUT, LAYERS)
-    model.cuda()
-    model = torch.nn.DataParallel(model)
-    if PRETRAIN != '':  # reload pretrained model 
-        logger.info('loading pretrained model file ' + PRETRAIN)
-        saved_params = torch.load(PRETRAIN)
-        model.load_state_dict(saved_params)
         
     logger.info('--------------- Getting dataframes -----------------')
     test_df = torch.load(TEST_DATA)
@@ -162,36 +153,72 @@ def main():
                                     viral_threshold=V_THRESHOLD, 
                                     logger=logger)
     TESTLENGTH = len(test_df)
-    logger.info('---------- Running a test before training ----------')
-    test_single_example(model=model, 
-                        datalen=TESTLENGTH, 
-                        dataloader=test_dl, 
-                        logger=logger, 
-                        log_interval=LOG_INTERVAL, 
-                        index=-1, show=True)
     
     if DO_TRAIN:
-        logger.info('------- Setting loss function and optimizer --------')
+        logger.info('-------------- Setting loss function  --------------')
         # weights = torch.tensor([1.0, 1.0, 1.0, 1.0, 20.0, 1.0, 10.0, 10.0, 1.0, 1.0, 1.0]).to(gpu)
         # loss_fn = torch.nn.CrossEntropyLoss(weight=weights, reduction='mean')
         if LOSS_FN == 'dice':
-            loss_fn = SelfAdjDiceLoss(reduction='mean')
+            loss_fn_s = SelfAdjDiceLoss(reduction='mean')           # for stance
+            loss_fn_v = SelfAdjDiceLoss(reduction='mean')           # for viral
+        elif LOSS_FN == 'ce_loss':
+            logger.info('chose ce_loss')
+            loss_fn_s = torch.nn.CrossEntropyLoss(reduction='mean') # for stance
+            loss_fn_v = torch.nn.CrossEntropyLoss(reduction='mean') # for viral
+        elif LOSS_FN == 'w_ce_loss':            
+            logger.info('chose w_ce_loss')
+            # count number of examples per category for stance
+            stance_counts = torch.tensor([.1, .1, .1, .1])          # memory for storing counts
+            for stance in full_train_df.number_labels_4_types:      # for each label type
+                stance_counts [stance] += 1                         # count occurences
+            stance_weights = 1.0 / stance_counts                    # inverse counts to get weights
+            stance_weights = stance_weights / stance_weights.mean() # normalize so mean is 1
+            
+            # dont need to count number of examples per category for viral, defined by 80-20 split
+            viral_weights = torch.tensor([0.1, 0.1])                # memory for weights
+            viral_weights[0] = 100 / V_THRESHOLD                    # weight for not viral
+            viral_weights[1] = 100 / (100 - V_THRESHOLD)            # weight for viral
+            
+            viral_weights = viral_weights / viral_weights.mean()    # normalize so mean is 1
+            
+            logger.info('stance loss weights')
+            logger.info(stance_weights)
+            logger.info('viral loss weights')
+            logger.info(viral_weights)
+            loss_fn_s = torch.nn.CrossEntropyLoss(reduction='mean', # loss function for stance
+                                                  weight=stance_weights.cuda()) 
+            loss_fn_v = torch.nn.CrossEntropyLoss(reduction='mean', # loss function for viral
+                                                  weight=viral_weights.cuda())
         else:
-            loss_fn = torch.nn.CrossEntropyLoss(reduction='mean')
-        if OPTIM=='adam':
-            optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-        else:
-            raise Exception('Optimizer not found: ' + optimizer)
+            raise Exception('Loss function not found: ' + LOSS_FN)
         
         kfold_helper = KFold(n_splits=KFOLDS)
         kfolds_ran = 0
         kfolds_devs = []
         kfolds_tests= []
-        for train_idx, dev_idx in kfold_helper.split(full_train_df):
-            logger.info('-------------- Running KFOLD %d / %d ---------------' % (kfolds_ran+1, KFOLDS))
-            train_df = full_train_df.iloc[train_idx]
-            dev_df = full_train_df.iloc[dev_idx]
+        '''
+        logger.info('--------------- Getting fresh model ----------------')
+        model = get_model(logger,MODEL_NAME, DROPOUT, LAYERS)
+        model.cuda()
+        model = torch.nn.DataParallel(model)
+        if PRETRAIN != '':  # reload pretrained model 
+            logger.info('loading pretrained model file ' + PRETRAIN)
+            saved_params = torch.load(PRETRAIN)
+            model.load_state_dict(saved_params)
+            del saved_params
         
+        ORIG_STATE_DICT = model.state_dict()    # hold a master starting copy of parameters
+        '''
+        for train_idx, dev_idx in kfold_helper.split(full_train_df):
+            logger.info('--------------- Running KFOLD %d / %d ----------------' % (kfolds_ran+1, KFOLDS))
+            print_gpu_obj()
+            if FOLDS2RUN == 0:  # for debugging purposes
+                train_df = full_train_df
+                dev_df = full_train_df
+            else:
+                train_df = full_train_df.iloc[train_idx]
+                dev_df = full_train_df.iloc[dev_idx]
+            
             logger.info('------------ Converting to dataloaders -------------')
             train_dl = dataloader.df_2_dl_v4(train_df, 
                                              batch_size=TRNG_MB_SIZE, 
@@ -208,29 +235,60 @@ def main():
                                            viral_attr=V_ATTR,
                                            viral_threshold=V_THRESHOLD, 
                                            logger=logger)
-        
+            
+            logger.info('--------------- Getting fresh model ----------------')
+            model = get_model(logger,MODEL_NAME, DROPOUT, LAYERS)
+            model.cuda()
+            model = torch.nn.DataParallel(model)
+            if PRETRAIN != '':  # reload pretrained model 
+                logger.info('loading pretrained model file ' + PRETRAIN)
+                saved_params = torch.load(PRETRAIN)
+                model.load_state_dict(saved_params)
+                del saved_params
+            
+            logger.info('-------- Reload orig parameters into model ---------')
+            #model.load_state_dict(ORIG_STATE_DICT)
+            
+            logger.info('----------------- Setting optimizer ----------------')
+            if OPTIM=='adam':
+                optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+                #optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
+            else:
+                raise Exception('Optimizer not found: ' + optimizer)
+            
+            logger.info('------ Running a random test before training -------')
+            _, _, _, _, random_test_idx = test_single_example(model=model, 
+                                                              datalen=TESTLENGTH, 
+                                                              dataloader=test_dl, 
+                                                              logger=logger, 
+                                                              log_interval=LOG_INTERVAL, 
+                                                              index=-1, show=True)
+            
             logger.info('---------------- Starting training -----------------')
             plotfile_fold = plotfile.replace('.png', '_fold'+str(kfolds_ran)+'.png')
             model_savefile_fold = model_savefile.replace('.bin', '_fold'+str(kfolds_ran)+'.bin')
             fold_metrics = train(model=model, train_dl=train_dl, dev_dl=dev_dl, 
                                  logger=logger, log_interval=LOG_INTERVAL, epochs=EPOCHS,
-                                 loss_fn=loss_fn, optimizer=optimizer, 
+                                 loss_fn_s=loss_fn_s, loss_fn_v=loss_fn_v, optimizer=optimizer, 
                                  plotfile=plotfile_fold, modelfile=model_savefile_fold,
                                  epochs_giveup=EPOCHS2GIVEUP,
                                  task=TASK, mtt_weight=MTT_WEIGHT)
             
             kfolds_devs.append(fold_metrics)
-        
+            
             # reload best models
             saved_params = torch.load(model_savefile_fold)
             model.load_state_dict(saved_params)
-            logger.info('---------- Running a test after training  ----------')
+            del saved_params # this is a huge memory sucker
+            
+            logger.info('------ Running same random test post training ------')
             test_single_example(model=model, 
                                 datalen=TESTLENGTH, 
                                 dataloader=test_dl, 
                                 logger=logger, 
                                 log_interval=LOG_INTERVAL, 
-                                index=-1, show=True)
+                                index=random_test_idx, 
+                                show=True)
             
             logger.info('------- Running on test set after training  --------')
             test_results = test(model=model, 
@@ -263,6 +321,9 @@ def main():
             time2 = time.time()
             logger.info(fmt_time_pretty(time1, time2))
             
+            del optimizer, model
+            torch.cuda.empty_cache()
+            
             kfolds_ran += 1
             if kfolds_ran >= FOLDS2RUN:
                 break
@@ -276,9 +337,9 @@ def main():
             fold_test_results = kfolds_tests[i]
             dev_msg = fold_dev_results[-1]
             test_msg = fold_test_results[-1]
-            msg_2_print = '\n============ Fold %d results ============\n' % i 
-            msg_2_print = msg_2_print + '------------Dev set------------' + dev_msg 
-            msg_2_print = msg_2_print + '------------Test set------------' + test_msg
+            msg_2_print =               '\n******************** Fold %d results ********************\n' % i 
+            msg_2_print = msg_2_print + '------------------------ Dev set ------------------------' + dev_msg 
+            msg_2_print = msg_2_print + '------------------------ Test set ------------------------' + test_msg
             logger.info(msg_2_print)
             
             f1_s_metrics = fold_test_results[0]
@@ -310,6 +371,15 @@ def main():
         logger.info(msg)
         
     if DO_TEST:
+        logger.info('------------------ Getting model -------------------')
+        model = get_model(logger,MODEL_NAME, DROPOUT, LAYERS)
+        model.cuda()
+        model = torch.nn.DataParallel(model)
+        if PRETRAIN != '':  # reload pretrained model 
+            logger.info('loading pretrained model file ' + PRETRAIN)
+            saved_params = torch.load(PRETRAIN)
+            model.load_state_dict(saved_params)
+        
         results = test(model=model, 
                        dataloader=test_dl,
                        logger=logger,
@@ -367,7 +437,7 @@ def get_model(logger=None, modelname='', dropout=0.1, layers=2):
     
     return model
 
-def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimizer, plotfile, modelfile, epochs_giveup=10, task='multi', mtt_weight=1.0):
+def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss_fn_v, optimizer, plotfile, modelfile, epochs_giveup=10, task='multi', mtt_weight=1.0):
     '''
     all the params needed are straightforward. except for plotfile, modelfile, ep
     model :         pytorch neural network model
@@ -382,8 +452,10 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
         how many epochs before printing progress
     epochs :        int
         max number of epochs to run
-    loss_fn :       loss function
-        self explanatory
+    loss_fn_s :     pytorch loss function
+        loss function for stance
+    loss_fn_v :     pytorch loss function
+        loss function for viral
     optimizer :     pytorch optimizer
         self explanatory
     plotfile :      string
@@ -429,7 +501,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
     epochs_since_best = 0
     
     gpu = torch.device("cuda")
-    
+    cpu = torch.device("cpu")
     for epoch in range(epochs):
         model.train()   # set model into training mode
         for batch_id, minibatch in enumerate(train_dl):
@@ -446,8 +518,8 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
             x7 = minibatch[7].float()   # followers_head
             x8 = minibatch[8].float()   # followers_tail
             x9 = minibatch[9].float()   # interaction_type_num
-            x7 = x7.to(gpu)
-            x8 = x8.to(gpu)
+            x7 = torch.log10(x7.to(gpu)+0.1)    # log to scale the numbers down to earth
+            x8 = torch.log10(x8.to(gpu)+0.1)    # log to scale the numbers down to earth 
             x9 = x9.to(gpu)
             y_s =minibatch[10].to(gpu)  # true label 4 stance class
             y_v =minibatch[11].to(gpu)  # viral_score
@@ -463,19 +535,21 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
             logits_v = outputs[1]
             
             if task=='stance':
-                loss_s = loss_fn(logits_s, y_s) # calculate the stance loss
-                losses_s.append(loss_s.item())  # archive the loss
+                loss_v = 0
+                loss_s = loss_fn_s(logits_s, y_s)   # calculate the stance loss
+                losses_s.append(loss_s.item())      # archive the loss
                 loss = loss_s
             elif task=='viral':
-                loss_v = loss_fn(logits_v, y_v) # calculate the viral loss
-                losses_v.append(loss_v.item())  # archive the loss
+                loss_s = 0
+                loss_v = loss_fn_v(logits_v, y_v)   # calculate the viral loss
+                losses_v.append(loss_v.item())      # archive the loss
                 loss = loss_v
             elif task=='multi':
-                loss_s = loss_fn(logits_s, y_s) # calculate the stance loss
-                losses_s.append(loss_s.item())  # archive the loss
-                loss_v = loss_fn(logits_v, y_v) # calculate the viral loss
-                losses_v.append(loss_v.item())  # archive the loss
-                loss = loss_s+mtt_weight*loss_v # sum the losses
+                loss_s = loss_fn_s(logits_s, y_s)   # calculate the stance loss
+                losses_s.append(loss_s.item())      # archive the loss
+                loss_v = loss_fn_v(logits_v, y_v)   # calculate the viral loss
+                losses_v.append(loss_v.item())      # archive the loss
+                loss = loss_s+mtt_weight*loss_v     # sum the losses
                 loss = loss / (1 + mtt_weight)
             else:
                 err_string = 'task not found : ' + task
@@ -488,6 +562,8 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
             loss_value = loss.item()    # get value of total loss
             losses.append(loss_value)   # archive the total loss
             
+            del x1,x2,x3,x4,x5,x6,x7,x8,x9, y_s, y_v
+            del loss, outputs, logits_s, logits_v, loss_s, loss_v
             if len(loss_horz)==0:
                 loss_horz.append(0)
             else:
@@ -506,10 +582,12 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
         logits_s = results[4]
         logits_v = results[5]
         
-        dev_loss_s = loss_fn(logits_s, y_true_s)
-        dev_loss_v = loss_fn(logits_v, y_true_v)
-        dev_loss_value_s = dev_loss_s.item()
-        dev_loss_value_v = dev_loss_v.item()
+        dev_loss_s = loss_fn_s(logits_s.to(gpu), y_true_s.to(gpu))
+        dev_loss_v = loss_fn_v(logits_v.to(gpu), y_true_v.to(gpu))
+        #dev_loss_s = loss_fn_s(logits_s, y_true_s)
+        #dev_loss_v = loss_fn_v(logits_v, y_true_v)
+        dev_loss_value_s = dev_loss_s.to(cpu).item()
+        dev_loss_value_v = dev_loss_v.to(cpu).item()
         dev_loss_value = (dev_loss_value_s + mtt_weight * dev_loss_value_v) / (1 + mtt_weight)
         
         dev_losses_s.append(dev_loss_value_s)
@@ -583,6 +661,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
     ax0.set_xlabel('Minibatch')
     ax0.legend()
     ax0.grid(True)
+    ax0.set_yscale('log')
     
     #if task in ['viral','multi']: ax1.scatter(dev_f1_horz, dev_f1_scores_v, label='viral') 
     #if task in ['stance','multi']: ax1.scatter(dev_f1_horz, dev_f1_scores_s, label='stance')
@@ -591,6 +670,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn, optimi
     ax1.set_ylabel('Dev F1 score')
     ax1.set_xlabel('Epoch')
     ax1.grid(True)
+    
     plt.tight_layout()
     time.sleep(1)
     fig.savefig(plotfile)
@@ -648,8 +728,8 @@ def test(model, dataloader, logger, log_interval, print_string='test'):
             x7 = minibatch[7].float()   # followers_head
             x8 = minibatch[8].float()   # followers_tail
             x9 = minibatch[9].float()   # interaction_type_num
-            x7 = x7.to(gpu)
-            x8 = x8.to(gpu)
+            x7 = torch.log10(x7.to(gpu)+0.1)    # log to scale the numbers down to earth
+            x8 = torch.log10(x8.to(gpu)+0.1)    # log to scale the numbers down to earth 
             x9 = x9.to(gpu)
             
             y_s =minibatch[10].to(gpu)  # true label 4 stance class
@@ -662,15 +742,15 @@ def test(model, dataloader, logger, log_interval, print_string='test'):
             logits_s = outputs[0]
             logits_v = outputs[1]
             
-            if y_true_s is None:                # for handling 1st minibatch
-                y_true_s = y_s.clone().to(cpu)  # shape=(n,)
-                y_true_v = y_v.clone().to(cpu)  # shape=(n,)
-                idx_s = logits_s.argmax(1)      # for finding index of max value
-                idx_v = logits_v.argmax(1)      # for finding index of max value
-                y_pred_s = idx_s.clone().to(cpu)
-                y_pred_v = idx_v.clone().to(cpu)
-                all_logits_s = logits_s.clone().to(cpu)
-                all_logits_v = logits_v.clone().to(cpu)
+            if y_true_s is None:                            # for handling 1st minibatch
+                y_true_s = y_s.clone().to(cpu)     # shape=(n,)
+                y_true_v = y_v.clone().to(cpu)     # shape=(n,)
+                idx_s = logits_s.argmax(1)                  # for finding index of max value for stance
+                idx_v = logits_v.argmax(1)                  # for finding index of max value for viral
+                y_pred_s = idx_s.clone().to(cpu)   # copy the index to cpu
+                y_pred_v = idx_v.clone().to(cpu)   # copy the index to cpu
+                all_logits_s = logits_s.clone().to(cpu)    # copy the stance logits
+                all_logits_v = logits_v.clone().to(cpu)    # copy the viral logits
             else:                               # for all other minibatches
                 y_true_s = torch.cat((y_true_s, y_s.clone().to(cpu)), 0)
                 y_true_v = torch.cat((y_true_v, y_v.clone().to(cpu)), 0)
@@ -680,6 +760,7 @@ def test(model, dataloader, logger, log_interval, print_string='test'):
                 y_pred_v = torch.cat((y_pred_v, idx_v.clone().to(cpu)), 0)
                 all_logits_s = torch.cat((all_logits_s, logits_s.clone().to(cpu)), 0)
                 all_logits_v = torch.cat((all_logits_v, logits_v.clone().to(cpu)), 0)
+            
     return [y_pred_s, y_pred_v, y_true_s, y_true_v, all_logits_s, all_logits_v] # all have shape of (n,) except logits (n, num_class)
 
 def test_single_example(model, datalen, dataloader, logger, log_interval, index=-1, show=True):
@@ -708,8 +789,8 @@ def test_single_example(model, datalen, dataloader, logger, log_interval, index=
                 x7 = minibatch[7].float()   # followers_head
                 x8 = minibatch[8].float()   # followers_tail
                 x9 = minibatch[9].float()   # interaction_type_num
-                x7 = x7.to(gpu)
-                x8 = x8.to(gpu)
+                x7 = torch.log10(x7.to(gpu)+0.1)    # log to scale the numbers down to earth
+                x8 = torch.log10(x8.to(gpu)+0.1)    # log to scale the numbers down to earth 
                 x9 = x9.to(gpu)
                 
                 y_true_s = minibatch[10]    # true label 4 stance class
@@ -745,6 +826,7 @@ def test_single_example(model, datalen, dataloader, logger, log_interval, index=
                     logger.info('Predicted Stance Label: ' + tokenizer_v2.convert_label_num2string(y_pred_s,4))
                     logger.info('Original Viral Label:   ' + str(y_true_v))
                     logger.info('Predicted Viral Label:  ' + str(y_pred_v))
+                
                 return [y_true_s, y_pred_s, y_true_v, y_pred_v, index]
     
 def f1_metrics_msg_stance(precisions, recalls, f1scores, supports, accuracy):
@@ -812,7 +894,7 @@ def get_args():
     parser.add_argument("--log_interval",   default=1, type=int, help="num of batches before printing")
     ''' ===================================================='''
     ''' ========== Add additional arguments here ==========='''
-    parser.add_argument('--loss_fn',        default='ce_loss',   help='loss function. ce_loss (default) or dice')
+    parser.add_argument('--loss_fn',        default='ce_loss',   help='loss function. ce_loss (default), dice, w_ce_loss')
     parser.add_argument('--w_sample',       action='store_true', help='non flat sampling of training examples')
     parser.add_argument('--pretrain_model', default='',          help='model file that was pretrained on big twitter dataset')
     parser.add_argument('--epochs2giveup',  default=5, type=int, help='training is stopped if no improvements are seen after this number of epochs')
@@ -826,6 +908,18 @@ def get_args():
     ''' ===================================================='''
     return parser.parse_args()
 
+
+def print_gpu_obj():
+    import gc
+    count = 0
+    for tracked_obj in gc.get_objects():
+        if torch.is_tensor(tracked_obj):
+            if tracked_obj.is_cuda:
+                count += 1
+                #print('{} {} {}'.format(type(tracked_obj).__name__, 
+                #                        " pinned" if tracked_obj.is_pinned() else "",
+                #                        tracked_obj.shape))
+    print('there are %d tracked objects in GPU' % count)
 
 if __name__ == '__main__':
     main()

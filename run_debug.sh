@@ -5,8 +5,8 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_user_feature
     --batch_train=3 --batch_test=20 --epochs=2 --learning_rate=0.00001 --optimizer=adam \
     --model_name=mtt_Bertweet2 --exp_name=expXX --epochs2giveup=20 \
     --train_data=./data/train_set_128_individual_bertweet.bin --test_data=./data/test_set_128_individual_bertweet.bin \
-    --k_folds=2 --folds2run=1 \
-    --log_interval=1 --do_train --loss_fn=ce_loss --w_sample --dropout=0.1 --layers=2 \
+    --k_folds=4 --folds2run=2 \
+    --log_interval=1 --do_train --loss_fn=w_ce_loss --dropout=0.1 --layers=2 \
     --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0 \
     --debug
     
