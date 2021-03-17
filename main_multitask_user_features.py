@@ -57,6 +57,7 @@ lib_folder = '~/Projects/yk_python_lib'
 lib_folder = os.path.expanduser(lib_folder)
 sys.path.insert(1, lib_folder)
 from misc_helpers import fmt_time_pretty
+import gc
 
 # DONE: implement kfolding
 # DONE: ensure kfold prints properly
@@ -196,22 +197,10 @@ def main():
         kfolds_ran = 0
         kfolds_devs = []
         kfolds_tests= []
-        '''
-        logger.info('--------------- Getting fresh model ----------------')
-        model = get_model(logger,MODEL_NAME, DROPOUT, LAYERS)
-        model.cuda()
-        model = torch.nn.DataParallel(model)
-        if PRETRAIN != '':  # reload pretrained model 
-            logger.info('loading pretrained model file ' + PRETRAIN)
-            saved_params = torch.load(PRETRAIN)
-            model.load_state_dict(saved_params)
-            del saved_params
         
-        ORIG_STATE_DICT = model.state_dict()    # hold a master starting copy of parameters
-        '''
         for train_idx, dev_idx in kfold_helper.split(full_train_df):
             logger.info('--------------- Running KFOLD %d / %d ----------------' % (kfolds_ran+1, KFOLDS))
-            print_gpu_obj()
+            logger.info(print_gpu_obj())
             if FOLDS2RUN == 0:  # for debugging purposes
                 train_df = full_train_df
                 dev_df = full_train_df
@@ -280,49 +269,55 @@ def main():
             saved_params = torch.load(model_savefile_fold)
             model.load_state_dict(saved_params)
             del saved_params # this is a huge memory sucker
-            
-            logger.info('------ Running same random test post training ------')
-            test_single_example(model=model, 
-                                datalen=TESTLENGTH, 
-                                dataloader=test_dl, 
-                                logger=logger, 
-                                log_interval=LOG_INTERVAL, 
-                                index=random_test_idx, 
-                                show=True)
-            
-            logger.info('------- Running on test set after training  --------')
-            test_results = test(model=model, 
-                                dataloader=test_dl,
-                                logger=logger,
-                                log_interval=LOG_INTERVAL,
-                                print_string='test')
-            
-            y_pred_s = test_results[0]
-            y_pred_v = test_results[1]
-            y_true_s = test_results[2]
-            y_true_v = test_results[3]
-            
-            f1_metrics_s = f1_help(y_true_s, y_pred_s,  # calculate f1 scores for stance
-                                   average=None,        # dont set to calculate for all
-                                   labels=[0,1,2,3])    # number of classes = 4
-            f1_metrics_v = f1_help(y_true_v, y_pred_v,  # calculate f1 scores for viral
-                                   average=None,        # dont set to calculate for all
-                                   labels=[0,1])        # number of classes = 2
-            
-            prec_s, rec_s, f1s_s, supp_s = f1_metrics_s
-            prec_v, rec_v, f1s_v, supp_v = f1_metrics_v
-            acc_s = calculate_acc(y_pred_s, y_true_s)
-            acc_v = calculate_acc(y_pred_v, y_true_v)
-            msg_s = f1_metrics_msg_stance(prec_s, rec_s, f1s_s, supp_s, acc_s)
-            msg_v = f1_metrics_msg_viral(prec_v, rec_v, f1s_v, supp_v, acc_v)
-        
-            logger.info(msg_s + msg_v)
-            kfolds_tests.append([f1_metrics_s, f1_metrics_v, acc_s, acc_v, msg_s+msg_v])
-            time2 = time.time()
-            logger.info(fmt_time_pretty(time1, time2))
-            
-            del optimizer, model
+            with torch.no_grad(): # run some tests post training
+                logger.info('------ Running same random test post training ------')
+                test_single_example(model=model, 
+                                    datalen=TESTLENGTH, 
+                                    dataloader=test_dl, 
+                                    logger=logger, 
+                                    log_interval=LOG_INTERVAL, 
+                                    index=random_test_idx, 
+                                    show=True)
+                
+                logger.info('------- Running on test set after training  --------')
+                test_results = test(model=model, 
+                                    dataloader=test_dl,
+                                    logger=logger,
+                                    log_interval=LOG_INTERVAL,
+                                    print_string='test')
+                
+                y_pred_s = test_results[0]
+                y_pred_v = test_results[1]
+                y_true_s = test_results[2]
+                y_true_v = test_results[3]
+                
+                f1_metrics_s = f1_help(y_true_s, y_pred_s,  # calculate f1 scores for stance
+                                       average=None,        # dont set to calculate for all
+                                       labels=[0,1,2,3])    # number of classes = 4
+                f1_metrics_v = f1_help(y_true_v, y_pred_v,  # calculate f1 scores for viral
+                                       average=None,        # dont set to calculate for all
+                                       labels=[0,1])        # number of classes = 2
+                
+                prec_s, rec_s, f1s_s, supp_s = f1_metrics_s
+                prec_v, rec_v, f1s_v, supp_v = f1_metrics_v
+                acc_s = calculate_acc(y_pred_s, y_true_s)
+                acc_v = calculate_acc(y_pred_v, y_true_v)
+                msg_s = f1_metrics_msg_stance(prec_s, rec_s, f1s_s, supp_s, acc_s)
+                msg_v = f1_metrics_msg_viral(prec_v, rec_v, f1s_v, supp_v, acc_v)
+                # del test_results, y_pred_s, y_pred_v, y_true_s, y_true_v
+                
+                logger.info(msg_s + msg_v)
+                kfolds_tests.append([f1_metrics_s, f1_metrics_v, acc_s, acc_v, msg_s+msg_v])
+                time2 = time.time()
+                logger.info(fmt_time_pretty(time1, time2))
+            # ===================================================================
+            # need to do these steps to force garbage collection to work properly
+            # without it, the model deletion doesnt seem to work properly
+            model.to('cpu') 
+            del optimizer, model, train_dl, dev_dl
+            gc.collect()
             torch.cuda.empty_cache()
+            # ===================================================================
             
             kfolds_ran += 1
             if kfolds_ran >= FOLDS2RUN:
@@ -561,9 +556,14 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss
             optimizer.zero_grad()       # clear gradients before next step
             loss_value = loss.item()    # get value of total loss
             losses.append(loss_value)   # archive the total loss
+            # ===================================================================
+            # not needed to actually free up memory, cauz the procedure exits
+            # these variables are not returned, so not problematic
+            # del x1,x2,x3,x4,x5,x6,x7,x8,x9, y_s, y_v
+            # del loss, outputs, logits_s, logits_v, loss_s, loss_v
+            # gc.collect()
+            # ===================================================================
             
-            del x1,x2,x3,x4,x5,x6,x7,x8,x9, y_s, y_v
-            del loss, outputs, logits_s, logits_v, loss_s, loss_v
             if len(loss_horz)==0:
                 loss_horz.append(0)
             else:
@@ -639,6 +639,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss
         
     state = torch.load(modelfile)   # reload best model
     model.load_state_dict(state)
+    del state
     fig, axes = plt.subplots(2,1)
     ax0 = axes[0]
     ax1 = axes[1]
@@ -770,14 +771,13 @@ def test_single_example(model, datalen, dataloader, logger, log_interval, index=
     
     if index==-1:   # generate a random number
         index = np.random.randint(0, datalen)
-    logger.info(index)
+    
     batchsize = dataloader.batch_size    
     inter_batch_idx = index // batchsize 
     intra_batch_idx = index % batchsize
 
     with torch.no_grad():
         for batch_id, minibatch in enumerate(dataloader):
-            logger.info('batch id %d ' % batch_id)
             if inter_batch_idx == batch_id:
                 #x0 = minibatch[0].to(gpu)  # index in orig data (unused)
                 x1 = minibatch[1].to(gpu)   # encoded_tweets_h
@@ -912,14 +912,22 @@ def get_args():
 def print_gpu_obj():
     import gc
     count = 0
+    string_to_print = ''
     for tracked_obj in gc.get_objects():
         if torch.is_tensor(tracked_obj):
             if tracked_obj.is_cuda:
                 count += 1
+                string = str('{} {} {}'.format(type(tracked_obj).__name__, 
+                                               " pinned" if tracked_obj.is_pinned() else "",
+                                               tracked_obj.shape))
+                string_to_print += string + '\n'
                 #print('{} {} {}'.format(type(tracked_obj).__name__, 
                 #                        " pinned" if tracked_obj.is_pinned() else "",
                 #                        tracked_obj.shape))
-    print('there are %d tracked objects in GPU' % count)
+    
+    string_to_print += str('there are %d tracked objects in GPU' % count)
+    # print('there are %d tracked objects in GPU' % count)
+    return string_to_print
 
 if __name__ == '__main__':
     main()
