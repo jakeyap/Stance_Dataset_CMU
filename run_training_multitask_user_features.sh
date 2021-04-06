@@ -4,6 +4,40 @@
 # Created on Mon Mar  8 17:50:08 2021
 # @author: jakeyap
 
+
+EXP_NUM=65
+for DROPOUT in 0.1 0.3 0.5
+do
+    for layers in 2 3
+    do
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_multitask_user_features.py \
+        --batch_train=80 --batch_test=200 --epochs=200 --learning_rate=0.00004 --optimizer=adam \
+        --model_name=mtt_Bertweet3 --exp_name=exp${EXP_NUM} --epochs2giveup=20 \
+        --train_data=./data/train_set_128_individual_bertweet.bin --test_data=./data/test_set_128_individual_bertweet.bin \
+        --k_folds=4 --folds2run=4 \
+        --log_interval=1 --do_train --loss_fn=w_ce_loss --w_sample --dropout=${DROPOUT} --layers=${layers} \
+        --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0
+    ((EXP_NUM=EXP_NUM+1))
+    done
+done
+: '
+EXP_NUM=71
+for DROPOUT in 0.1 0.3 0.5
+do
+    for layers in 2 3
+    do
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=1 python main_multitask_user_features.py \
+        --batch_train=80 --batch_test=200 --epochs=200 --learning_rate=0.00004 --optimizer=adam \
+        --model_name=mtt_Bertweet3 --exp_name=exp${EXP_NUM} --epochs2giveup=20 \
+        --train_data=./data/train_set_128_individual_bertweet.bin --test_data=./data/test_set_128_individual_bertweet.bin \
+        --k_folds=4 --folds2run=4 \
+        --log_interval=1 --do_train --loss_fn=w_ce_loss --w_sample --dropout=${DROPOUT} --layers=${layers} \
+        --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0
+    ((EXP_NUM=EXP_NUM+1))
+    done
+done
+'
+: "
 EXP_NUM=41
 for W_ATTR in stance viral
 do
@@ -20,7 +54,6 @@ do
     done
 done
 
-: "
 # to be run on screen2
 EXP_NUM=47
 for W_ATTR in stance viral
@@ -37,7 +70,6 @@ do
     ((EXP_NUM=EXP_NUM+1))
     done
 done
-"
 
 EXP_NUM=53
 for W_ATTR in stance viral
@@ -55,7 +87,6 @@ do
     done
 done
 
-: "
 # to be run on screen2
 EXP_NUM=59
 for W_ATTR in stance viral

@@ -35,7 +35,7 @@ import dataloader_utilities as dataloader
 import tokenizer_v2
 from tokenizer_v5 import tokenizer
 
-from classifier_models import my_Bertweet, mtt_Bertweet, mtt_Bertweet2, SelfAdjDiceLoss
+from classifier_models import my_Bertweet, mtt_Bertweet, mtt_Bertweet2, mtt_Bertweet3, SelfAdjDiceLoss
 # from transformers import BertConfig
 
 # default imports
@@ -361,7 +361,7 @@ def main():
         msg+= 'std_f1_stance\t%.4f\n' % f1_s_std
         msg+= 'avg_f1_viral\t%.4f\n' % f1_v_avg
         msg+= 'std_f1_viral\t%.4f\n' % f1_v_std
-        msg+= 'avg acc_stance\t%.4f\n' % acc_s_avg
+        msg+= 'avg_acc_stance\t%.4f\n' % acc_s_avg
         msg+= 'avg_acc_viral\t%.4f\n' % acc_v_avg
         logger.info(msg)
         
@@ -422,6 +422,8 @@ def get_model(logger=None, modelname='', dropout=0.1, layers=2):
         model = mtt_Bertweet(4, dropout)
     elif modelname=='mtt_Bertweet2':
         model = mtt_Bertweet2(4, dropout, layers)
+    elif modelname=='mtt_Bertweet3':
+        model = mtt_Bertweet3(4, dropout, layers)
     else:
         msg = 'model not found, exiting ' + modelname
         if logger is None:
