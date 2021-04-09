@@ -4,7 +4,25 @@
 # Created on Mon Mar  8 17:50:08 2021
 # @author: jakeyap
 
+EXP_NUM=77
+for USER_WORDS in 5 10 15 20
+do
+    for layers in 3 2
+    do
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=3 python main_multitask_user_features_keywords.py \
+        --batch_train=60 --batch_test=200 --epochs=200 --learning_rate=0.00004 --optimizer=adam \
+        --model_name=mtt_Bertweet4 --exp_name=exp${EXP_NUM} --epochs2giveup=20 \
+        --train_data=./data/train_set_128_individual_bertweet_keywords_${USER_WORDS}.bin \
+        --test_data=./data/test_set_128_individual_bertweet_keywords_${USER_WORDS}.bin \
+        --k_folds=4 --folds2run=4 \
+        --log_interval=1 --do_train --loss_fn=w_ce_loss --w_sample --dropout=0.3 --layers=${layers} \
+        --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0
+    ((EXP_NUM=EXP_NUM+1))
+    done
+done
 
+
+: '
 EXP_NUM=65
 for DROPOUT in 0.1 0.3 0.5
 do
@@ -20,6 +38,7 @@ do
     ((EXP_NUM=EXP_NUM+1))
     done
 done
+'
 : '
 EXP_NUM=71
 for DROPOUT in 0.1 0.3 0.5

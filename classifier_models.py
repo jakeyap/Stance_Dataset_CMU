@@ -429,6 +429,89 @@ class mtt_Bertweet3(nn.Module):    # used in main_multitask_user_features.py
         
         return outputs
 
+
+class mtt_Bertweet4(nn.Module):    # used in main_multitask_user_features_keywords.py
+    ''' 
+    For multitask. Viral and stance prediction. Includes the other meta data features and user keyword representation
+    For stance task, head and tail tweets are encoded by bertweet respectively. The outputs are passed into a transformer
+    Similar to mtt_Bertweet2.
+    '''
+    def __init__(self, num_labels, dropout, num_layers=2):
+        super(mtt_Bertweet4, self).__init__()
+        self.num_labels = num_labels
+
+        self.bertweet = AutoModel.from_pretrained("vinai/bertweet-base")
+        config = self.bertweet.config
+        self.dropout0 = torch.nn.Dropout(dropout)
+        self.classifier0 = torch.nn.Linear(config.hidden_size * 3 + 3, 4) # for stance
+        self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 3, 2) # for viral
+        
+        # a single self attention layer
+        single_tf_layer = nn.TransformerEncoderLayer(d_model=config.hidden_size * 3, 
+                                                     nhead=8, 
+                                                     dropout=config.hidden_dropout_prob)
+        # create transformer blocks. the single layer is cloned internally
+        self.transformer_block = nn.TransformerEncoder(single_tf_layer,
+                                                       num_layers=num_layers)
+        
+    def forward(self, 
+                input_ids_h, attention_mask_h=None, token_type_ids_h=None, position_ids_h=None, 
+                input_ids_t=None, attention_mask_t=None, token_type_ids_t=None, position_ids_t=None, 
+                followers_head=None, followers_tail=None, int_type_num=None,
+                user_keywords=None, task='stance'):
+        
+        outputs_h = self.bertweet(input_ids_h,
+                                  attention_mask=attention_mask_h,
+                                  token_type_ids=token_type_ids_h,
+                                  position_ids=position_ids_h)
+        outputs_t = self.bertweet(input_ids_t,
+                                  attention_mask=attention_mask_t,
+                                  token_type_ids=token_type_ids_t,
+                                  position_ids=position_ids_t)
+        keywords  = self.bertweet(user_keywords)
+        
+        stance_logits = None
+        viral_logits = None
+        
+        output_h = outputs_h[1]                         # get the last layer CLS outputs. shape=(n,768)
+        output_t = outputs_t[1]                         # get the last layer CLS outputs. shape=(n,768)
+        keywords = keywords[1]                          # get the last layer CLS outputs. shape=(n,768)
+        
+        pooled_output_h = self.dropout0(output_h)       # apply dropout. shape=(n,768)
+        pooled_output_t = self.dropout0(output_t)       # apply dropout. shape=(n,768)
+        pooled_keywords = self.dropout0(keywords)       # apply dropout. shape=(n,768)
+        
+        pooled_output   = torch.cat((pooled_output_h,   # concat pooled outputs. shape=(n,2304)
+                                     pooled_output_t,
+                                     pooled_keywords), 
+                                    dim=1)
+        
+        pooled_output = pooled_output.unsqueeze(1)      # shape=(n,1,2304)
+        tmp = self.transformer_block(pooled_output)     # apply transformer. shape=(n,1,2304)
+        tmp = tmp.squeeze(1)                            # shape=(n,2304)
+        tmp = self.dropout0(tmp)                        # apply dropout again. shape=(n,2304)
+        
+        metadata = torch.cat((followers_head,           # each shape=(n,1)
+                              followers_tail,           # after cat, shape=(n,3)
+                              int_type_num),
+                             dim=1)
+        
+        tmp = torch.cat((tmp, metadata), dim=1)         # shapes were (n,2304) and (n,3). now (n,2307)
+        
+        stance_logits = None
+        viral_logits = None
+        if task not in ['stance','multi','viral']:
+            raise Exception('Task not found: ' + task)
+        if task in ['stance','multi']:
+            stance_logits = self.classifier0(tmp)
+        if task in ['viral','multi']:
+            viral_logits = self.classifier1(tmp)
+        
+        # shape of stance_logits is (n,4), viral_logits is (n,2)
+        outputs = (stance_logits, viral_logits, ) + outputs_h[2:] + outputs_t[2:]   # add hidden states and attention if they are here
+        
+        return outputs
+
 class SelfAdjDiceLoss(torch.nn.Module):
     """
     Creates a criterion that optimizes a multi-class Self-adjusting Dice Loss

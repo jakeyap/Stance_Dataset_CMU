@@ -1,6 +1,33 @@
 #!/usr/bin/env bash
 #@author: jakeyap on 20210208 1100am
 
+EXP_NUM=XX
+for USER_WORDS in 5
+do
+    for layers in 3
+    do
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_user_features.py \
+        --batch_train=2 --batch_test=200 --epochs=200 --learning_rate=0.00004 --optimizer=adam \
+        --model_name=mtt_Bertweet4 --exp_name=exp${EXP_NUM} --epochs2giveup=20 \
+        --train_data=./data/train_set_128_individual_bertweet_keywords_${USER_WORDS}.bin \
+        --test_data=./data/test_set_128_individual_bertweet_keywords_${USER_WORDS}.bin \
+        --k_folds=4 --folds2run=4 \
+        --log_interval=1 --do_train --loss_fn=w_ce_loss --w_sample --dropout=0.3 --layers=${layers} \
+        --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0
+    done
+done
+
+:'
+PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_user_features_keywords.py \
+    --batch_train=3 --batch_test=20 --epochs=1 --learning_rate=0.00001 --optimizer=adam \
+    --model_name=mtt_Bertweet4 --exp_name=expXX --epochs2giveup=20 \
+    --train_data=./data/train_set_128_individual_bertweet_keywords.bin --test_data=./data/test_set_128_individual_bertweet_keywords.bin \
+    --k_folds=4 --folds2run=4 \
+    --log_interval=1 --do_train --loss_fn=w_ce_loss --dropout=0.1 --layers=2 \
+    --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0 \
+    --debug
+'
+: "
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_user_features.py \
     --batch_train=3 --batch_test=20 --epochs=1 --learning_rate=0.00001 --optimizer=adam \
     --model_name=mtt_Bertweet3 --exp_name=expXX --epochs2giveup=20 \
@@ -9,7 +36,7 @@ PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_user_feature
     --log_interval=1 --do_train --loss_fn=w_ce_loss --dropout=0.1 --layers=2 \
     --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0 \
     --debug
-    
+" 
 : "
 PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_sequential.py \
     --batch_train=3 --batch_test=20 --epochs=2 --learning_rate=0.00001 --optimizer=adam \
