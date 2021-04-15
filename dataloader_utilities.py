@@ -747,7 +747,8 @@ def df_2_dl_v5(dataframe,
                viral_attr='likes',
                viral_threshold=80,
                DEBUG=False,
-               logger=None):
+               logger=None,
+               ablation=""):
     """
     Converts a dataframe into a DataLoader object, and return DataLoader
     Similar to previous versions to df_2_dl_v4. 
@@ -775,6 +776,8 @@ def df_2_dl_v5(dataframe,
         Percentile thresholds to categorize like/retweet data. Above is viral, below is not viral
     DEBUG : boolean, optional
         Flag to pring debugging messages. The default is False.
+    ablation : string, optional
+        Feature to zero out. Must be "followers", "text" or "keywords". Can have multiple, separate by dash -. Default is "".
 
     Returns
     -------
@@ -851,6 +854,14 @@ def df_2_dl_v5(dataframe,
     att_masks_t     = new_df['attention_mask_t'].values.tolist()
     att_masks_t     = torch.stack(att_masks_t, dim=0).squeeze(1)
     
+    if "text" in ablation:      # if remove text feature, zero out all text encodings
+        encoded_heads = encoded_heads * 0
+        token_types_h = token_types_h * 0
+        att_masks_h = att_masks_h * 0
+        encoded_tails = encoded_tails * 0
+        token_types_t = token_types_t * 0
+        att_masks_t = att_masks_t * 0
+    
     followers_head  = new_df.followers_head.values
     followers_head  = followers_head.reshape((-1,1))    # still in numpy format
     followers_head  = torch.from_numpy(followers_head)  # convert np into torch format
@@ -858,12 +869,19 @@ def df_2_dl_v5(dataframe,
     followers_tail  = followers_tail.reshape((-1,1))    # still in numpy format
     followers_tail  = torch.from_numpy(followers_tail)  # convert np into torch format
     
+    if "followers" in ablation: # if remove followers feature, zero out all follower counts
+        followers_head = followers_head * 0
+        followers_tail = followers_tail * 0
+    
     int_type_num    = new_df.interaction_type_num.values
     int_type_num    = int_type_num.reshape((-1,1))      # still in numpy format
     int_type_num    = torch.from_numpy(int_type_num)    # convert np into torch format
     
     enc_keywords    = new_df['encoded_keywords'].values.tolist()
     enc_keywords    = torch.stack(enc_keywords, dim=0).squeeze(1)
+    
+    if "keywords" in ablation:  # if remove user keywords feature, zero out all keyword encodings
+        enc_keywords = enc_keywords * 0
     
     number_labels_4 = new_df['number_labels_4_types'].values
     number_labels_4 = number_labels_4.reshape((-1))     # still in numpy format
@@ -896,6 +914,7 @@ def df_2_dl_v5(dataframe,
                             enc_keywords,
                             number_labels_4,
                             viral_score)
+    
     if randomize:
         # Do shuffle here
         if weighted_sample:

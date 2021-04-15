@@ -19,7 +19,8 @@ import dataloader_utilities as dataloader
 import tokenizer_v2
 from tokenizer_v5 import tokenizer
 
-from classifier_models import my_Bertweet, mtt_Bertweet, mtt_Bertweet2, mtt_Bertweet3, mtt_Bertweet4, SelfAdjDiceLoss
+from classifier_models import my_Bertweet, mtt_Bertweet, mtt_Bertweet2, SelfAdjDiceLoss
+from classifier_models import mtt_Bertweet3, mtt_Bertweet4, mtt_Bertweet5
 # from transformers import BertConfig
 
 # default imports
@@ -43,8 +44,6 @@ sys.path.insert(1, lib_folder)
 from misc_helpers import fmt_time_pretty
 import gc
 
-# DONE: edit the dataloader df2dl_v5
-# TODO: create new model to parse user keywords
 # TODO: debug code segments
 
 torch.manual_seed(0)
@@ -90,6 +89,7 @@ def main():
     W_ATTR =        args.weight_attr 
     TASK =          args.task
     MTT_WEIGHT =    args.mtt_weight
+    ABLATION =      args.ablation
     ''' ===================================================='''
     
     model_savefile = './log_files/saved_models/'+EXP_NAME+'_'+MODEL_NAME+'.bin'   # to save/load model from
@@ -130,7 +130,8 @@ def main():
                                     randomize=False,
                                     viral_attr=V_ATTR,
                                     viral_threshold=V_THRESHOLD, 
-                                    logger=logger)
+                                    logger=logger,
+                                    ablation=ABLATION)
     TESTLENGTH = len(test_df)
     
     if DO_TRAIN:
@@ -194,14 +195,16 @@ def main():
                                              weight_attr=W_ATTR,
                                              viral_attr=V_ATTR,
                                              viral_threshold=V_THRESHOLD, 
-                                             logger=logger)
+                                             logger=logger,
+                                             ablation=ABLATION)
             dev_dl = dataloader.df_2_dl_v5(dev_df, 
                                            batch_size=TEST_MB_SIZE, 
                                            randomize=False, 
                                            weighted_sample=False,
                                            viral_attr=V_ATTR,
                                            viral_threshold=V_THRESHOLD, 
-                                           logger=logger)
+                                           logger=logger,
+                                           ablation=ABLATION)
             
             logger.info('--------------- Getting fresh model ----------------')
             model = get_model(logger,MODEL_NAME, DROPOUT, LAYERS)
@@ -404,6 +407,8 @@ def get_model(logger=None, modelname='', dropout=0.1, layers=2):
         model = mtt_Bertweet3(4, dropout, layers)
     elif modelname=='mtt_Bertweet4':
         model = mtt_Bertweet4(4, dropout, layers)
+    elif modelname=='mtt_Bertweet5':
+        model = mtt_Bertweet5(4, dropout, layers)
     else:
         msg = 'model not found, exiting ' + modelname
         if logger is None:
@@ -484,7 +489,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss
         for batch_id, minibatch in enumerate(train_dl):
             if batch_id % log_interval == 0:
                 logger.info(('\tEPOCH: %3d\tMiniBatch: %4d' % (epoch, batch_id)))
-
+            
             #x0 = minibatch[0].to(gpu)  # index in orig data (unused)
             x1 = minibatch[1].to(gpu)   # encoded_tweets_h
             x2 = minibatch[2].to(gpu)   # token_type_ids_h 
@@ -882,17 +887,18 @@ def get_args():
     parser.add_argument("--log_interval",   default=1, type=int, help="num of batches before printing")
     ''' ===================================================='''
     ''' ========== Add additional arguments here ==========='''
-    parser.add_argument('--loss_fn',        default='ce_loss',   help='loss function. ce_loss (default), dice, w_ce_loss')
-    parser.add_argument('--w_sample',       action='store_true', help='non flat sampling of training examples')
-    parser.add_argument('--pretrain_model', default='',          help='model file that was pretrained on big twitter dataset')
-    parser.add_argument('--epochs2giveup',  default=5, type=int, help='training is stopped if no improvements are seen after this number of epochs')
+    parser.add_argument('--loss_fn',        default='ce_loss',      help='loss function. ce_loss (default), dice, w_ce_loss')
+    parser.add_argument('--w_sample',       action='store_true',    help='non flat sampling of training examples')
+    parser.add_argument('--pretrain_model', default='',             help='model file that was pretrained on big twitter dataset')
+    parser.add_argument('--epochs2giveup',  default=5, type=int,    help='training is stopped if no improvements are seen after this number of epochs')
     parser.add_argument('--dropout',        default=0.1,type=float, help='dropout probability of last layer')
-    parser.add_argument('--layers',         default=2, type=int, help='number of level 2 transformer layers')
-    parser.add_argument('--viral_attr',     default='likes',     help='what attribute to use to define viral, must be ["likes", "retweets"]')
+    parser.add_argument('--layers',         default=2, type=int,    help='number of level 2 transformer layers')
+    parser.add_argument('--viral_attr',     default='likes',        help='what attribute to use to define viral, must be ["likes", "retweets"]')
     parser.add_argument('--viral_threshold',default=80, type=float, help='percentile to define viral post')
-    parser.add_argument('--weight_attr',    default='stance',    help='attribute for weighted sampling. must be "stance", "viral"')
-    parser.add_argument('--task',           default='multi',     help='task to train on. must be "multi", "stance", "viral"')
+    parser.add_argument('--weight_attr',    default='stance',       help='attribute for weighted sampling. must be "stance", "viral"')
+    parser.add_argument('--task',           default='multi',        help='task to train on. must be "multi", "stance", "viral"')
     parser.add_argument('--mtt_weight',     default=1.0,type=float, help='relative weight of viral task to stance task')
+    parser.add_argument('--ablation',       default='',             help='features to ablate. can be "followers", "text" or "keywords"')
     ''' ===================================================='''
     return parser.parse_args()
 

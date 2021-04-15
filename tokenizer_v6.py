@@ -94,12 +94,14 @@ def tokenize_and_encode_pandas_pair(dataframe,stopindex=1e9,max_length=128, bert
                                                is_split_into_words=False,
                                                max_length=max_length,
                                                return_tensors='pt')
+        
         encoded_dict_tail = tokenizer.__call__(text=tail_txt,       # for tail post
                                                padding='max_length',
                                                truncation=True,
                                                is_split_into_words=False,
                                                max_length=max_length,
                                                return_tensors='pt')
+        
         keywords_encoding = tokenizer.encode(keywords,              # shape=(1,128))
                                              padding='max_length',
                                              truncation=True,
@@ -162,6 +164,7 @@ def json_2_df(folder, fname):
     ''' ========== Convert into pandas ========== '''
     pd_dataframe = pd.DataFrame(raw_list)
     return pd_dataframe
+  
 
 if __name__ == '__main__':
     

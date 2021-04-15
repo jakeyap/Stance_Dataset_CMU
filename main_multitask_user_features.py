@@ -3,8 +3,6 @@
 """
 Created on Fri Mar 12 14:43:45 2021
 this is similar to the multitask training file "main_multitasking.py"
-the difference is that the tasks are trained sequentially, with the option to use different dataloaders. 
-the sampling of training data can be done separately. 
 
 prediction of virality wouldnt use features of the reply to gauge
 

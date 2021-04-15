@@ -16,6 +16,8 @@ import torch
 
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
+from sklearn.cluster import KMeans
+from sklearn.metrics import pairwise_distances_argmin_min
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -52,9 +54,8 @@ bert_reprs  = []
 
 bertweet.cuda()
 bertweet.eval()
-# TODO 
-# use bertweet's embedding layer later
-embeddinglayer = bertweet.embeddings
+
+embeddinglayer = bertweet.embeddings    # use bertweet's embedding layer later
 for each_user in user_ids:
     keywords.append(dictionary[each_user])
     with torch.no_grad():
@@ -125,6 +126,60 @@ for PERPLEX in PERPLEX_LIST:
             alpha=0.3,
             ax=ax0
         )
+        plt.figure(1)
+        model = KMeans(n_clusters=7, max_iter=1000)
+        X1 = df['tsne-pca-bertweet-one'].to_numpy()
+        X2 = df['tsne-pca-bertweet-two'].to_numpy()
+        
+        X1 = X1.reshape(-1,1)
+        X2 = X2.reshape(-1,1)
+        X = np.concatenate((X1,X2), 1)
+        
+        model.fit(X)
+        colors = ['red',
+                  'green',
+                  'blue',
+                  'black',
+                  'purple',
+                  'brown',
+                  'maroon']
+        yhat = model.predict(X)
+        clusters = np.unique(yhat)
+        # create scatter plot to color samples from each cluster
+        plt.figure(2)
+        for cluster in clusters:
+        	# get row indexes for samples with this cluster
+        	row_idx = np.where(yhat == cluster)
+        	# create scatter of these samples
+        	plt.scatter(X[row_idx, 0], 
+                        X[row_idx, 1], 
+                        s=2,
+                        alpha=0.3,
+                        color=colors[cluster])
+        
+        centers = model.cluster_centers_
+        for i in range(centers.shape[0]):
+            plt.scatter(centers[i,0], 
+                        centers[i,1], 
+                        marker='x',
+                        color=colors[i])
+        
+        # find the points closest to centroids
+        closest, _ = pairwise_distances_argmin_min(model.cluster_centers_, X)
+        # annotate text for points closest to centroids
+        i = 0
+        for idx in closest:
+            data = df.iloc[idx]
+            plt.annotate(text=data.keywords,
+                         xy=(X1[idx],X2[idx]),
+                         color=colors[i],
+                         horizontalalignment='center',
+                         verticalalignment='top',
+                         size=20)
+            i += 1
+        plt.suptitle('PERPLEXITY %d, PCA-DIM %d + KMEANS' %(PERPLEX, PCA_DIM))
         
 time2 = time.time()
-print(fmt_time_pretty(time2,time1))
+print(fmt_time_pretty(time1, time2))
+
+    
