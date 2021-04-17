@@ -271,7 +271,7 @@ if __name__ == '__main__':
     df = df.sample(frac=1)
     train_set = df.iloc[0:train_index].copy() # length 2752
     test_set  = df.iloc[train_index:].copy() # length 688
-    
+    '''
     torch.save(train_set, './data/train_set_128_individual_bertweet_keywords_'+str(NUMBER)+'.bin')
     torch.save(test_set, './data/test_set_128_individual_bertweet_keywords_'+str(NUMBER)+'.bin')
 
@@ -304,3 +304,4 @@ if __name__ == '__main__':
     ax1.legend()
     ax1.grid(True)
     fig.tight_layout()
+'''

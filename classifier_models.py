@@ -599,6 +599,94 @@ class mtt_Bertweet5(nn.Module):    # used in main_multitask_user_features_keywor
         
         return outputs
 
+class mtt_Bert5(nn.Module):    # used for comparison to mtt_bertweet5
+    ''' 
+    For multitask. Viral and stance prediction. Includes the other meta data features and user keyword representation
+    For stance task, head and tail tweets are encoded by bertweet respectively. The outputs are passed into a transformer
+    Similar to mtt_Bertweet3, except the meta data is fed in earlier thru the attention stack, instead of at the final step
+    '''
+    def __init__(self, num_labels, dropout, num_layers=2):
+        super(mtt_Bert5, self).__init__()
+        self.num_labels = num_labels
+
+        self.bert = BertModel.from_pretrained("bert-base-uncased")
+        config = self.bert.config
+        self.dropout0 = torch.nn.Dropout(dropout)
+        self.classifier0 = torch.nn.Linear(config.hidden_size * 3 + 8, 4) # for stance
+        self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 2) # for viral
+        
+        # a single self attention layer
+        single_tf_layer = nn.TransformerEncoderLayer(d_model=config.hidden_size * 3 + 8, 
+                                                     nhead=8, 
+                                                     dropout=config.hidden_dropout_prob)
+        # create transformer blocks. the single layer is cloned internally
+        self.transformer_block = nn.TransformerEncoder(single_tf_layer,
+                                                       num_layers=num_layers)
+        
+    def forward(self, 
+                input_ids_h, attention_mask_h=None, token_type_ids_h=None, position_ids_h=None, 
+                input_ids_t=None, attention_mask_t=None, token_type_ids_t=None, position_ids_t=None, 
+                followers_head=None, followers_tail=None, int_type_num=None,
+                user_keywords=None, task='stance'):
+        
+        outputs_h = self.bert(input_ids_h,
+                              attention_mask=attention_mask_h,
+                              token_type_ids=token_type_ids_h,
+                              position_ids=position_ids_h)
+        outputs_t = self.bert(input_ids_t,
+                              attention_mask=attention_mask_t,
+                              token_type_ids=token_type_ids_t,
+                              position_ids=position_ids_t)
+        keywords  = self.bert(user_keywords)
+        
+        # by right, you can just concat meta to encodings, shape=(n,768+768+3)
+        # but dimensions inside transformer block must be multiples of 8, so pad with 5
+        device = followers_head.device.type
+        mb_size = followers_head.shape[0]
+        padding = torch.zeros([mb_size,5]).to(device)   # pad with 5 elements
+        metadata = torch.cat((followers_head,           # each shape=(n,1)
+                              followers_tail,           # after cat, shape=(n,8)
+                              int_type_num,
+                              padding),
+                             dim=1)
+        
+        stance_logits = None
+        viral_logits = None
+        
+        output_h = outputs_h[1]                         # get the last layer CLS outputs. shape=(n,768)
+        output_t = outputs_t[1]                         # get the last layer CLS outputs. shape=(n,768)
+        keywords = keywords[1]                          # get the last layer CLS outputs. shape=(n,768)
+        
+        pooled_output_h = self.dropout0(output_h)       # apply dropout. shape=(n,768)
+        pooled_output_t = self.dropout0(output_t)       # apply dropout. shape=(n,768)
+        pooled_keywords = self.dropout0(keywords)       # apply dropout. shape=(n,768)
+        
+        pooled_output   = torch.cat((pooled_output_h,   # concat pooled outputs. shape=(n,2312)
+                                     pooled_output_t,
+                                     pooled_keywords,
+                                     metadata), 
+                                    dim=1)
+        
+        pooled_output = pooled_output.unsqueeze(1)      # shape=(n,1,2312)
+        tmp = self.transformer_block(pooled_output)     # apply transformer. shape=(n,1,2312)
+        tmp = tmp.squeeze(1)                            # shape=(n,2312)
+        tmp = self.dropout0(tmp)                        # apply dropout again. shape=(n,2312)
+        
+        stance_logits = None
+        viral_logits = None
+        if task not in ['stance','multi','viral']:
+            raise Exception('Task not found: ' + task)
+        if task in ['stance','multi']:
+            stance_logits = self.classifier0(tmp)
+        if task in ['viral','multi']:
+            viral_logits = self.classifier1(tmp)
+        
+        # shape of stance_logits is (n,4), viral_logits is (n,2)
+        outputs = (stance_logits, viral_logits, ) + outputs_h[2:] + outputs_t[2:]   # add hidden states and attention if they are here
+        
+        return outputs
+
+
 class SelfAdjDiceLoss(torch.nn.Module):
     """
     Creates a criterion that optimizes a multi-class Self-adjusting Dice Loss

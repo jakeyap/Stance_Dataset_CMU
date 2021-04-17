@@ -43,7 +43,7 @@ tknizer = AutoTokenizer.from_pretrained("vinai/bertweet-base",
                                         normalization=True)
 bertweet = AutoModel.from_pretrained("vinai/bertweet-base")
 ''' edit this to swap file '''
-dictionary = file05
+dictionary = file15
 user_ids = list(dictionary.keys())
 # np.random.shuffle(user_ids)
 # user_ids = user_ids [0:400]

@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 #@author: jakeyap on 20210208 1100am
 
-
-
-for ABLATION in keywords followers text keywords-followers keywords-text text-followers keywords-followers-text
+EXP_NUM=XX
+for USER_WORDS in 5
 do
-    echo ${ABLATION}
+    for layers in 3
+    do
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_user_features_keywords.py \
+        --batch_train=2 --batch_test=200 --epochs=2 --learning_rate=0.00004 --optimizer=adam \
+        --model_name=mtt_Bert5 --exp_name=exp${EXP_NUM} --epochs2giveup=20 \
+        --train_data=./data/train_set_128_individual_bert_keywords_${USER_WORDS}.bin \
+        --test_data=./data/test_set_128_individual_bert_keywords_${USER_WORDS}.bin \
+        --k_folds=4 --folds2run=2 \
+        --log_interval=1 --do_train --loss_fn=w_ce_loss --w_sample --dropout=0.3 --layers=${layers} \
+        --viral_threshold=80 --viral_attr=likes --weight_attr=stance --task=multi --mtt_weight=1.0 --debug
+    done
 done
+
+
 
 : "
 EXP_NUM=XX

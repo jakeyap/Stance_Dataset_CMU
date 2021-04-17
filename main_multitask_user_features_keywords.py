@@ -20,7 +20,7 @@ import tokenizer_v2
 from tokenizer_v5 import tokenizer
 
 from classifier_models import my_Bertweet, mtt_Bertweet, mtt_Bertweet2, SelfAdjDiceLoss
-from classifier_models import mtt_Bertweet3, mtt_Bertweet4, mtt_Bertweet5
+from classifier_models import mtt_Bertweet3, mtt_Bertweet4, mtt_Bertweet5, mtt_Bert5
 # from transformers import BertConfig
 
 # default imports
@@ -409,6 +409,8 @@ def get_model(logger=None, modelname='', dropout=0.1, layers=2):
         model = mtt_Bertweet4(4, dropout, layers)
     elif modelname=='mtt_Bertweet5':
         model = mtt_Bertweet5(4, dropout, layers)
+    elif modelname=='mtt_Bert5':
+        model = mtt_Bert5(4, dropout, layers)
     else:
         msg = 'model not found, exiting ' + modelname
         if logger is None:

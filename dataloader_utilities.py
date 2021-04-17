@@ -13,6 +13,8 @@ import numpy as np
 import torch
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, WeightedRandomSampler, SequentialSampler
 
+bert_tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
 def print_df_row(dataframe=None, cols=[], index=-1):
     if index == -1:
         datalen = len(dataframe)
@@ -959,6 +961,8 @@ def df_2_dl_v5(dataframe,
                             sampler=sampler,
                             num_workers=4)
     return dataloader
+        
+    
 
 if __name__ =='__main__':
     time_start = time.time()

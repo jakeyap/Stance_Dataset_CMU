@@ -301,13 +301,9 @@ str_out = re_obj.search(teststr)
 '''
 if __name__=='__main__':
     folder = './log_files/'
-    fnames = ['exp95-1_mtt_Bertweet5.log',
-              'exp95-2_mtt_Bertweet5.log',
-              'exp95-3_mtt_Bertweet5.log',
-              'exp95-4_mtt_Bertweet5.log',
-              'exp95-5_mtt_Bertweet5.log',
-              'exp95-6_mtt_Bertweet5.log',
-              'exp95-7_mtt_Bertweet5.log']
+    fnames = ['exp95-15_mtt_Bert5.log',
+              'exp95-16_mtt_Bert5.log',
+              'exp95-17_mtt_Bertweet5.log']
     for fname in fnames:
         tmp = process_file(folder, fname)
         print_averages(tmp)
