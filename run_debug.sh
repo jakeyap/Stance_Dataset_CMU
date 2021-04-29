@@ -1,6 +1,24 @@
 #!/usr/bin/env bash
 #@author: jakeyap on 20210208 1100am
 
+EXP_NUM=1000
+for USER_WORDS in 5
+do
+    for TASK in multi
+    do
+    PYTHONIOENCODING=utf-8 CUDA_VISIBLE_DEVICES=0 python main_multitask_regression.py \
+        --batch_train=3 --batch_test=200 --epochs=3 --learning_rate=0.00004 --optimizer=adam \
+        --model_name=mtt_Bertweet5_regr --exp_name=exp${EXP_NUM} --epochs2giveup=20 \
+        --train_data=./data/test_set_128_individual_bertweet_keywords_${USER_WORDS}.bin \
+        --test_data=./data/test_set_128_individual_bertweet_keywords_${USER_WORDS}.bin \
+        --k_folds=4 --folds2run=2 \
+        --log_interval=1 --do_train --loss_fn=w_ce_loss --w_sample --dropout=0.3 --layers=3 \
+        --viral_log=1 --viral_attr=likes --weight_attr=stance --task=${TASK} --mtt_weight=1.0 --debug
+    ((EXP_NUM=EXP_NUM+1))
+    done
+done
+
+: "
 EXP_NUM=XX
 for USER_WORDS in 5
 do
@@ -17,7 +35,7 @@ do
     done
 done
 
-
+"
 
 : "
 EXP_NUM=XX

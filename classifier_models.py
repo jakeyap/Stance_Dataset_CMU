@@ -518,7 +518,7 @@ class mtt_Bertweet5(nn.Module):    # used in main_multitask_user_features_keywor
     For stance task, head and tail tweets are encoded by bertweet respectively. The outputs are passed into a transformer
     Similar to mtt_Bertweet3, except the meta data is fed in earlier thru the attention stack, instead of at the final step
     '''
-    def __init__(self, num_labels, dropout, num_layers=2):
+    def __init__(self, num_labels, dropout, num_layers=2, regr=False):
         super(mtt_Bertweet5, self).__init__()
         self.num_labels = num_labels
 
@@ -526,7 +526,10 @@ class mtt_Bertweet5(nn.Module):    # used in main_multitask_user_features_keywor
         config = self.bertweet.config
         self.dropout0 = torch.nn.Dropout(dropout)
         self.classifier0 = torch.nn.Linear(config.hidden_size * 3 + 8, 4) # for stance
-        self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 2) # for viral
+        if regr:
+            self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 1) # for viral regression
+        else:
+            self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 2) # for viral classification
         
         # a single self attention layer
         single_tf_layer = nn.TransformerEncoderLayer(d_model=config.hidden_size * 3 + 8, 
@@ -605,7 +608,7 @@ class mtt_Bert5(nn.Module):    # used for comparison to mtt_bertweet5
     For stance task, head and tail tweets are encoded by bertweet respectively. The outputs are passed into a transformer
     Similar to mtt_Bertweet3, except the meta data is fed in earlier thru the attention stack, instead of at the final step
     '''
-    def __init__(self, num_labels, dropout, num_layers=2):
+    def __init__(self, num_labels, dropout, num_layers=2, regr=False):
         super(mtt_Bert5, self).__init__()
         self.num_labels = num_labels
 
@@ -613,8 +616,10 @@ class mtt_Bert5(nn.Module):    # used for comparison to mtt_bertweet5
         config = self.bert.config
         self.dropout0 = torch.nn.Dropout(dropout)
         self.classifier0 = torch.nn.Linear(config.hidden_size * 3 + 8, 4) # for stance
-        self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 2) # for viral
-        
+        if regr:
+            self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 1) # for viral regression
+        else:
+            self.classifier1 = torch.nn.Linear(config.hidden_size * 3 + 8, 2) # for viral classification
         # a single self attention layer
         single_tf_layer = nn.TransformerEncoderLayer(d_model=config.hidden_size * 3 + 8, 
                                                      nhead=8, 
