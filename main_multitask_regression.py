@@ -318,8 +318,8 @@ def main():
                 break
         # finished kfolds, print everything once more, calculate the average f1 metrics
         f1s_s = []  # to accumulate stance f1 scores
-        r2e_v = []  # to accumulate viral r2 scores
-        mse_v = []  # to accumulate viral mse scores
+        r2es_v = []  # to accumulate viral r2 scores
+        mses_v = []  # to accumulate viral mse scores
         accs_s = [] # to accumulate stance accuracy scores
         
         for i in range(len(kfolds_devs)):
@@ -339,15 +339,17 @@ def main():
             
             f1_s = np.average(f1_s_metrics [2]) # get individual class f1 scores, then avg
             f1s_s.append(f1_s)                  # store macro f1 
-
-            accs_s.append(acc_s)
+            accs_s.append(acc_s)                # store accuracy
+            r2es_v.append(r2e_v)                # store the r2e
+            mses_v.append(mse_v)                # store the mse 
+            
         
         f1_s_avg = np.average(f1s_s)
         f1_s_std = np.std(f1s_s)
-        r2_v_avg = np.average(r2e_v)
-        r2_v_std = np.std(r2e_v)
-        mse_v_avg = np.average(mse_v)
-        mse_v_std = np.std(mse_v)
+        r2_v_avg = np.average(r2es_v)
+        r2_v_std = np.std(r2es_v)
+        mse_v_avg = np.average(mses_v)
+        mse_v_std = np.std(mses_v)
         acc_s_avg= np.average(accs_s)
         acc_s_std = np.std(accs_s)
         
