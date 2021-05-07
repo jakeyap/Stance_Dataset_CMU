@@ -678,7 +678,9 @@ str_out = re_obj.search(teststr)
 '''
 if __name__=='__main__':
     folder = './log_files/'
-    fnames = ['exp30_mtt_Bertweet5_regr.log']
+    fnames = ['exp32_mtt_Bertweet5_regr.log',
+              'exp33_mtt_Bertweet5_regr.log',
+              'exp34_mtt_Bertweet5_regr.log']
     for fname in fnames:
-        tmp = process_file_regression(folder, fname, True)
+        tmp = process_file_regression(folder, fname)
         print_averages(tmp)
