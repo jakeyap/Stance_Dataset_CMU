@@ -6,8 +6,8 @@ To plot the comments per facebook post collected
 @author: jakeyap
 """
 
-# TODO1 : collate data from old experiments
-# TODO2 : run ablation on regression best hyper params
+# DONE : collate data from old experiments
+# DONE : run ablation on regression best hyper params
 # DONE: check facebook posts num_comms vs num_rxns vs num_shares
 # TODO3 : correlate 3 metrics of virality with regression fit
 # TODO4 : make a model that feeds the stance labels back in
@@ -68,17 +68,21 @@ for i in range(datalen):    # count actual comments collected per post
     counts_mined[i] = num_com
     if i % 1000 == 0:
         print("Processing %d / %d posts" % (i, datalen))
-        
+
+
+EPSILON = 0.    
 if True:    # for plotting scatter of true num comments vs actual collected
     plt.figure(1, figsize=(8,6))
-    plt.scatter(x=counts_truth+0.1, 
-                y=counts_mined+0.1, 
+    plt.scatter(x=counts_truth+EPSILON, 
+                y=counts_mined+EPSILON, 
                 s=2)
     plt.title('Facebook comments collected', size=15)
     plt.ylabel('Num comments found', size=14)
     plt.xlabel('Num comments according to metadata',size=14)
     plt.yscale('log')
     plt.xscale('log')
+    plt.ylim([1e-1, 1e5])
+    plt.xlim([1e-1, 1e5])
     plt.grid(b=True, which='major')
     plt.grid(b=True, which='minor', linewidth=0.2)
 
@@ -90,8 +94,8 @@ if True:    # for plotting 2d histogram in log scale. Same as above but in 2D hi
     bins_y = np.logspace(-1, max_val_mined, 50)     # for log histogram bins y axis
     bins_x = np.logspace(-1, max_val_truth, 50)     # for log histogram bins x axis
     
-    plt.hist2d(x=counts_truth+0.1,
-               y=counts_mined+0.1,
+    plt.hist2d(x=counts_truth+EPSILON,
+               y=counts_mined+EPSILON,
                bins=[bins_x, bins_y],
                norm=mpl.colors.LogNorm(), 
                cmap=mpl.cm.viridis)
@@ -101,49 +105,51 @@ if True:    # for plotting 2d histogram in log scale. Same as above but in 2D hi
     plt.xlabel('Num comments according to metadata',size=14)
     plt.yscale('log')
     plt.xscale('log')
+    plt.ylim([1e-1, 1e5])
+    plt.xlim([1e-1, 1e5])
     plt.grid(b=True, which='major')
     plt.grid(b=True, which='minor', linewidth=0.2)
     
 if True: 
     plt.figure(3, figsize=(8,6))
-    plt.scatter(x=counts_shares+0.1,
-                y=counts_reacts+0.1,
+    plt.scatter(x=counts_shares+EPSILON,
+                y=counts_reacts+EPSILON,
                 s=2)
     plt.title('Facebook virality measures', size=15)
     plt.ylabel('Num Reactions', size=14)
     plt.xlabel('Num Shares',size=14)
     plt.yscale('log')
     plt.xscale('log')
-    plt.ylim([1e-2, 1e6])
-    plt.xlim([1e-2, 1e6])
+    plt.ylim([1e-1, 1e5])
+    plt.xlim([1e-1, 1e5])
     plt.grid(b=True, which='major')
     plt.grid(b=True, which='minor', linewidth=0.2)
     
     plt.figure(4, figsize=(8,6))
-    plt.scatter(x=counts_truth+0.1,
-                y=counts_reacts+0.1,
+    plt.scatter(x=counts_truth+EPSILON,
+                y=counts_reacts+EPSILON,
                 s=2)
     plt.title('Facebook virality measures', size=15)
     plt.ylabel('Num Reactions', size=14)
     plt.xlabel('Num Comments',size=14)
     plt.yscale('log')
     plt.xscale('log')
-    plt.ylim([1e-2, 1e6])
-    plt.xlim([1e-2, 1e6])
+    plt.ylim([1e-1, 1e5])
+    plt.xlim([1e-1, 1e5])
     plt.grid(b=True, which='major')
     plt.grid(b=True, which='minor', linewidth=0.2)
     
     plt.figure(5, figsize=(8,6))
-    plt.scatter(x=counts_shares+0.1,
-                y=counts_truth+0.1,
+    plt.scatter(x=counts_shares+EPSILON,
+                y=counts_truth+EPSILON,
                 s=2)
     plt.title('Facebook virality measures', size=15)
     plt.ylabel('Num Comments', size=14)
     plt.xlabel('Num Shares',size=14)
     plt.yscale('log')
     plt.xscale('log')
-    plt.ylim([1e-2, 1e6])
-    plt.xlim([1e-2, 1e6])
+    plt.ylim([1e-1, 1e5])
+    plt.xlim([1e-1, 1e5])
     plt.grid(b=True, which='major')
     plt.grid(b=True, which='minor', linewidth=0.2)
     

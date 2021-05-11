@@ -499,6 +499,13 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss
     dev_f1_horz = []
     best_metric = -1e9  # variable for deciding when to stop training
     epochs_since_best = 0
+    best_f1_metrics_s = ''
+    best_acc_s = ''
+    best_r2e_v = ''
+    best_mse_v = ''
+    best_msg_s = ''
+    best_msg_v = ''
+    
     
     gpu = torch.device("cuda")
     cpu = torch.device("cpu")
@@ -641,6 +648,12 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss
         if curr_metric > best_metric:       # if best metric score is reached
             logger.info('Best results so far. Saving model...')
             best_metric = curr_metric       # store best score
+            best_f1_metrics_s = f1_metrics_s
+            best_acc_s = acc_s
+            best_r2e_v = r2e_v
+            best_mse_v = mse_v
+            best_msg_s = msg_s
+            best_msg_v = msg_v
             epochs_since_best = 0           # reset the epochs counter
             torch.save(model.state_dict(), 
                        modelfile)   # save model
@@ -687,7 +700,7 @@ def train(model, train_dl, dev_dl, logger, log_interval, epochs, loss_fn_s, loss
     time.sleep(1)
     fig.savefig(plotfile)
     
-    return [f1_metrics_s, acc_s, r2e_v, mse_v, msg_s + msg_v]
+    return [best_f1_metrics_s, best_acc_s, best_r2e_v, best_mse_v, best_msg_s + best_msg_v]
 
 def test(model, dataloader, logger, log_interval, v_log, print_string='test'):
     """
