@@ -9,7 +9,7 @@ To plot the comments per facebook post collected
 # DONE : collate data from old experiments
 # DONE : run ablation on regression best hyper params
 # DONE: check facebook posts num_comms vs num_rxns vs num_shares
-# TODO3 : correlate 3 metrics of virality with regression fit
+# IGNORE : correlate 3 metrics of virality with regression fit
 # TODO4 : make a model that feeds the stance labels back in
 # TODO5 : run fed back model
 # TODO6 : tokenize facebook posts
@@ -61,14 +61,13 @@ counts_shares = df_posts.share_count.to_numpy()
 counts_reacts = df_posts.reaction_count.to_numpy()
 
 datalen = post_ids.shape[0]
-for i in range(datalen):    # count actual comments collected per post
-    post_id = post_ids[i]
-    indexes = (comm_post_ids == post_id)
-    num_com = indexes.sum()
-    counts_mined[i] = num_com
+for i in range(datalen):                    # count comments collected per post
+    post_id = post_ids[i]                   # go through each post ID
+    indexes = (comm_post_ids == post_id)    # check comments are relevant (reply to ID)
+    num_com = indexes.sum()                 # count all the relevant comments
+    counts_mined[i] = num_com               # store the count
     if i % 1000 == 0:
         print("Processing %d / %d posts" % (i, datalen))
-
 
 EPSILON = 0.    
 if True:    # for plotting scatter of true num comments vs actual collected
@@ -110,7 +109,7 @@ if True:    # for plotting 2d histogram in log scale. Same as above but in 2D hi
     plt.grid(b=True, which='major')
     plt.grid(b=True, which='minor', linewidth=0.2)
     
-if True: 
+if True:    # for plotting various measures of virality against one another
     plt.figure(3, figsize=(8,6))
     plt.scatter(x=counts_shares+EPSILON,
                 y=counts_reacts+EPSILON,
